@@ -6,6 +6,7 @@ import Hand from '../assets/hand.png'
 import Heroimg from '../assets/heroimg.jpg'
 import Happy from '../assets/happy.jpg'
 import Support from '../assets/herosupport.jpg'
+import {TbMessageChatbot } from 'react-icons/tb'
 
 const HeroSection = () => {
   return (
@@ -52,8 +53,8 @@ const HeroSection = () => {
                 </div>       
             </div>
         </div>
-        <div className="herochatbot">
-
+        <div className="chatbot-container">
+            <TbMessageChatbot className='chatboticon' size={50}/>
         </div>
       </div>
     </div>

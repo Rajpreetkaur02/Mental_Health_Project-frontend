@@ -186,3 +186,22 @@
 #herolargeimg{
     width: 65%;
 }
+
+.chatbot-container{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: #026fff;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: flex;
+    justify-content: center;
+}
+
+.chatboticon{
+    color: #fff;
+    margin: auto;
+}
