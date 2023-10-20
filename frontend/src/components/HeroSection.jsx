@@ -35,6 +35,12 @@ const HeroSection = () => {
         <div className="Herobottom">
             <div className="herobottomleft">
                 <div className="herospan">In mental care, there is no one-size-fits-all approach to mental health. We tailor our care plans to fit each individual's unique needs. Mental health should always be good</div>
+                <div>
+                    <button>
+                        <span>Take a Test</span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
             <div className="herobottomright">
                 <div id='herosmallimg'>
@@ -43,9 +49,11 @@ const HeroSection = () => {
                 </div>
                 <div id='herolargeimg'>
                     <img src={Heroimg} className='heroimg'/>
-                </div>
-                
+                </div>   
             </div>
+        </div>
+        <div className="herochatbot">
+
         </div>
       </div>
     </div>
