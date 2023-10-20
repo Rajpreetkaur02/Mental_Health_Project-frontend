@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.Hero{
+    margin-top: 5%;
+    background-color: #f9f8f4;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.Herotop{
+    width: 100%;
+    margin: 0 auto;
+    padding: 5% 5% 3% 8%;
+    display: flex;
+}
+
+.herotopleft{
+    width: 60%;
+    height: auto;
+}
+
+.herotext{
+    font-size: 4.5em;
+    padding-bottom: 2%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.arrowicon{
+    width: 15%;
+    padding: 1% 0% 0% 7%;
+    cursor: pointer;
+}
+
+.herotopright{
+    width: 40%;
+}
+
+.articlesbox, .testbox{
+    background-color: #fff;
+    margin: 3% auto;
+    width: 40%;
+    height: auto;
+    padding: 2%;
+    border-radius: 10px;
+    /* box-shadow: #036cfc 1.95px 1.95px 2.6px; */
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: flex;
+}
+
+.articleicon, .handicon{
+    width: 70%;
+    padding: 8% 0 0 8%
+}
+
+.articleboxtext, .testboxtext{
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.articleboxtext span, .testbox span{
+    font-size: 0.9rem;
+}
+
+#boxnum{
+    font-weight: 800;
+}
+
+.Herobottom{
+    width: 100%;
+    display: flex;
+}
+
+.herobottomleft{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+/* take a test button css start*/
+
+.herobottomleft button{
+    margin-top: 25%;
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #026fff;
+  box-shadow: 0 0 0 2px #026fff;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.herobottomleft button span:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #026fff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.herobottomleft button span:first-child {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .herobottomleft button:hover {
+    box-shadow: 0 0 0 5px #2195f360;
+    color: #ffffff;
+  }
+  
+  .herobottomleft button:active {
+    scale: 0.95;
+  }
+  
+  .herobottomleft button:hover span:last-child {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+  }
+  
+
+
+/* take a test button css end*/
+
+.herospan{
+    width: 70%;
+    font-family: 'Roboto', sans-serif;
+    color: grey;
+    line-height: 1.5;
+    padding-left: 5%;
+}
+
+.herobottomright{
+    width: 60%;
+    margin-right: 5%;
+    display: flex;
+    gap: 7px;
+}
+
+.happyimg, .supportimg{
+    width: 100%;
+    height: auto;
+    border-radius: 10px; 
+}
+
+/* .supportimg{
+    margin-top: 5px;
+} */
+
+.heroimg{
+    width: 100%;
+    border-radius: 10px;
+    /* margin-right: 0%;
+    margin-top: 0px; */
+}
+
+#herosmallimg{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 5px;
+    /* padding-right: 5px */
+}
+
+#herolargeimg{
+    width: 65%;
+}
+
+.chatbot-container{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: #026fff;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: flex;
+    justify-content: center;
+}
+
+.chatboticon{
+    color: #fff;
+    margin: auto;
+}
