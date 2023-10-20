@@ -7,7 +7,7 @@
 .Hero{
     margin-top: 5%;
     background-color: #f9f8f4;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
 }
@@ -21,10 +21,11 @@
 
 .herotopleft{
     width: 60%;
+    height: auto;
 }
 
 .herotext{
-    font-size: 5.5rem;
+    font-size: 4.5em;
     padding-bottom: 2%;
     font-family: 'Roboto', sans-serif;
 }
@@ -42,8 +43,9 @@
 .articlesbox, .testbox{
     background-color: #fff;
     margin: 3% auto;
-    width: 35%;
-    height: 40%;
+    width: 40%;
+    height: auto;
+    padding: 2%;
     border-radius: 10px;
     /* box-shadow: #036cfc 1.95px 1.95px 2.6px; */
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
