@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import img from '../assests/TaeAugust07.jpg';
+import img from '../assets/TaeAugust07.jpg';
 import '../styles/Login.css';
 
 function Login() {

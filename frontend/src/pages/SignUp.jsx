@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
-import img from '../assests/TaeAugust05.jpg';
+import img from '../assets/TaeAugust05.jpg';
 
 function SignUp() {
     const[showEmergency, setShowEmergency] = useState(false);
