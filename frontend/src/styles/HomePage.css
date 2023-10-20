@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@600&display=swap');
+
+
+
+.Hero{
+    margin-top: 5%;
+    background-color: #f9f8f4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.Herotop{
+    width: 100%;
+    margin: 0 auto;
+    padding: 5% 5% 3% 8%;
+    display: flex;
+}
+
+.herotopleft{
+    width: 50%;
+}
+
+.herotext{
+    font-size: 12vh;
+    padding-bottom: 2%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.arrowicon{
+    width: 10%;
+    padding: 1% 0% 0% 7%;
+    cursor: pointer;
+}
+
+.herotopright{
+    width: 40%;
+}
+
+.articlesbox, .testbox{
+    background-color: #fff;
+    margin: 3% auto;
+    width: 35%;
+    height: 40%;
+    border-radius: 10px;
+    /* box-shadow: #036cfc 1.95px 1.95px 2.6px; */
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: flex;
+}
+
+.articleicon, .handicon{
+    width: 70%;
+    padding: 8% 0 0 8%
+}
+
+.articleboxtext, .testboxtext{
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.articleboxtext span, .testbox span{
+    font-size: 0.9rem;
+}
+
+#boxnum{
+    font-weight: 800;
+}
+
+.Herobottom{
+    width: 100%;
+    display: flex;
+}
+
+.herobottomleft{
+    width: 50%;
+    
+    display: flex;
+    justify-content: center;
+}
+
+.herospan{
+    width: 70%;
+    font-family: 'Roboto', sans-serif;
+    color: grey;
+    line-height: 1.5;
+    padding-left: 8%;
+}
+
+.herobottomright{
+    width: 60%;
+    margin-right: 5%;
+    display: flex;
+    
+}
+
+.happyimg, .supportimg{
+    width: 100%;
+    height: auto;
+    border-radius: 10px; 
+}
+
+.supportimg{
+    margin-top: 5px;
+}
+
+.heroimg{
+    width: 100%;
+    border-radius: 10px;
+    margin-right: 0%;
+    margin-top: 0px;
+}
+
+#herosmallimg{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding-right: 5px
+}
+
+#herolargeimg{
+    width: 65%;
+}
