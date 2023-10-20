@@ -43,8 +43,7 @@ const HeroSection = () => {
                 </div>
                 <div id='herolargeimg'>
                     <img src={Heroimg} className='heroimg'/>
-                </div>
-                
+                </div>       
             </div>
         </div>
       </div>
