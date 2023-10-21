@@ -1,14 +1,35 @@
 .main-footer {
     color: white;
-    background-color: #dc3545;
+    background-color: #0f172a;
     padding-top: 3rem;
     position: relative;
     bottom: 0;
     width: 100%;
 }
 
-.row{
+.row {
     display: flex;
+    justify-content: center;
+    gap: 5vw;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.list-unstyled {
+    padding-left: 0;
+}
+
+.row ul li {
+    list-style: none;
+}
+
+.rowBottom {
+    display: flex;
+    justify-content: center;
 }
 
 /* .page-container{

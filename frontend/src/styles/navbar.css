@@ -1,17 +1,18 @@
-.active{
+/* .active {
     background-color: #1d4ed8;
-}
+} */
 
-nav{
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #0f172a;
     position: sticky;
     top: 0;
+    height: 10vh;
 }
 
-nav .title{
+nav .title {
     font-size: 1.5rem;
     margin: 1rem;
     font-weight: bold;
@@ -19,42 +20,63 @@ nav .title{
     color: white;
 }
 
-nav ul{
+nav ul {
     display: flex;
 }
 
-nav ul li{
+.navCenter ul li { 
     list-style: none;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    padding-top: 0.5rem;
+    margin: 0 0.5rem;
 }
 
-nav ul li a{
+.navCenter ul li a {
+    padding-bottom: 0.5rem;
     display: block;
     text-decoration: none;
     color: white;
-    padding: 0.5rem;
-    margin: 0 0.5rem;
     border-radius: 0.5rem;
 }
 
-nav ul li a:not(.active):hover{
-    background-color: #172554;
+.navRight ul li {
+    list-style: none; 
 }
 
-nav .menu{
-    display: none;
+.navRight ul li a {
+    background-color: white;
+    color: black;
+    display: block;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    padding-top: 0.5rem;
+    margin: 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+.navCenter ul li a {
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+  
+.navCenter ul li a::after {
+    content: '';
     position: absolute;
-    top: 0.75rem;
-    right: 0.5rem;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 2.25rem;
-    height: 2rem;
-}
-
-nav .menu span{
-    height: 0.4rem;
     width: 100%;
-    background-color: #fff;
-    border-radius: 0.2rem;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
-
+  
+.navCenter ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}

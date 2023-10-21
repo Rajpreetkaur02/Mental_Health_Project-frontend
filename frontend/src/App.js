@@ -5,20 +5,18 @@ import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Categories from './pages/Categories';
+import Resources from './pages/Resources';
 
 
 function App() {
   return (
-    <div className="page-container">
-      <div className="content-wrap"></div>
-
-
-
+    <div className="container">
       <Routes>
         <Route exact path='/' element={<HomePage/>}></Route>
         <Route exact path='/login' element={<Login/>}></Route>
         <Route exact path='/signup' element={<SignUp/>}></Route>
         <Route exact path='/categories' element={<Categories/>}></Route>
+        <Route exact path='/resources' element={<Resources/>}></Route>
       </Routes> 
     </div>
   );

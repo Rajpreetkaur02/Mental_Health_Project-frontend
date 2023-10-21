@@ -2,9 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import img from '../assets/TaeAugust07.jpg';
 import '../styles/Login.css';
+import Navbar from '../components/Navbar';
 
 function Login() {
   return (
+    <>
+    <Navbar/>
     <div className='main'>
         <div className='details'>
             <h2>Login to your account</h2>
@@ -21,6 +24,7 @@ function Login() {
             <img src={img} alt=""/>
         </div>
     </div>
+    </>
   )
 }
 

@@ -5,6 +5,10 @@
 }
 
 .Hero{
+<<<<<<< HEAD
+=======
+    /* margin-top: 5%; */
+>>>>>>> 737b998 (update navbar and footer)
     background-color: #f9f8f4;
     height: auto;
     display: flex;
