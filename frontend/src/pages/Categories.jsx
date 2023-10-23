@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/Categories.css';
-import HealthImg from '../assets/mentalHealthImg.png';
-import CategoryCard from '../components/CategoryCard';
-import mentalData from '../data/healthData.js';
 import Navbar from '../components/Navbar';
+import CategoryCard from '../components/CategoryCard';
+import HealthImg from '../assets/mentalHealthImg.png';
+import mentalData from '../data/healthData.js';
+import '../styles/Categories.css';
 
 
 function Categories() {
@@ -11,8 +11,8 @@ function Categories() {
     const [physicalActive, setPhysicalActive] = useState(false);
 
     const mentalButtonPressed = () => {
-            setMentalActive(true);
-            setPhysicalActive(false);
+        setMentalActive(true);
+        setPhysicalActive(false);
     }
 
     const physicalButtonPressed = () => {
@@ -37,20 +37,21 @@ function Categories() {
                 </div>
             </div>  
             <div className='categoryBottom'>
-                {mentalActive &&
+                {mentalActive ?
                     mentalData
                         .filter((data) => data.type === 'mental')
                         .map((data) => (
-                            <CategoryCard {...data}/>
+                            <CategoryCard {...data} key={data.id}/>
                         ))    
-                }
+                :
 
-                {!mentalActive && physicalActive &&
+                (physicalActive && (
                     mentalData
                         .filter((data) => data.type === 'physical')
                         .map((data) => (
-                            <CategoryCard {...data}/>
-                        ))    
+                            <CategoryCard {...data} key={data.id}/>
+                        ))  
+                ))  
                 }
             </div>
         </div>

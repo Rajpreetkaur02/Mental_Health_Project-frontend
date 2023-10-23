@@ -9,6 +9,7 @@ import smokingImg from '../assets/stop_smoking.jpg';
 
 const data = [
     {
+        id: 1,
         img: mentalImg,
         heading: 'Depression',
         details: 'If you are struggling with fatigue, a low mood, demotivation, increased irritability and constantly feeling drained, it might be time to get help.',
@@ -16,6 +17,7 @@ const data = [
     },
 
     {
+        id: 2,
         img: anxietyImg,
         heading: 'Anxiety',
         details: 'Constantly worried about how your day is going? Unable to calm your restless mind? Find ways to keep anxiety at bay by connecting with an expert.',
@@ -23,6 +25,7 @@ const data = [
     },
 
     {
+        id: 3,
         img: stressImg,
         heading: 'Stress',
         details: 'Are you overwhelmed and looking for a way to manage your stress levels? Our mental health providers can help you tackle these overwhelming emotions one step at a time.',
@@ -30,6 +33,7 @@ const data = [
     },
 
     {
+        id: 4,
         img: griefImg,
         heading: 'Grief',
         details: 'Grief is a very personal experience and there’s no fixed way to cope with it. If you’re unable to process your painful emotions or make sense of loss, reach out today.',
@@ -37,6 +41,7 @@ const data = [
     },
 
     {
+        id: 5,
         img: smokingImg,
         heading: 'Stop Smoking',
         details: "If you're struggling with fatigue, a low mood, demotivation, increased irritability and constantly feeling drained, it might be time to get help.",
@@ -44,6 +49,7 @@ const data = [
     },
 
     {
+        id: 6,
         img: drinkingImg,
         heading: 'Stop Drinking',
         details: "Are you overwhelmed and looking for a way to manage your stress levels? Our mental health providers can help you tackle these overwhelming emotions one step at a time.",
@@ -51,6 +57,7 @@ const data = [
     },
 
     {
+        id: 7,
         img: obeseImg,
         heading: 'Stop Obesity',
         details: "Grief is a very personal experience and there’s no fixed way to cope with it. If you’re unable to process your painful emotions or make sense of loss, reach out today.",
@@ -58,6 +65,7 @@ const data = [
     },
 
     {
+        id: 8,
         img: menstruationImg,
         heading: 'Avoid Mood Swings in Menstruation',
         details: "Constantly worried about how your day is going? Unable to calm your restless mind? Find ways to keep anxiety at bay by connecting with an expert.",
