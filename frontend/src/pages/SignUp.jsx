@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import React from 'react';
 import img from '../assets/TaeAugust05.jpg';
+import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 function SignUp() {
     const[showEmergency, setShowEmergency] = useState(false);
@@ -11,6 +13,7 @@ function SignUp() {
 
   return (
     <>
+    <Navbar/>
     <div className='main'>
     <div className='loginImage'>
             <img src={img} alt=""/>
@@ -40,7 +43,7 @@ function SignUp() {
                     <input type="number" id="" placeholder='Emergency Contact Number' required />
                     <label>Emergency Contact Email</label>
                     <input type="email" name="email" id="" placeholder='Emergency Contact Email' required/>
-                    <button type='submit'>Register</button>
+                    <button type='submit'><Link id="registerButton" to={{pathname: "/categories"}}>Register</Link></button>
                 </form>
                 </>
             )}

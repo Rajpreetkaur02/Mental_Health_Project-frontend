@@ -1,5 +1,5 @@
 .main {
-    height: 100%;
+    height: 90vh;
     display: flex;
 }
 
@@ -47,7 +47,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     width: 50%;
     background-color: #C6ECFF;
 }
@@ -65,4 +65,9 @@
 
 .registerLink a:hover {
     font-weight: bold;
+}
+
+#registerButton {
+    text-decoration: none;
+    color: black;
 }

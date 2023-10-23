@@ -3,6 +3,7 @@ import '../styles/Categories.css';
 import HealthImg from '../assets/mentalHealthImg.png';
 import CategoryCard from '../components/CategoryCard';
 import mentalData from '../data/healthData.js';
+import Navbar from '../components/Navbar';
 
 
 function Categories() {
@@ -21,6 +22,7 @@ function Categories() {
 
     return (
         <>
+        <Navbar/>
         <div className='categoryMain'>
             <div className='categoryTop'>
                 <div className='categoryTopLeft'>
