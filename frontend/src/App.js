@@ -7,7 +7,6 @@ import SignUp from './pages/SignUp';
 import Categories from './pages/Categories';
 import Resources from './pages/Resources';
 
-
 function App() {
   return (
     <div className="container">
