@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.Hero{
+.Hero {
     /* margin-top: 5%; */
     background-color: #f9f8f4;
     height: auto;
@@ -12,35 +12,36 @@
     flex-direction: column;
 }
 
-.Herotop{
+.Herotop {
     width: 100%;
     margin: 0 auto;
     padding: 3% 1% 1% 8%;
     display: flex;
 }
 
-.herotopleft{
+.herotopleft {
     width: 60%;
     height: auto;
 }
 
-.herotext{
+.herotext {
     font-size: 4.5em;
     padding-bottom: 2%;
     font-family: 'Roboto', sans-serif;
 }
 
-.arrowicon{
+.arrowicon {
     width: 15%;
     padding: 1% 0% 0% 7%;
     cursor: pointer;
 }
 
-.herotopright{
+.herotopright {
     width: 40%;
 }
 
-.articlesbox, .testbox{
+.articlesbox,
+.testbox {
     background-color: #fff;
     margin: 3% auto;
     width: 50%;
@@ -52,12 +53,14 @@
     display: flex;
 }
 
-.articleicon, .handicon{
+.articleicon,
+.handicon {
     width: 70%;
     padding: 8% 0 0 8%
 }
 
-.articleboxtext, .testboxtext{
+.articleboxtext,
+.testboxtext {
     display: flex;
     flex-direction: column;
     padding: 2%;
@@ -66,20 +69,21 @@
     margin-left: 0;
 }
 
-.articleboxtext span, .testbox span{
+.articleboxtext span,
+.testbox span {
     font-size: 0.9rem;
 }
 
-#boxnum{
+#boxnum {
     font-weight: 800;
 }
 
-.Herobottom{
+.Herobottom {
     width: 100%;
     display: flex;
 }
 
-.herobottomleft{
+.herobottomleft {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -89,7 +93,7 @@
 
 /* take a test button css start*/
 
-.herobottomleft button{
+.herobottomleft button {
     margin-top: 25%;
     display: inline-block;
     padding: 12px 24px;
@@ -105,7 +109,7 @@
 
 /* take a test button css end*/
 
-.herospan{
+.herospan {
     width: 70%;
     font-family: 'Roboto', sans-serif;
     color: grey;
@@ -113,31 +117,32 @@
     padding-left: 5%;
 }
 
-.herobottomright{
+.herobottomright {
     width: 60%;
     margin-right: 5%;
     display: flex;
     gap: 7px;
 }
 
-.happyimg, .supportimg{
+.happyimg,
+.supportimg {
     width: 100%;
     height: auto;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 /* .supportimg{
     margin-top: 5px;
 } */
 
-.heroimg{
+.heroimg {
     width: 100%;
     border-radius: 10px;
     /* margin-right: 0%;
     margin-top: 0px; */
 }
 
-#herosmallimg{
+#herosmallimg {
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -145,13 +150,13 @@
     /* padding-right: 5px */
 }
 
-#herolargeimg{
+#herolargeimg {
     width: 65%;
 }
 
 /* CHATBOT start*/
 
-.chatbot-container{
+.chatbot-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -167,12 +172,12 @@
     cursor: pointer;
 }
 
-.chatboticon{
+.chatboticon {
     color: #fff;
     margin: auto;
 }
 
-.chatbot-chat-container{
+.chatbot-chat-container {
     background-color: #fff;
     height: 65vh;
     width: 25vw;
@@ -184,66 +189,127 @@
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-.chatbot-top{
+.chatbot-top {
     height: 11vh;
     background-color: #026fff;
     border-radius: 20px 20px 0 0;
     display: flex;
 }
 
-.chatbot-avatar{
+.chatbot-avatar {
     width: 20%;
     padding: 5px 5px 25px 5px;
 }
 
-.chatbot-avatar img{
+.chatbot-avatar img {
     width: 100%;
 }
 
-.chatbot-heading{
+.chatbot-heading {
     padding: 10px;
     color: white;
 }
 
 /* about section */
 
-.aboutcontainer{
+.aboutcontainer {
     height: 100vh;
     background-color: #f9f8f4;
 }
 
-.aboutheading{
+.aboutheading {
     display: flex;
     justify-content: center;
 }
 
-.aboutheading span{
+.aboutheading span {
     font-size: 3.5em;
-    padding-top: 3%;
+    padding-top: 7%;
     padding-bottom: 1%;
     font-family: 'Roboto', sans-serif;
+}
+
+.howitworkscontainer {
+    width: 90%;
+    height: auto;
+    padding: 2%;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.workscard {
+    width: 22.5%;
+    height: auto;
+    /* background-color: #026fff; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2%;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+#workcardimg {
+    width: 35%;
+}
+
+.workscard span {
+    padding-top: 10%;
+    font-weight: 600;
+}
+
+.workscard p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.workscard button {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #026fff;
+    /* box-shadow: 0 0 0 2px #026fff; */
+    cursor: pointer;
+    /* transform: scale(0.8, 0.8); */
+}
+
+.workscard:hover{
+    background-color: #C6ECFF;
+    border-radius: 20px;
+    transform: scale(1.1, 1.1);
 }
 
 /* take a test section */
 
-.testcontainer{
+.testcontainer {
     height: 100vh;
     background-color: #f9f8f4;
 }
 
-.testheading{
+.testheading {
     display: flex;
     justify-content: center;
 }
 
-.testheading span{
+.testheading span {
     font-size: 3.5em;
     padding-top: 3%;
     padding-bottom: 1%;
     font-family: 'Roboto', sans-serif;
 }
 
-.testsubheading{
+.testsubheading {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,12 +318,12 @@
     text-align: center;
 }
 
-.testsubheading span{
+.testsubheading span {
     color: grey;
     padding-bottom: 2%;
 }
 
-#testsubheadingbold{
+#testsubheadingbold {
     font-weight: 600;
 }
 
@@ -266,13 +332,13 @@
 
 /* questions section */
 
-.questioncontainer{
+.questioncontainer {
     height: auto;
     background-color: #f9f8f4;
     padding-bottom: 10%;
 }
 
-.questionsContent{
+.questionsContent {
     margin: auto;
     width: 70%;
     display: flex;
@@ -281,13 +347,13 @@
     height: auto;
 }
 
-.questions{
+.questions {
     /* height: 20vh; */
     padding: 20px;
     border-bottom: 2px solid #026fff;
 }
 
-.questions>span{
+.questions>span {
     display: flex;
     justify-content: space-between;
     font-size: 1.2rem;
@@ -295,13 +361,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.questions>div{
+.questions>div {
     color: #515252;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
 }
 
-.plus{
+.plus {
     cursor: pointer;
     color: #026fff;
 }
@@ -311,3 +377,135 @@
     padding-top: 1%;
 }
 
+
+/* subscription section */
+
+.planscontainer{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    padding-top: 2%;
+}
+.plancard {
+    border-radius: 16px;
+    box-shadow: 0 30px 30px -25px rgba(0, 38, 255, 0.205);
+    padding: 10px;
+    background-color: #fff;
+    color: #697e91;
+    max-width: 300px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .plancard strong {
+    font-weight: 600;
+    color: #425275;
+  }
+  
+  .plancard .planinner {
+    align-items: center;
+    padding: 20px;
+    padding-top: 40px;
+    background-color:  #e6f7ff;
+    border-radius: 12px;
+    position: relative;
+  }
+  
+  .plancard .planpricing {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #80d4ff;
+    border-radius: 99em 0 0 99em;
+    display: flex;
+    align-items: center;
+    padding: 0.625em 0.75em;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #425475;
+  }
+  
+  .plancard .planpricing small {
+    color: #707a91;
+    font-size: 0.75em;
+    margin-left: 0.25em;
+  }
+  
+  .plancard .plantitle {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #425675;
+  }
+  
+  .plancard .plantitle + * {
+    margin-top: 0.75rem;
+  }
+  
+  .plancard .planinfo + * {
+    margin-top: 1rem;
+  }
+  
+  .plancard .planfeatures {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .plancard .planfeatures li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .plancard .planfeatures li + * {
+    margin-top: 0.75rem;
+  }
+  
+  .plancard .planfeatures .planicon {
+    background-color: #1FCAC5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .plancard .planfeatures .planicon svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .plancard .planfeatures + * {
+    margin-top: 1.25rem;
+  }
+  
+  .plancard .planaction {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  
+  .plancard .planbutton {
+    background-color: #0099e6;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.125rem;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    padding: 0.625em 0.75em;
+    text-decoration: none;
+  }
+  
+  .plancard .planbutton:hover, .plancard .planbutton:focus {
+    background-color: #4133B7;
+  }
+
+
+  /* resource section */
+
+  

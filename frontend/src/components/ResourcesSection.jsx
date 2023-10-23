@@ -1,4 +1,5 @@
 import React from 'react'
+import Happy from '../assets/happy.jpg'
 
 const ResourcesSection = () => {
   return (
