@@ -508,4 +508,118 @@
 
   /* resource section */
 
+  .resources-container{
+    background-color: #f9f8f4;
+    height: 100vh;
+  }
+  .containerr {
+    height: 80vh;
+    width: 90%;
+    border-radius: 1em;
+    overflow: hidden;
+    /* box-shadow: 0 10px 20px #dbdbdb; */
+    font-family: sans-serif;
+    display: flex;
+    margin: auto;
+  }
+
+  .resources-left{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    padding: 2%;
+  }
+
+  #leftheading{
+    font-size: 4em;
+    padding-top: 7%;
+    padding-bottom: 1%;
+    font-family: 'Roboto', sans-serif;
+    /* width: 50%; */
+  }
+
+  .helpbox{
+    background-color: #fff;
+    width: 40%;
+    height: 20vh;
+    position: absolute;
+    margin-top: 25%;
+    margin-left: 5%;
+    display: flex;
+    /* align-items: center;
+    text-align: center; */
+    justify-content: space-between; 
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  #help-button{
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    text-align: center; 
+    justify-content: center;
+    padding-left: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  #go-button{
+    background-color: #C6ECFF;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    text-align: center; 
+    justify-content: center;
+    font-size: 2rem;
+  }
+  
+  .palette {
+    display: flex;
+    height: 100%;
+    width: 60%;
+  }
+  
+  .color {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: flex 0.2s linear;
+    border-radius: 20px;
+    margin-left: 10px;
+  }
+
+  .color h3{
+    transform: rotate(-90deg);
+    position: absolute;
+  }
+
+  .color:hover h3{
+    transform: rotate(0deg);
+  }
+
+  .color span {
+    opacity: 0;
+    transition: opacity 0.2s linear;
+  }
+
+  .color img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .color:hover {
+    flex: 2;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .color:hover span {
+    opacity: 1;
+  }
   
