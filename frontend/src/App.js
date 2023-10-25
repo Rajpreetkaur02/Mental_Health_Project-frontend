@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Categories from './pages/Categories';
 import Resources from './pages/Resources';
+import QuestionsPage from './pages/QuestionsPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path='/signup' element={<SignUp/>}></Route>
         <Route exact path='/categories' element={<Categories/>}></Route>
         <Route exact path='/resources' element={<Resources/>}></Route>
+        <Route exact path='/questions' element={<QuestionsPage/>}></Route>
       </Routes> 
     </div>
   );
