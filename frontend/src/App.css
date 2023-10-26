@@ -16,6 +16,36 @@
   }
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(252, 251, 251);
+  color: black;
+  font-family: "Montserrat", sans-serif;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    "sidebar header header header"
+    "sidebar main main main";
+  height: 100vh;
+}
+
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

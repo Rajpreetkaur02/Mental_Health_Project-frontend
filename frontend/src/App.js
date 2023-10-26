@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Categories from './pages/Categories';
 import Resources from './pages/Resources';
 import QuestionsPage from './pages/QuestionsPage';
+import UserDashboard from './pages/UserDashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/categories' element={<Categories/>}></Route>
         <Route exact path='/resources' element={<Resources/>}></Route>
         <Route exact path='/questions' element={<QuestionsPage/>}></Route>
+        <Route exact path='/dashboard' element={<UserDashboard/>}></Route>
       </Routes> 
     </div>
   );
