@@ -4,6 +4,7 @@ import { BsArrowRightCircle } from "react-icons/bs";
 
 function CategoryCard(data) {
   return (
+        
     <div className='mainCategoryPage'>
         <div className='leftPart'>
             <img src={data.img} alt="" />
@@ -14,6 +15,7 @@ function CategoryCard(data) {
         </div>
         <BsArrowRightCircle className='arrowIcon' size={50}/>
     </div>
+        // </Link>
   )
 }
 

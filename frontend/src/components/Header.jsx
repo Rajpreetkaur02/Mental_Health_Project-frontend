@@ -15,7 +15,7 @@ function Header({ sidebarHandler }) {
         <BsJustify className={classes.icon} onClick={sidebarHandler} />
       </div>
       <div className={classes["header-left"]}>
-        <input type="text" placeholder="Search here..." name="" value="" />
+        <input type="text" placeholder="Search here..." name="" />
         <BsSearch className={classes.icon} />
       </div>
       <div className={classes["header-right"]}>

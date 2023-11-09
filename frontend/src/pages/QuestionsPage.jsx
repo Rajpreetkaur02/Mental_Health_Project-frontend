@@ -1,83 +1,76 @@
-import React from 'react'
+import {React, useState} from 'react';
 
 function QuestionsPage() {
     const url = 'http://127.0.0.1:5000/depdet/';
-    let values;
-    let model;
+    const [values, setValues] = useState([]);
+    const [model, setModel] = useState(null);
+    const [result, setResult] = useState(null);
+  
+    const submitResults = async () => {
+        const currentValues = getValues();
+        const currentModel = getModel();
     
-    async function submitResults(){
-        values = getValues();
-        model = getModel();
-    
-        if (model === -1){
-            // flashOptionsBar();
+        if (currentModel === -1) {
             return;
         }
     
-        const obj = {"values" : values, "model" : model};
-        const json_str = JSON.stringify(obj);
+        const obj = { values: currentValues, model: currentModel };
+        const jsonStr = JSON.stringify(obj);
     
-        try{
-            const resp = await fetch(url + json_str, {signal: AbortSignal.timeout(2000)})
-            .then(response => response.json())
-            .then(json => {return json});
-            displayResults(resp['prediction'], model);
-    
-        } catch(err){
-            displayResults(-1, model);
+        try {
+        const resp = await fetch(url + jsonStr, { signal: new AbortController().signal, timeout: 2000 })
+            .then(response => response.json());
+  
+        displayResults(resp.prediction, currentModel);
+        } catch (err) {
+            displayResults(-1, currentModel);
         }
-    }
-    
-    
-    function getValues(){
+    };
+  
+    const getValues = () => {
         const radio = document.querySelector("div.radio-parent");
-        const nameList = ['envsat','achievesat','finstress','insomnia','anxiety','deprived','abused',
-                        'cheated','threatened','suicidal','inferiority','reccon','recloss'];
-        let values = [];
+        const nameList = ['envsat', 'achievesat', 'finstress', 'insomnia', 'anxiety', 'deprived', 'abused', 'cheated', 'threatened', 'suicidal', 'inferiority', 'reccon', 'recloss'];
     
-        nameList.forEach((name) => {
-            values.push(radio.querySelector("input[name="+ name +"]:checked").value);
+        const currentValues = nameList.map(name => {
+            return radio.querySelector(`input[name=${name}]:checked`).value;
         });
     
-        values = values.map(x => Number(x));
+        setValues(currentValues.map(x => Number(x)));
         console.log(values);
         return values;
-    }
-    
-    
-    function getModel(){
+    };
+  
+    const getModel = () => {
         const radio = document.querySelector("div.radio-parent");
-        let option = radio.querySelector("#model-select").value;
-        option = Number(option);
-        return option;
-    }
+        const option = radio.querySelector("#model-select").value;
+        setModel(Number(option));
+        return model;
+    };
+  
+    const displayResults = (result, currentModel) => {
+        let resultText;
     
-    
-    function displayResults(result, model){
-        // changeResultTextColor(result);
-        let result_text
-        
-        if (result > 0.5){
-            result_text = 'High probability of depression';
-        } else{
-            result_text = 'Low probability of depression';
+        if (result > 0.5) {
+            resultText = 'High probability of depression';
+        } else {
+            resultText = 'Low probability of depression';
         }
     
-        if (model === 5|model === 7){
-            result_text = result_text + ": " + (result * 100) + "%";
+        if (currentModel === 5 || currentModel === 7) {
+            resultText = `${resultText}: ${result * 100}%`;
         }
     
-        if (result === -1){
-            result_text = "Connection timed out!";
+        if (result === -1) {
+            resultText = 'Connection timed out!';
         }
     
-        let textEl = document.getElementById("result");
-        textEl = textEl.querySelector("p");
-        textEl.innerHTML= result_text;
-    }
+        setResult(resultText);
+    };
+
 
     return (
         <>
+        <h1>Take </h1>
             <div className="radio-parent">
                 <fieldset>
                     <legend>Are you satisfied with the state of your environment?</legend>
@@ -265,6 +258,7 @@ function QuestionsPage() {
                 <p>
                     Choose a model of your choice and submit to generate results
                 </p>
+                <p>{result}</p>
             </div>
         </>
   )
