@@ -67,14 +67,14 @@ body {
     justify-content: center;
     align-items: center;
 } */
-.buttons {
+.categoryButtons {
     position: relative;
     height: 10vh;
     width: 1vw;
     margin-left: auto;
     margin-right: auto;
 }
-.buttons button {
+.categoryButtons button {
     width: 180px;
     height: 90px;
     background: #0f172a;
@@ -100,12 +100,12 @@ body {
     filter: blur(0) brightness(1) !important;
     z-index: 4 !important;
 }
-.buttons button:first-child {
+.categoryButtons button:first-child {
     transform: perspective(102px) rotateY(3deg);
     left: -150px;
     z-index: 2;
 }
-.buttons button:last-child {
+.categoryButtons button:last-child {
     transform: scale(0.7) perspective(102px) rotateY(3deg);
     filter: blur(2px) brightness(1.5);
     left: -10px;

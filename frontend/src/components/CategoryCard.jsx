@@ -15,7 +15,6 @@ function CategoryCard(data) {
         </div>
         <BsArrowRightCircle className='arrowIcon' size={50}/>
     </div>
-        // </Link>
   )
 }
 

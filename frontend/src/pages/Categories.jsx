@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import CategoryCard from '../components/CategoryCard';
 import HealthImg from '../assets/mentalHealthImg.png';
-import mentalData from '../data/healthData.js';
+import mentalData from '../utils/healthData.js';
 import {Link} from 'react-router-dom';
 import '../styles/Categories.css';
 
@@ -47,7 +47,7 @@ function Categories() {
                 </div>
                 <div className='categoryTopRight'>
                     <h1>Which category you fall under?</h1>
-                    <div className='buttons'>
+                    <div className='categoryButtons'>
                         <button onClick={mentalButtonPressed} className={isMentalActive ? 'mentalButton' : ''}>Mental</button>
                         <button onClick={physicalButtonPressed} className={isPhysicalActive ? 'physicalButton' : ''}>Physical</button>
                     </div>
