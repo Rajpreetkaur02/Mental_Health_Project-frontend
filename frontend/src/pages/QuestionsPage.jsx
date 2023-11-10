@@ -5,7 +5,6 @@ import QuestionPart from '../components/QuestionPart.jsx';
 import image from '../assets/quesBackground-2.png';
 import {AiOutlineArrowRight} from "react-icons/ai";
 import {Link} from 'react-router-dom';
-import { motion } from "framer-motion";
 
 function QuestionsPage() {
     const [loading, setLoading] = useState(false);
@@ -16,6 +15,7 @@ function QuestionsPage() {
     const [questionsActive, setQuestionsActive] = useState(false);
     const [answerActive, setAnswerActive] = useState(false);
     const [error, setError] = useState('');
+    const [isVisible, setIsVisible] = useState(true);
   
     useEffect(() => {
         setLoading(true);
@@ -27,6 +27,12 @@ function QuestionsPage() {
     function onNextClick() {
         if (values[index] != null) {
             setIndex(index => index + 1);
+            setTimeout(() => {
+                setIsVisible(false)
+            },-1000)
+            setTimeout(() => {
+                setIsVisible(true)
+            },500)
         } else {
             setError("Answer this question first!");
         }
@@ -82,19 +88,21 @@ function QuestionsPage() {
             <div className="loader-container">
                 <div className="spinner"></div>
             </div>
-          ) : (
+        ) : (
         <div>
-        {/* <h1>Take the assessment</h1> */}
             {!answerActive && !questionsActive && (
                 <div className="assessmentHead">
                     <h1>Start The Assessment</h1>
                     <AiOutlineArrowRight onClick={() => setQuestionsActive(current => !current)} className='nextArrow'/>
                 </div>
             )}
+
             {questionsActive && (
                 <div className="radio-parent">
                     {questionsData.slice(index, index + 1).map(question => 
-                        <QuestionPart setError={setError} setValues={setValues} question={question} index={index}/>
+                        <div className={`content ${isVisible ? 'visible' : ''}`}>
+                            <QuestionPart setError={setError} setValues={setValues} question={question} index={index}/>
+                        </div>
                     )}  
 
                     {index < questionsData.length - 1 ? (
@@ -108,7 +116,6 @@ function QuestionsPage() {
                     )}
                 </div>  
             )}
-
 
             {answerActive && (
                 <div id="result">
