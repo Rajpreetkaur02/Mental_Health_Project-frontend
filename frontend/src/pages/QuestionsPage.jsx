@@ -2,9 +2,10 @@ import {React, useState} from 'react';
 import questionsData from '../utils/questions.js';
 import '../styles/QuestionsPage.css';
 import QuestionPart from '../components/QuestionPart.jsx';
-import image from '../assets/quesBackground.png';
+import image from '../assets/quesBackground-2.png';
 import {AiOutlineArrowRight} from "react-icons/ai";
 import {Link} from 'react-router-dom';
+import { motion } from "framer-motion";
 
 function QuestionsPage() {
     const url = 'http://127.0.0.1:5000/depdet/';
@@ -13,9 +14,14 @@ function QuestionsPage() {
     const [index, setIndex] = useState(0);
     const [questionsActive, setQuestionsActive] = useState(false);
     const [answerActive, setAnswerActive] = useState(false);
+    const [error, setError] = useState('');
   
     function onNextClick() {
-        setIndex(index => index + 1);
+        if (values[index] != null) {
+            setIndex(index => index + 1);
+        } else {
+            setError("Answer this question first!");
+        }
     }
 
     const submitResults = async () => {
@@ -65,6 +71,7 @@ function QuestionsPage() {
     return (
         <div style={{backgroundImage:`url(${image})`, height:'100vh', width:'100vw', backgroundSize:'cover', backgroundPosition:'center', backgroundRepeat:'no-repeat'}}>
         {/* <h1>Take the assessment</h1> */}
+            
             {!answerActive && !questionsActive && (
                 <div className="assessmentHead">
                     <h1>Start The Assessment</h1>
@@ -74,16 +81,22 @@ function QuestionsPage() {
             {questionsActive && (
                 <div className="radio-parent">
                     {questionsData.slice(index, index + 1).map(question => 
-                        <QuestionPart setValues={setValues} question={question} index={index}/>
+                        <QuestionPart setError={setError} setValues={setValues} question={question} index={index}/>
                     )}  
-                
+
                     {index < questionsData.length - 1 ? (
                         <button onClick={onNextClick}>Next Question <AiOutlineArrowRight/></button>  
                     ): (
                         <button onClick={submitResults} type="button" id="submit-btn">Submit</button>
                     )}
-                </div>
+
+                    {error === 'Answer this question first!' && (
+                        <h2 style={{color:'red', animation:'animate 1.5s linear infinite'}}>{error}</h2>
+                    )}
+                </div>  
             )} 
+
+
             {answerActive && (
                 <div id="result">
                     <h1>{result}</h1>

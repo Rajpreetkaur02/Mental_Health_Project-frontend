@@ -1,13 +1,14 @@
 import React from 'react';
 import '../styles/QuestionsPage.css'
 
-function QuestionPart({setValues, question, index}) {
+function QuestionPart({setValues, question, index, setError}) {
 
     const handleRadioChange = (index, value) => {
         setValues(prevValues => {
             const newValues = [...prevValues];
             newValues[index] = value;
-            console.log(newValues)
+            console.log(newValues);
+            setError('');
             return newValues;
         });
     }
@@ -33,7 +34,7 @@ function QuestionPart({setValues, question, index}) {
                     name={question.name} 
                     value="0" 
                     // checked={null}
-                    onChange={() => handleRadioChange(index , 0)} />
+                    onChange={() => handleRadioChange(index, 0)} />
                 <label for="no">No</label>
                 </div>
             </div>

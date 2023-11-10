@@ -45,6 +45,12 @@
     cursor: pointer;
 } */
 
+.categoryTopRight {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .categoryBottom {
     display: flex;
     flex-wrap: wrap;

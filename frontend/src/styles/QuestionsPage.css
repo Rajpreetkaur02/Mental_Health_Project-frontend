@@ -37,6 +37,7 @@
 
 .mainQuestion {
     font-size: 3em;
+    
 }
 
 .singleRadio {
@@ -81,3 +82,15 @@
     text-decoration: none;
     color: white;
 }
+
+@keyframes animate{ 
+    0%{ 
+      opacity: 0; 
+    } 
+    50%{ 
+      opacity: 0.7; 
+    } 
+    100%{ 
+      opacity: 0; 
+    } 
+  } 
