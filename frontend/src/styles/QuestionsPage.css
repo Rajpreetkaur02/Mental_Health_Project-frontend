@@ -125,14 +125,12 @@
     }
 }
 
-
-
 /* slide */
 .content {
     width: 85%;
     transition: all 0.3s ease;
     overflow: hidden;
-    transform: translateX(200%);
+    transform: translateX(-100%);
     opacity: 0;
 }
   
