@@ -8,6 +8,7 @@ import Categories from './pages/Categories';
 import Resources from './pages/Resources';
 import QuestionsPage from './pages/QuestionsPage';
 import UserDashboard from './pages/UserDashboard';
+import MoodTracker from './components/MoodTracker';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/resources' element={<Resources/>}></Route>
         <Route exact path='/questions/:id' element={<QuestionsPage/>}></Route>
         <Route exact path='/dashboard' element={<UserDashboard/>}></Route>
+        <Route exact path='/moodtracker' element={<MoodTracker/>} ></Route>
       </Routes> 
     </div>
   );

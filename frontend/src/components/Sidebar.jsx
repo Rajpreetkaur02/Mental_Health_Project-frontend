@@ -11,8 +11,12 @@ import {
 import {TbMoodPlus} from "react-icons/tb";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import MoodTracker from "./MoodTracker";
+import Dashboard from "./Dashboard";
+import { useState } from "react";
 
-function Sidebar({ openSidebar, sidebarHandler }) {
+function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
+
   return (
     <aside id={classes.sidebar} className={openSidebar ? classes["sidebar-responsive"] : ""}>
       <div className={classes["sidebar-title"]}>
@@ -25,10 +29,8 @@ function Sidebar({ openSidebar, sidebarHandler }) {
       </div>
 
       <ul className={classes["sidebar-list"]}>
-        <li className={classes["sidebar-list-item"]}>
-          <a href="">
+        <li onClick={() => componentHandler(<Dashboard/>)} className={classes["sidebar-list-item"]}>
             <BsGrid1X2Fill className={classes.icon} /> Dashboard
-          </a>
         </li>
         {/* <li className='sidebar-list-item'>
                 <a href="">
@@ -42,32 +44,22 @@ function Sidebar({ openSidebar, sidebarHandler }) {
             </li> */}
 
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsListCheck className={classes.icon} /> Your Plan
-          </a>
         </li>
-        
-        <li className={classes["sidebar-list-item"]}>
-          <a href="">
+
+        <li onClick={() => componentHandler(<MoodTracker/>)} className={classes["sidebar-list-item"]}>
             <TbMoodPlus className={classes.icon} /> Mood Tracker
-          </a>
         </li>
 
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsPeopleFill className={classes.icon} /> Support Groups
-          </a>
         </li>
 
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsMenuButtonWideFill className={classes.icon} /> Reports
-          </a>
         </li>
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsFillGearFill className={classes.icon} /> Settings
-          </a>
         </li>
       </ul>
     </aside>

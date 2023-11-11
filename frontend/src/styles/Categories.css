@@ -29,22 +29,6 @@
     height: 30vh;
 }
 
-/* .buttons {
-    z-index: 0;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.buttons button {
-    z-index: 0;
-    padding: 5%;
-    width: 10vw;
-    border-radius: 20px;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-} */
-
 .categoryTopRight {
     display: flex;
     flex-direction: column;

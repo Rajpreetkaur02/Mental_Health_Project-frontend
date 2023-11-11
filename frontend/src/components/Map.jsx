@@ -44,8 +44,6 @@ function Map() {
                 <h3 id="map-text">Find psychiatrists in your area</h3>
                 <iframe
                     title="Google Map"
-                    width="1000"
-                    height="450"
                     ref={mapFrame}
                     src=""
                     allowFullScreen>

@@ -23,7 +23,6 @@ function QuestionPart({setValues, question, index, setError}) {
                     id="yes" 
                     name={question.name} 
                     value="1" 
-                    // checked={null}
                     onChange={() => handleRadioChange(index, 1)} />
                 <label for="yes">Yes</label>
                 </div>
@@ -33,7 +32,6 @@ function QuestionPart({setValues, question, index, setError}) {
                     id="no" 
                     name={question.name} 
                     value="0" 
-                    // checked={null}
                     onChange={() => handleRadioChange(index, 0)} />
                 <label for="no">No</label>
                 </div>
