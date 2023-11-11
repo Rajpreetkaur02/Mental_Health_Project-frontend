@@ -11,11 +11,11 @@ function SignUp() {
         setShowEmergency(current => !current);
     }
 
-  return (
+    return (
     <>
     <Navbar/>
     <div className='main'>
-    <div className='loginImage'>
+        <div className='loginImage'>
             <img src={img} alt=""/>
         </div>
         <div className='details'>
@@ -47,8 +47,7 @@ function SignUp() {
                 </form>
                 </>
             )}
-        </div>
-        
+        </div>    
     </div>
     </>
   )

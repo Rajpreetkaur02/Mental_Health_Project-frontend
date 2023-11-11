@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/Map.css';
 
 function Map() {
     const [mapShown, setMapShown] = useState(false);
+    const mapFrame = useRef(null);
+
     useEffect(() => {
         getClientLocation();
     })
 
-    function getClientLocation(){
+    function getClientLocation() {
         navigator.permissions.query({ name: "geolocation" })
         .then((result) => {
             if (result.state === "granted" || result.state === "prompt") {
@@ -19,19 +21,18 @@ function Map() {
         });
     }
       
-    function displayMap(){
-        const mapFrame = document.querySelector(".map iframe");
-        if (!mapFrame || (mapFrame && mapFrame.getAttribute("src") === "")) {
+    function displayMap() {
+        if (!mapFrame.current || (mapFrame.current && mapFrame.current.getAttribute("src") === "")) {
             navigator.geolocation.getCurrentPosition((position) => {
                 console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
                 const mapUrl = "http://www.google.com/maps?q=psychiatrist+near+me/" + position.coords.latitude + "," + position.coords.longitude + "&z=13&output=embed";
-                if (mapFrame) {
-                    mapFrame.setAttribute("src", mapUrl);
+                if (mapFrame.current) {
+                    mapFrame.current.setAttribute("src", mapUrl);
                     setMapShown(true);
                 }
             });
         } else {
-            if (mapFrame) {
+            if (mapFrame.current) {
                 setMapShown(!mapShown);
             }
         }
@@ -39,12 +40,13 @@ function Map() {
     
     return (
         <div>
-            <div class="map">
+            <div className="map">
                 <h3 id="map-text">Find psychiatrists in your area</h3>
                 <iframe
                     title="Google Map"
                     width="1000"
                     height="450"
+                    ref={mapFrame}
                     src=""
                     allowFullScreen>
                 </iframe>

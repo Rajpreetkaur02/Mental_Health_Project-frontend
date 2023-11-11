@@ -7,6 +7,7 @@ import Heroimg from '../assets/heroimg.jpg'
 import Happy from '../assets/happy.jpg'
 import Support from '../assets/herosupport.jpg'
 import Chatbot from './Chatbot'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
   return (
@@ -38,7 +39,7 @@ const HeroSection = () => {
                 <div className="herospan">In mental care, there is no one-size-fits-all approach to mental health. We tailor our care plans to fit each individual's unique needs. Mental health should always be good</div>
                 <div>
                     <button>
-                        <span>Take a Test</span>
+                        <Link to={{pathname: "/categories"}} style={{textDecoration:"none", color:"#026fff"}}><span>Take a Test</span></Link>
                         <span></span>
                     </button>
                 </div>

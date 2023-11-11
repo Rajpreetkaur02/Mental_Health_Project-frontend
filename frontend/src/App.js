@@ -18,7 +18,7 @@ function App() {
         <Route exact path='/signup' element={<SignUp/>}></Route>
         <Route exact path='/categories' element={<Categories/>}></Route>
         <Route exact path='/resources' element={<Resources/>}></Route>
-        <Route exact path='/questions' element={<QuestionsPage/>}></Route>
+        <Route exact path='/questions/:id' element={<QuestionsPage/>}></Route>
         <Route exact path='/dashboard' element={<UserDashboard/>}></Route>
       </Routes> 
     </div>

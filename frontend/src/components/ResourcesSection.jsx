@@ -7,7 +7,7 @@ const ResourcesSection = () => {
   return (
     <div>
       <div className="resources-container">
-      <div class="containerr">
+      <div className="containerr">
           <div className="resources-left">
             <span id='leftheading'>We Are Here To Help</span>
             <div className='helpbox'>
@@ -15,16 +15,16 @@ const ResourcesSection = () => {
               <div id='go-button'>Go</div>
             </div>
           </div>
-          <div class="palette">
-            <div class="color">
+          <div className="palette">
+            <div className="color">
               <img src={Planner}/>
               <h3 id='color-heading'>Plans</h3>
             </div>
-            <div class="color">
+            <div className="color">
               <img src={Article}/>
               <h3 id='color-heading'>Resources</h3>
             </div>
-            <div class="color">
+            <div className="color">
               <img src={Support}/>
               <h3 id='color-heading'>Support Groups</h3>
             </div>

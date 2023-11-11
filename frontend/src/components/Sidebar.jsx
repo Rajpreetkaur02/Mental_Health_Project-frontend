@@ -6,9 +6,9 @@ import {
   BsPeopleFill,
   BsListCheck,
   BsMenuButtonWideFill,
-  BsFillGearFill,
+  BsFillGearFill
 } from "react-icons/bs";
-
+import {TbMoodPlus} from "react-icons/tb";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
@@ -44,6 +44,12 @@ function Sidebar({ openSidebar, sidebarHandler }) {
         <li className={classes["sidebar-list-item"]}>
           <a href="">
             <BsListCheck className={classes.icon} /> Your Plan
+          </a>
+        </li>
+        
+        <li className={classes["sidebar-list-item"]}>
+          <a href="">
+            <TbMoodPlus className={classes.icon} /> Mood Tracker
           </a>
         </li>
 

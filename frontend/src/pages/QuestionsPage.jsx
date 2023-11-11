@@ -4,11 +4,10 @@ import '../styles/QuestionsPage.css';
 import QuestionPart from '../components/QuestionPart.jsx';
 import image from '../assets/quesBackground-2.png';
 import {AiOutlineArrowRight} from "react-icons/ai";
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 function QuestionsPage() {
     const [loading, setLoading] = useState(false);
-    const url = 'http://127.0.0.1:5000/depdet/';
     const [values, setValues] = useState([]);
     const [result, setResult] = useState(null);
     const [index, setIndex] = useState(0);
@@ -16,6 +15,8 @@ function QuestionsPage() {
     const [answerActive, setAnswerActive] = useState(false);
     const [error, setError] = useState('');
     const [isVisible, setIsVisible] = useState(true);
+    const url = 'http://127.0.0.1:5000/depdet/';
+    const id = useParams();
   
     useEffect(() => {
         setLoading(true);
@@ -99,20 +100,22 @@ function QuestionsPage() {
 
             {questionsActive && (
                 <div className="radio-parent">
-                    {questionsData.slice(index, index + 1).map(question => 
+                    {questionsData
+                    .filter((question) => question.type === id.id)
+                    .slice(index, index + 1).map(question => 
                         <div className={`content ${isVisible ? 'visible' : ''}`}>
                             <QuestionPart setError={setError} setValues={setValues} question={question} index={index}/>
                         </div>
                     )}  
 
-                    {index < questionsData.length - 1 ? (
+                    {index < questionsData.filter((question) => question.type === id.id).length - 1 ? (
                         <button onClick={onNextClick}>Next Question <AiOutlineArrowRight/></button>  
                     ): (
                         <button onClick={submitResults} type="button" id="submit-btn">Submit</button>
                     )}
 
                     {error === 'Answer this question first!' && (
-                        <h2 style={{color:'red', animation:'animate 1.5s linear infinite'}}>{error}</h2>
+                        <h2 style={{color:'red',  }}>{error}</h2>
                     )}
                 </div>  
             )}
