@@ -2,31 +2,39 @@ import React, { useState } from 'react';
 import '../styles/MoodTracker.css';
 
 const MoodTracker = () => {
-  const [mood, setMood] = useState('Neutral');
+  const [mood, setMood] = useState('😐Neutral');
+  const [message, setMessage] = useState('');
   const [moodHistory, setMoodHistory] = useState([]);
 
   const handleMoodChange = newMood => {
     setMood(newMood);
-    setMoodHistory([...moodHistory, { mood: newMood, timestamp: new Date().toLocaleString() }]);
+    setMoodHistory([...moodHistory, { mood: newMood, timestamp: new Date().toLocaleString()}]);
   };
 
   return (
     <div className="mood-tracker">
-      <h1>How are you feeling?</h1>
+      <h3>How are you feeling?</h3>
       <div className="mood-buttons">
-        <button onClick={() => handleMoodChange('Happy')}>😊 Happy</button>
-        <button onClick={() => handleMoodChange('Neutral')}>😐 Neutral</button>
-        <button onClick={() => handleMoodChange('Sad')}>😞 Sad</button>
+        <button onClick={() => handleMoodChange('😊 Happy')}>😊 Happy</button>
+        <button onClick={() => handleMoodChange('😐 Neutral')}>😐 Neutral</button>
+        <button onClick={() => handleMoodChange('😞 Sad')}>😞 Sad</button>
       </div>
       <div className="mood-history">
-        <h2>Mood History</h2>
-        <ul>
-          {moodHistory.map((entry, index) => (
-            <li key={index}>
-              <strong>{entry.mood}</strong> at {entry.timestamp}
-            </li>
-          ))}
-        </ul>
+        <h3>Mood History</h3>
+        {moodHistory.length == 0 ? (
+          <ul className='listMoodHistory'>
+            <li>No Record!</li>
+          </ul>
+        ) : (
+          <ul className='listMoodHistory'>
+            {moodHistory.map((entry, index) => (
+              <li key={index}>
+                <strong>{entry.mood}</strong><br/> at {entry.timestamp}
+                <hr style={{marginTop: '10px'}}/>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
