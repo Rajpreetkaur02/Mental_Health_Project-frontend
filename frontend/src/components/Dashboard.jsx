@@ -1,11 +1,11 @@
-//import React from 'react'
+// import React from 'react';
 import classes from "../styles/Dashboard.module.css";
 
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-
+import Map from "./Map";
 // import {
 //   BsFillArchiveFill,
 //   BsFillGrid3X3GapFill,
@@ -180,6 +180,7 @@ function Dashboard() {
         <DateCalendar defaultValue={dayjs()} />
         </LocalizationProvider>
       </div>
+      <Map/>
     </main>
   );
 }

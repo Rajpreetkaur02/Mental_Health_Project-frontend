@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import '../styles/MoodTracker.css';
 
 const MoodTracker = () => {
-  const [mood, setMood] = useState('😐Neutral');
-  const [message, setMessage] = useState('');
+  const [mood, setMood] = useState('😐 Neutral');
   const [moodHistory, setMoodHistory] = useState([]);
 
   const handleMoodChange = newMood => {
@@ -21,7 +20,7 @@ const MoodTracker = () => {
       </div>
       <div className="mood-history">
         <h3>Mood History</h3>
-        {moodHistory.length == 0 ? (
+        {moodHistory.length === 0 ? (
           <ul className='listMoodHistory'>
             <li>No Record!</li>
           </ul>

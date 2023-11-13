@@ -11,12 +11,12 @@
     display: flex;
     justify-content: center;
     gap: 5vw;
+    padding-bottom: 2rem;
 }
 
 .col {
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column;  
 }
 
 .list-unstyled {
@@ -28,7 +28,9 @@
 }
 
 .rowBottom {
+    height: 5vh;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 

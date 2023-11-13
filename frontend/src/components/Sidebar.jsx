@@ -6,13 +6,19 @@ import {
   BsPeopleFill,
   BsListCheck,
   BsMenuButtonWideFill,
-  BsFillGearFill,
+  BsFillGearFill
 } from "react-icons/bs";
-
+import {TbMoodPlus} from "react-icons/tb";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import MoodTracker from "./MoodTracker";
+import Dashboard from "./Dashboard";
+import Plan from "./Plan";
+import { useState } from "react";
 
-function Sidebar({ openSidebar, sidebarHandler }) {
+function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
+  const [active, setActive] = useState('Dashboard');
+
   return (
     <aside id={classes.sidebar} className={openSidebar ? classes["sidebar-responsive"] : ""}>
       <div className={classes["sidebar-title"]}>
@@ -25,10 +31,8 @@ function Sidebar({ openSidebar, sidebarHandler }) {
       </div>
 
       <ul className={classes["sidebar-list"]}>
-        <li className={classes["sidebar-list-item"]}>
-          <a href="">
+        <li onClick={() => {componentHandler(<Dashboard/>); setActive('Dashboard')}} className={`${classes["sidebar-list-item"]} ${active === 'Dashboard' ? `${classes["itemActive"]}` : ''}`}>
             <BsGrid1X2Fill className={classes.icon} /> Dashboard
-          </a>
         </li>
         {/* <li className='sidebar-list-item'>
                 <a href="">
@@ -41,27 +45,23 @@ function Sidebar({ openSidebar, sidebarHandler }) {
                 </a>
             </li> */}
 
-        <li className={classes["sidebar-list-item"]}>
-          <a href="">
+        <li onClick={() => {componentHandler(<Plan/>); setActive('Plan')}} className={`${classes["sidebar-list-item"]} ${active === 'Plan' ? `${classes["itemActive"]}` : ''}`}>
             <BsListCheck className={classes.icon} /> Your Plan
-          </a>
+        </li>
+
+        <li onClick={() => {componentHandler(<MoodTracker/>); setActive('MoodTracker')}} className={`${classes["sidebar-list-item"]} ${active === 'MoodTracker' ? `${classes["itemActive"]}` : ''}`}>
+            <TbMoodPlus className={classes.icon} /> Mood Tracker
         </li>
 
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsPeopleFill className={classes.icon} /> Support Groups
-          </a>
         </li>
 
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsMenuButtonWideFill className={classes.icon} /> Reports
-          </a>
         </li>
         <li className={classes["sidebar-list-item"]}>
-          <a href="">
             <BsFillGearFill className={classes.icon} /> Settings
-          </a>
         </li>
       </ul>
     </aside>
