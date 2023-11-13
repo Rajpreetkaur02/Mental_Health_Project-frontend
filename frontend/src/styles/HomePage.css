@@ -12,45 +12,101 @@
     flex-direction: column;
 }
 
-.Herotop {
-    width: 100%;
-    margin: 0 auto;
-    padding: 3% 1% 1% 8%;
-    display: flex;
+/* Hero Section start */
+
+.herocontainer {
+  display: flex;
+  padding: 50px 50px ;
+  height: 90vh;
 }
 
-.herotopleft {
-    width: 60%;
-    height: auto;
+.herocontainer > div {
+  height: auto;
 }
 
-.herotext {
-    font-size: 4.5em;
-    padding-bottom: 2%;
-    font-family: 'Roboto', sans-serif;
+.heroleft{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+
+.heroheading {
+  font-family: 'Roboto', sans-serif;
+  font-size: 4em;
+  padding-bottom: 2%;
+  font-family: 'Roboto', sans-serif;
+  padding-left: 30px;
 }
 
 .arrowicon {
-    width: 15%;
-    padding: 1% 0% 0% 7%;
-    cursor: pointer;
+  width: 15%;
+  padding: 1% 0% 0% 7%;
+  cursor: pointer;
 }
 
-.herotopright {
-    width: 40%;
+.herotext{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.articlesbox,
-.testbox {
-    background-color: #fff;
+.herospan {
+  width: 70%;
+  font-family: 'Roboto', sans-serif;
+  color: grey;
+  line-height: 1.5;
+  padding-left: 30px;
+}
+
+.herotext button {
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  background-color: #026fff;
+  color: #fff;
+  width: 30%;
+  cursor: pointer;
+  margin-left: 30%;
+}
+
+.heroright{
+  width: 50%;
+}
+
+.heroimg{
+  width: 80%;
+}
+
+.heroboxes{
+  display: flex;
+}
+
+.herobox{
+  background-color: #fff;
     margin: 3% auto;
-    width: 50%;
+    width: 30%;
     height: auto;
     padding: 2%;
     border-radius: 10px;
-    /* box-shadow: #036cfc 1.95px 1.95px 2.6px; */
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     display: flex;
+}
+
+.articlebox{
+  top: 0;
+  right: -90px;
+}
+
+.doctorbox{
+  top: -20px;
+}
+
+.testbox{
+  right: 0;
+  bottom: -20px;
 }
 
 .articleicon,
@@ -78,81 +134,15 @@
     font-weight: 800;
 }
 
-.Herobottom {
-    width: 100%;
-    display: flex;
-}
-
-.herobottomleft {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-}
-
-/* take a test button css start*/
-
-.herobottomleft button {
-    margin-top: 25%;
-    display: inline-block;
-    padding: 12px 24px;
-    border: none;
-    font-size: 16px;
-    background-color: inherit;
-    border-radius: 100px;
-    font-weight: 600;
-    color: #026fff;
-    box-shadow: 0 0 0 2px #026fff;
-    cursor: pointer;
-}
-
-/* take a test button css end*/
-
-.herospan {
-    width: 70%;
-    font-family: 'Roboto', sans-serif;
-    color: grey;
-    line-height: 1.5;
-    padding-left: 5%;
-}
-
-.herobottomright {
-    width: 60%;
-    margin-right: 5%;
-    display: flex;
-    gap: 7px;
-}
-
-.happyimg,
-.supportimg {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* .supportimg{
-    margin-top: 5px;
-} */
-
 .heroimg {
-    width: 100%;
-    border-radius: 10px;
-    /* margin-right: 0%;
-    margin-top: 0px; */
+  width: 100%;
+  border-radius: 10px;
+  /* margin-right: 0%;
+  margin-top: 0px; */
 }
 
-#herosmallimg {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    gap: 5px;
-    /* padding-right: 5px */
-}
+/* Hero Section end */
 
-#herolargeimg {
-    width: 65%;
-}
 
 /* CHATBOT start*/
 
@@ -233,10 +223,10 @@
     width: 90%;
     height: auto;
     padding: 2%;
-    background-color: #fff;
+    background-color: transparent;
     margin: auto;
     border-radius: 20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -385,7 +375,6 @@
     display: flex;
     justify-content: space-around;
     margin: auto;
-    padding-top: 2%;
 }
 .plancard {
     border-radius: 16px;
@@ -510,10 +499,10 @@
 
   .resources-container{
     background-color: #f9f8f4;
-    height: 100vh;
+    height: 80vh;
   }
   .containerr {
-    height: 80vh;
+    height: 70vh;
     width: 90%;
     border-radius: 1em;
     overflow: hidden;
@@ -533,7 +522,7 @@
   }
 
   #leftheading{
-    font-size: 4em;
+    font-size: 3.5em;
     padding-top: 7%;
     padding-bottom: 1%;
     font-family: 'Roboto', sans-serif;
@@ -543,9 +532,9 @@
   .helpbox{
     background-color: #fff;
     width: 40%;
-    height: 20vh;
+    height: 15vh;
     position: absolute;
-    margin-top: 25%;
+    margin-top: 20%;
     margin-left: 5%;
     display: flex;
     /* align-items: center;
