@@ -7,6 +7,7 @@ import Heroimg from '../assets/heroimg.png'
 import Happy from '../assets/happy.jpg'
 import Support from '../assets/herosupport.jpg'
 import Chatbot from './Chatbot'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
     return (
@@ -41,7 +42,7 @@ const HeroSection = () => {
                                 </div>
                             </div>
                             <button>
-                                <span>Take a Test</span>
+                                <Link to={{pathname: "/categories"}} style={{textDecoration:"none", color:"#fff"}}><span>Take a Test</span></Link>
                                 <span></span>
                             </button>
                         </div>
