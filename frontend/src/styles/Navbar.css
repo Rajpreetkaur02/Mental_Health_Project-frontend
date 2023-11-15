@@ -41,11 +41,16 @@ nav ul {
     border-radius: 0.5rem;
 }
 
+.navRight ul {
+    display: flex;
+    gap: 20px;
+}
+
 .navRight ul li {
     list-style: none; 
 }
 
-.navRight ul li a {
+.navRight ul li a, .logout {
     background-color: white;
     color: black;
     display: block;
@@ -56,6 +61,14 @@ nav ul {
     padding-bottom: 0.5rem;
     border-radius: 0.5rem;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.greeting {
+    color: white;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 }
 
 .navCenter ul li a {

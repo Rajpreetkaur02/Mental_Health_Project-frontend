@@ -1,4 +1,4 @@
-// import React from 'react';
+import {React, useState} from 'react';
 import classes from "../styles/Dashboard.module.css";
 
 import dayjs from 'dayjs';
@@ -31,12 +31,14 @@ import girlImg from "../assets/greetingImg.png";
 import tasks from "../assets/complete.svg";
 import sleep from "../assets/sleeping.svg";
 import reports from "../assets/reports.svg";
-
-
-
+import { useEffect } from "react";
 
 function Dashboard() {
   const today = new Date();
+  const [loggedInUserDetails, setLoggedInUserDetails] = useState({
+    name: '',
+    email: ''
+  });
 
   const options = {
     weekday: "long", // Full day of the week
@@ -48,6 +50,7 @@ function Dashboard() {
   const formattedDate = today.toLocaleDateString(undefined, options);
 
   console.log(formattedDate);
+  // console.log(loggedInUserDetails.name)
 
   const data = [
     {
@@ -94,6 +97,25 @@ function Dashboard() {
     },
   ];
 
+  useEffect(() => {
+    if (localStorage.getItem('token') !== null) {
+      fetch('http://localhost:8080/current-user',{
+          crossDomain: true,
+          headers: {
+              'Content-Type':'application/json',
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+              'Authorization': `Bearer ${localStorage.getItem('token')}`     
+          },    
+      })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data);
+          setLoggedInUserDetails({name: data.name, email: data.email});
+      });
+    }
+  })
+
   return (
     <main className={classes["main-container"]}>
       <div className={classes["main-title"]}>
@@ -104,7 +126,7 @@ function Dashboard() {
       <div className={classes.helloCard}>
         <div className={classes.greetingDiv}>
           <h4>
-            Hi, <span>Ashley</span>
+            Hi, <span>{loggedInUserDetails.name}</span>
           </h4>
           <p>
             Let's beat it!

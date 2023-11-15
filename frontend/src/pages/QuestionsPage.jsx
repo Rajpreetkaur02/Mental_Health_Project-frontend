@@ -5,6 +5,7 @@ import QuestionPart from '../components/QuestionPart.jsx';
 import image from '../assets/quesBackground-2.png';
 import {AiOutlineArrowRight} from "react-icons/ai";
 import {Link, useParams} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function QuestionsPage() {
     const [loading, setLoading] = useState(false);
@@ -115,7 +116,7 @@ function QuestionsPage() {
                     )}
 
                     {error === 'Answer this question first!' && (
-                        <h2 style={{color:'red',  }}>{error}</h2>
+                        <h2 style={{color:'red',  animation: 'animate 1s linear infinite'}}>{error}</h2>
                     )}
                 </div>  
             )}

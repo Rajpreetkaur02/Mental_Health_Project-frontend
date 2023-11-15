@@ -3,14 +3,15 @@ import "../App.css";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import Dashboard from "../components/Dashboard";
+import MoodTracker from "../components/MoodTracker";
 import { useState } from "react";
-import MoodTracker from '../components/MoodTracker';
-
 
 const UserDashboard = () => {
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
     const [loading, setLoading] = useState(false);
+
     const [component, setComponentActive] = useState(<Dashboard/>);
+    
 
     useEffect(() => {
         setLoading(true);
@@ -33,7 +34,7 @@ const UserDashboard = () => {
                 <>
             <Header sidebarHandler={handleSidebar} />
             <Sidebar componentHandler={setComponentActive} sidebarHandler={handleSidebar} openSidebar={openSidebarToggle} />
-            {component}
+                {component}
             </>
         )}
         </div>

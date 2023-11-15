@@ -1,14 +1,22 @@
-// import React from 'react'
+import React from 'react';
 import classes from "../styles/Header.module.css";
-
+import { MdLogout } from "react-icons/md";
 import {
   BsFillBellFill,
   BsPersonCircle,
   BsSearch,
   BsJustify,
 } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 function Header({ sidebarHandler }) {
+  const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem('token');
+    alert("User Logged Out!");
+    navigate("/login");
+  }
+
   return (
     <header className={classes.header}>
       <div className={classes["menu-icon"]}>
@@ -19,8 +27,9 @@ function Header({ sidebarHandler }) {
         <BsSearch className={classes.icon} />
       </div>
       <div className={classes["header-right"]}>
-        <BsFillBellFill className={classes.icon} />
-        <BsPersonCircle className={classes.icon} />
+        <BsFillBellFill className={classes.icon} title="Notifications"/>
+        <BsPersonCircle className={classes.icon} title="Profile" />
+        <MdLogout onClick={logout} className={classes.icon} title="Logout"/>
       </div>
     </header>
   );
