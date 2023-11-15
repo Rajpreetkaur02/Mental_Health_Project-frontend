@@ -53,8 +53,8 @@ const Navbar = ({isHomePage}) => {
                 localStorage.getItem('token') !== null ? (
                     <div className={`${isHomePage ? 'homepage-navRight' : 'navRight'}`}>
                         <ul>
-                            <li className='greeting'>Hello ,  {loggedInUserDetails.name}</li>
-                            <li className='logout' onClick={logout}>Logout</li>
+                            <li className={`${isHomePage ? 'homepage-greeting' : 'greeting'}`}>Hello ,  {loggedInUserDetails.name}</li>
+                            <li className={`${isHomePage ? 'homepage-logout' : 'logout'}`} onClick={logout}>Logout</li>
                         </ul>
                     </div>                
                 ) : (
