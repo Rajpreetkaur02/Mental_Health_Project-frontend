@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import "../styles/Navbar.css";
-const Navbar = () => {
+
+const Navbar = ({isHomePage}) => {
     const [loggedInUserDetails, setLoggedInUserDetails] = useState({
         name: '',
         email: ''
@@ -34,12 +35,12 @@ const Navbar = () => {
     }
 
     return (
-        <nav>
+        <nav className={`navbar ${isHomePage ? 'homepage-navbar' : ''}`}>
             <div className='navLeft'>
                 {/* logo */}
-                <Link to="/" className="title">Website</Link>
+                <Link to="/" className={`${isHomePage ? 'homepage-title' : 'title'}`}>Website</Link>
             </div>
-            <div className='navCenter'>
+            <div className={`${isHomePage ? 'homepage-navCenter' : 'navCenter'}`}>
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><NavLink to="/about">About</NavLink></li>
@@ -50,14 +51,14 @@ const Navbar = () => {
             </div>
             {
                 localStorage.getItem('token') !== null ? (
-                    <div className='navRight'>
+                    <div className={`${isHomePage ? 'homepage-navRight' : 'navRight'}`}>
                         <ul>
                             <li className='greeting'>Hello ,  {loggedInUserDetails.name}</li>
                             <li className='logout' onClick={logout}>Logout</li>
                         </ul>
                     </div>                
                 ) : (
-                    <div className='navRight'>
+                    <div className={`${isHomePage ? 'homepage-navRight' : 'navRight'}`}>
                         <ul>
                             <li><NavLink to="/login">Log In</NavLink></li>
                             <li><NavLink to="/signup">Sign Up</NavLink></li>

@@ -1,0 +1,85 @@
+.communityMain {
+    height: 100vh;
+}
+
+.communityTop {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    height: 85vh;
+    justify-content: center;
+    gap: 1vw;
+    align-items: center;
+}
+
+
+.communityTop::before {
+    z-index: -1;
+    border-radius: 100%;
+    position: absolute;
+    background: rgb(183, 233, 234);
+    right: -200px;
+    left: -200px;
+    top: -200px;
+    content: '';
+    bottom: 0;
+}
+
+.communityTopLeft img {
+    z-index: -0.5;
+    height: 70vh;
+}
+
+.communityTopRight {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 20px;
+}
+
+.supportmembers{
+    width: 35%;
+    display: flex;
+    margin: auto;
+}
+
+.supportmembersleft{
+    padding-left: 10px;
+}
+.supportmembersright{
+    border-left: 1.5px solid grey;
+    padding-left: 20px;
+}
+/* .communityBottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 3%;
+} */
+
+
+/* Groups Card CSS */
+
+.communityBottom {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: auto auto;
+    padding: 40px;
+}
+
+.groupcardcontainer{
+    padding: 20px;
+    height: 50vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.groupcardtitle{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+

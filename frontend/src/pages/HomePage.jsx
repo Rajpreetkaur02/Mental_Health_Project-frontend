@@ -11,7 +11,7 @@ import QuestionsSection from '../components/QuestionsSection.jsx'
 const HomePage = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar isHomePage = {true}/>
       <HeroSection/>
       <AboutSection/>
       <TestSection/>

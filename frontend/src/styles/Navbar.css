@@ -13,19 +13,19 @@ nav {
     z-index: 10;
 }
 
-nav .title {
+nav .title, nav .homepage-title{
     font-size: 1.5rem;
     margin: 1rem;
     font-weight: bold;
     text-decoration: none;
-    color: white;
+    /* color: white; */
 }
 
 nav ul {
     display: flex;
 }
 
-.navCenter ul li { 
+.navCenter ul li, .homepage-navCenter ul li { 
     list-style: none;
     padding-left: 0.9rem;
     padding-right: 0.9rem;
@@ -33,26 +33,24 @@ nav ul {
     margin: 0 0.5rem;
 }
 
-.navCenter ul li a {
+.navCenter ul li a, .homepage-navCenter ul li a {
     padding-bottom: 0.5rem;
     display: block;
     text-decoration: none;
-    color: white;
+    /* color: white; */
     border-radius: 0.5rem;
 }
 
 .navRight ul {
     display: flex;
-    gap: 20px;
+    /* gap: 20px; */
 }
 
-.navRight ul li {
+.navRight ul li, .homepage-navRight ul li{
     list-style: none; 
 }
 
-.navRight ul li a, .logout {
-    background-color: white;
-    color: black;
+.navRight ul li a,.homepage-navRight ul li a, .logout {
     display: block;
     padding-left: 0.9rem;
     padding-right: 0.9rem;
@@ -65,19 +63,19 @@ nav ul {
 }
 
 .greeting {
-    color: white;
+    /* color: white; */
     display: flex;
     align-items: center;
     font-weight: bold;
 }
 
-.navCenter ul li a {
+.navCenter ul li a, .homepage-navCenter ul li a {
     display: inline-block;
     position: relative;
-    color: white;
+    /* color: white; */
 }
   
-.navCenter ul li a::after {
+.navCenter ul li a::after, .homepage-navCenter ul li a::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -85,12 +83,40 @@ nav ul {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: white;
+    /* background-color: white; */
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
 }
   
-.navCenter ul li a:hover::after {
+.navCenter ul li a::after{
+    background-color: white;
+}
+
+.homepage-navCenter ul li a::after {
+    background-color: #026fff;
+}
+
+
+.navCenter ul li a:hover::after, .homepage-navCenter ul li a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+}
+
+
+.homepage-navbar{
+    background-color: #f9f8f4;
+}
+
+nav .title, .navCenter ul li a{
+    color: white;
+}
+
+.navRight ul li a{
+    background-color: white;
+    color: black;
+}
+
+.homepage-navRight ul li a{
+    background-color: #026fff;
+    color: white;
 }

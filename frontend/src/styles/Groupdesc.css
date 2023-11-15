@@ -1,0 +1,45 @@
+.descheader{
+    justify-content: space-around;
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid grey;
+    width: 80%;
+    margin: auto;
+}
+
+.descheading{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.joinbutton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#GroupSidebar{
+    display: flex;
+}
+
+.groupelements ul{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+    border-bottom: 1px solid grey;  
+    text-decoration: none;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.groupelements ul li{
+    text-decoration: none; 
+}
+
+.grpaboutcontainer, .grpeventscontainer, .grppostcontainer{
+    width: 80%;
+    margin: auto;
+}
