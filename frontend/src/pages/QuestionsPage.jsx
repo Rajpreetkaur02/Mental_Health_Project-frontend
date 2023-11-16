@@ -6,6 +6,7 @@ import image from '../assets/quesBackground-2.png';
 import {AiOutlineArrowRight} from "react-icons/ai";
 import {Link, useParams} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import GeneralUserDetails from '../components/GeneralUserDetails.jsx';
 
 function QuestionsPage() {
     const [loading, setLoading] = useState(false);
@@ -16,6 +17,7 @@ function QuestionsPage() {
     const [answerActive, setAnswerActive] = useState(false);
     const [error, setError] = useState('');
     const [isVisible, setIsVisible] = useState(true);
+    const [detailsActive, setDetailsActive] = useState(false);
     const url = 'http://127.0.0.1:5000/depdet/';
     const id = useParams();
   
@@ -92,7 +94,7 @@ function QuestionsPage() {
             </div>
         ) : (
         <div>
-            {!answerActive && !questionsActive && (
+            {!detailsActive && !answerActive && !questionsActive && (
                 <div className="assessmentHead">
                     <h1>Start The Assessment</h1>
                     <AiOutlineArrowRight onClick={() => setQuestionsActive(current => !current)} className='nextArrow'/>
@@ -101,12 +103,12 @@ function QuestionsPage() {
 
             {questionsActive && (
                 <>
-                <div className='mainQuestionsBar'>
+                {/* <div className='mainQuestionsBar'>
                     <div className='questionsCompletedBar'>
-                        <div style={{width: `${(values.length / 13) * 100}%`, height:"2vh"}} className='innerQuestionsBar'></div>
+                        <div style={{width: `${(values.length / 13) * 100}%`, height:"0.5vh"}} className='innerQuestionsBar'></div>
                     </div>
                     <h3>{Math.ceil((values.length / 13) * 100)}%</h3>
-                </div>
+                </div> */}
                 <div className="radio-parent">
                     {questionsData
                     .filter((question) => question.type === id.id)
@@ -125,15 +127,25 @@ function QuestionsPage() {
                     {error === 'Answer this question first!' && (
                         <h2 style={{color:'red',  animation: 'animate 1s linear infinite'}}>{error}</h2>
                     )}
-                </div>  
+                <div className='mainQuestionsBar'>
+                    <div className='questionsCompletedBar'>
+                        <div style={{width: `${(values.length / 13) * 100}%`, height:"2vh"}} className='innerQuestionsBar'></div>
+                    </div>
+                    <h3>{Math.ceil((values.length / 13) * 100)}%</h3>
+                </div> 
+                </div> 
             </>
             )}
 
             {answerActive && (
                 <div id="result">
                     <h1>{result}</h1>
-                    <button><Link className='dashLink' to={{pathname: '/dashboard'}}>Go To Dashboard <AiOutlineArrowRight/></Link></button>
+                    <button onClick={() => {setAnswerActive(false); setQuestionsActive(false); setDetailsActive(true)}}>Continue<AiOutlineArrowRight/></button>
                 </div>
+            )}
+
+            {detailsActive && (
+                <GeneralUserDetails/>
             )}
         </div>
       )}
