@@ -20,7 +20,7 @@ function App() {
         <Route exact path='/' element={<HomePage/>}/>
         <Route path='/categories' element={<Categories/>}/>
         <Route path='/community' element={<Community/>}/>
-        <Route path='/groupdesc' element={<Groupdesc/>}/>
+        <Route path='/groupdesc/:id' element={<Groupdesc/>}/>
         <Route path='/resources' element={<Resources/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp/>}/>

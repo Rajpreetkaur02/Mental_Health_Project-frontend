@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import Support from '../assets/support.png';
 import groupsData from '../utils/groupsdata.js';
 import GroupCard from '../components/GroupCard.jsx';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 const Community = () => {
     const [mentalActive, setMentalActive] = useState(true);
@@ -63,7 +63,7 @@ const Community = () => {
                         groupsData
                             .filter((data) => data.type === 'mental')
                             .map((data) => (
-                                <Link style={{textDecoration:'none', color:'black'}} to={{pathname: `/questions/${data.heading}`}}>
+                                <Link style={{textDecoration:'none', color:'black'}} to={{pathname: `/groupdesc/${data.id}`}}>
                                     <GroupCard {...data} key={data.id}/>
                                 </Link>
                             )) :
@@ -72,7 +72,7 @@ const Community = () => {
                         groupsData
                             .filter((data) => data.type === 'physical')
                             .map((data) => (
-                                <Link style={{textDecoration:'none', color:'black'}} to={{pathname: `/questions/${data.heading}`}}>
+                                <Link style={{textDecoration:'none', color:'black'}} to={{pathname: `/groupdesc/${data.id}`}}>
                                     <GroupCard {...data} key={data.id}/>
                                 </Link>
                             ))  
