@@ -100,6 +100,13 @@ function QuestionsPage() {
             )}
 
             {questionsActive && (
+                <>
+                <div className='mainQuestionsBar'>
+                    <div className='questionsCompletedBar'>
+                        <div style={{width: `${(values.length / 13) * 100}%`, height:"2vh"}} className='innerQuestionsBar'></div>
+                    </div>
+                    <h3>{Math.ceil((values.length / 13) * 100)}%</h3>
+                </div>
                 <div className="radio-parent">
                     {questionsData
                     .filter((question) => question.type === id.id)
@@ -119,6 +126,7 @@ function QuestionsPage() {
                         <h2 style={{color:'red',  animation: 'animate 1s linear infinite'}}>{error}</h2>
                     )}
                 </div>  
+            </>
             )}
 
             {answerActive && (
