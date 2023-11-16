@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import GroupAbout from './GroupAbout';
 import GroupEvents from './GroupEvents';
-import GroupPosts from './GroupPosts';
+import GroupReviews from './GroupReviews';
 import '../styles/Groupdesc.css'
 
 
@@ -18,8 +18,8 @@ const GroupSidebar = ({componentHandler}) => {
             Events
         </li>
 
-        <li onClick={() => {componentHandler(<GroupPosts/>); setActive('MoodTracker')}} className={` ${active === 'MoodTracker' ? `` : ''}`}>
-            Posts
+        <li onClick={() => {componentHandler(<GroupReviews/>); setActive('MoodTracker')}} className={` ${active === 'MoodTracker' ? `` : ''}`}>
+            Reviews
         </li>
       </ul>
     </div>
