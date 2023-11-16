@@ -44,9 +44,10 @@ const Navbar = ({isHomePage}) => {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><NavLink to="/about">About</NavLink></li>
-                    <li><NavLink to="/contact">Contact</NavLink></li>
                     <li><NavLink to="/categories">Take A Test</NavLink></li>
                     <li><NavLink to="/resources">Resources</NavLink></li>
+                    <li><NavLink to="/contact">Community</NavLink></li>
+                    <li><NavLink to="/contact">Therapists</NavLink></li>
                 </ul>
             </div>
             {
