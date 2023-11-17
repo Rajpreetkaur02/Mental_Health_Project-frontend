@@ -12,6 +12,7 @@ import MoodTracker from './components/MoodTracker';
 import PrivateRoute from './PrivateRoute';
 import Community from './pages/Community';
 import Groupdesc from './pages/Groupdesc';
+import StartGroupQuestionsPage from './pages/StartGroupQuestionsPage';
 
 function App() {
   return (
@@ -21,9 +22,11 @@ function App() {
         <Route path='/categories' element={<Categories/>}/>
         <Route path='/community' element={<Community/>}/>
         <Route path='/groupdesc/:id' element={<Groupdesc/>}/>
+        <Route path='/startgroup' element={<StartGroupQuestionsPage/>}/>
         <Route path='/resources' element={<Resources/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp/>}/>
+
 
         <Route element={<PrivateRoute/>}>
           <Route path='/questions/:id' element={<QuestionsPage/>}/>

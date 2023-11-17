@@ -2,11 +2,26 @@
     height: 100vh;
 }
 
+.startgrpbtn{
+    display: flex;
+    justify-content: right;
+    padding: 10px;
+    background: rgb(183, 233, 234);
+}
+
+.startgrpbtn button{
+    background: transparent;
+    border: 2px solid ;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
 .communityTop {
     display: flex;
     position: relative;
     overflow: hidden;
-    height: 85vh;
+    height: 70vh;
     justify-content: center;
     gap: 1vw;
     align-items: center;
@@ -83,3 +98,44 @@
     font-weight: 600;
 }
 
+/* START A NEW GROUP PAGE */
+
+.startgrptop{
+    display: flex;
+    height: 90vh;
+}
+
+.startgrptopleft{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 40px 40px 100px;
+    gap: 10px;
+}
+
+.startgrptopleft span{
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+#grpspan{
+    color: #ff1154;
+}
+
+.startgrptopleft p{
+    line-height: 1.5;
+    color: grey;
+}
+.startgrptopright{
+    width: 50%;
+    /* padding: 40px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.startgrptopright img{
+    width: 90%;
+}
