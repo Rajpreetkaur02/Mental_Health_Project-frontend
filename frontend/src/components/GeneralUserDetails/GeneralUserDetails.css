@@ -42,22 +42,14 @@
     gap: 20px;
 }
 
-.genderButtons div {
+.innerGenderButtons {
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9rem;
-    background-color: white;
     border: 1px solid #d0d9e3;
     border-radius: 30px;
     padding: 5%;
     background-color: #f1f4f5;
-}
-
-.mainGeneralDetails form button a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
 }
 
 .mainGeneralDetails form button {
@@ -68,6 +60,13 @@
     border-radius: 20px;
     border: none;
     background-color: #0f172a;
-    text-decoration: none;
     cursor: pointer;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.genderSelected {
+    background-color: #d0d9e3;
 }

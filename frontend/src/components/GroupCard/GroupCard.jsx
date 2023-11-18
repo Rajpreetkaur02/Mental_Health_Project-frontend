@@ -9,8 +9,8 @@ const GroupCard = (data) => {
         <div className="groupcardtitle">{data.title}</div>
         <div className="groupcardmembers">{data.members} members</div>
         <div className="groupcardorganizer">Organized by {data.organizer}</div>
-        <div className="groupcarddesc">{data.desc}</div>
-        <Link className="groupcardbutton" to={`/groupdesc/${data.id}`}>
+        <div className="groupcarddesc">{data.about}</div>
+        <Link className="groupcardbutton" to={`/groupdesc/${data._id}`}>
           <button>find out more</button>
         </Link>
       </div>

@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute';
 import Community from './pages/Community/Community';
 import Groupdesc from './pages/GroupDesc/Groupdesc';
 import StartGroupQuestionsPage from './pages/StartGroupsQuestionsPage/StartGroupQuestionsPage';
+import GeneralUserDetails from './components/GeneralUserDetails/GeneralUserDetails';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/startgroup' element={<StartGroupQuestionsPage/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/general' element={<GeneralUserDetails/>}></Route>
 
 
         <Route element={<PrivateRoute/>}>

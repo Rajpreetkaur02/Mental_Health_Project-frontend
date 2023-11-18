@@ -38,7 +38,7 @@ function Login() {
             .then(data => {
                 console.log(data)
                 alert("User Logged In!");
-                window.localStorage.setItem("token", data.token);
+                localStorage.setItem("token", data.token);
                 navigate("/dashboard");
             })
         } else {

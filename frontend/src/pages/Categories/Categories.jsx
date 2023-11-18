@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import HealthImg from '../../assets/mentalHealthImg.png';
@@ -36,6 +36,29 @@ function Categories() {
             setIsMentalActive(true);
         }
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+            fetch('http://localhost:8080/current-user',{
+                crossDomain: true,
+                headers: {
+                    'Content-Type':'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`     
+                },    
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (localStorage.getItem('name') == null) {
+                    localStorage.setItem('id', data._id);
+                    localStorage.setItem('name', data.name)
+                    localStorage.setItem('email', data.username);
+                }
+            });
+        }
+    }, []);
 
     return (
         <>

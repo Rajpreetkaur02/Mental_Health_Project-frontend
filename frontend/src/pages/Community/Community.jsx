@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../styles/Community.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Support from '../../assets/support.png';
-import groupsData from '../../utils/groupsdata.js';
+// import groupsData from '../../utils/groupsdata.js';
 import GroupCard from '../../components/GroupCard/GroupCard.jsx';
 import { Link, useParams } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const Community = () => {
     const [physicalActive, setPhysicalActive] = useState(false);
     const [isMentalActive, setIsMentalActive] = useState(false);
     const [isPhysicalActive, setIsPhysicalActive] = useState(false);
+    const [groupsData, setGroupsData] = useState([]);
 
     const mentalButtonPressed = () => {
         setMentalActive(true);
@@ -35,6 +36,25 @@ const Community = () => {
             setIsMentalActive(true);
         }
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+            fetch('http://localhost:8080/groups/supportGroups',{
+                crossDomain: true,
+                headers: {
+                    'Content-Type':'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`     
+                },    
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setGroupsData(data);
+            });
+        }
+    }, []);
 
     return (
         <div>
@@ -69,7 +89,7 @@ const Community = () => {
                             .filter((data) => data.type === 'mental')
                             .map((data) => (
                                 <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/groupdesc/${data.id}` }}>
-                                    <GroupCard {...data} key={data.id} />
+                                    <GroupCard {...data} key={data._id} />
                                 </Link>
                             )) :
 
@@ -78,7 +98,7 @@ const Community = () => {
                                 .filter((data) => data.type === 'physical')
                                 .map((data) => (
                                     <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/groupdesc/${data.id}` }}>
-                                        <GroupCard {...data} key={data.id} />
+                                        <GroupCard {...data} key={data._id} />
                                     </Link>
                                 ))
                         ))

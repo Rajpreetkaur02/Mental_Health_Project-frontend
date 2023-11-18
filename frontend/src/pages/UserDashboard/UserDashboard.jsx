@@ -24,6 +24,29 @@ const UserDashboard = () => {
         setOpenSidebarToggle((prev) => !prev);
     };
 
+    useEffect(() => {
+        if (localStorage.getItem('token') !== null) {
+            fetch('http://localhost:8080/current-user',{
+                crossDomain: true,
+                headers: {
+                    'Content-Type':'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`     
+                },    
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (localStorage.getItem('name') === null) {
+                    localStorage.setItem('id', data._id)
+                    localStorage.setItem('name', data.name)
+                    localStorage.setItem('email', data.username)
+                }
+            });
+        }
+    }, []);
+
     return (
         <div className="grid-container">
         {loading ? (

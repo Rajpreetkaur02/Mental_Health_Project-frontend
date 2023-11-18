@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
@@ -33,15 +33,36 @@ const formats = [
 
 const StartGroupQuestionsPage = () => {
   const [check, setCheck] = useState(false);
+  // const [loggedInUserDetails, setLoggedInUserDetails] = useState({
+  //   name: '',
+  //   email: ''
+  // });
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (localStorage.getItem('token') !== null) {
+  //     fetch('http://localhost:8080/current-user',{
+  //         crossDomain: true,
+  //         headers: {
+  //             'Content-Type':'application/json',
+  //             Accept: "application/json",
+  //             "Access-Control-Allow-Origin": "*",
+  //             'Authorization': `Bearer ${localStorage.getItem('token')}`     
+  //         },    
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         setLoggedInUserDetails({name: data.name, email: data.username});
+  //     });
+  //   }
+  // }, [])
 
   const [groupDetails, setgroupDetails] = useState({
     title: '',
     members: 0,
     topics: '',
     about: '',
-    organizer: '',
+    organizer: localStorage.getItem('name'),
     type: '',
     location: ''
   });
@@ -61,9 +82,37 @@ const StartGroupQuestionsPage = () => {
     }
   }
 
-  function saveDetails(e) {
+  async function saveDetails(e) {
+    e.preventDefault();
+    setgroupDetails((prevDetails) => ({
+      ...prevDetails,
+      'organizer': localStorage.getItem('name')
+    }));
     console.log(groupDetails);
-    navigate('/community');
+    
+    const response = await fetch('http://localhost:8080/groups/addGroups',{
+        method: 'POST',
+        body: JSON.stringify({"title": groupDetails.title, "members": groupDetails.members, "topics": groupDetails.topics, "about": groupDetails.about, "organizer": groupDetails.organizer, "type": groupDetails.type, "location": groupDetails.location}),
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`     
+        }
+    });  
+    if (response.status === 200) {
+        alert("Group Created Successfully!");
+        navigate('/community');   
+    } else {
+        alert("Error!");
+    }
+    
+    const res = await fetch('http://localhost:8080/extra/addDetails',{
+        method: 'POST',
+        body: JSON.stringify({"type": "admin", "userId": localStorage.getItem('id')}),
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`     
+        }
+    });
   }
 
 
@@ -137,7 +186,6 @@ const StartGroupQuestionsPage = () => {
           </div>
           </div>
         </div>
-      </form>
       <div className="grpguidlines">
         <input type="checkbox" onChange={() => {setCheck(!check)}}/>
         <span>I have agreed to all the community guidelines</span>
@@ -147,6 +195,7 @@ const StartGroupQuestionsPage = () => {
           <button type='submit' className='grpbtn'>Submit details</button>
         </div>
       )}
+      </form>
     </div>
   )
 }
