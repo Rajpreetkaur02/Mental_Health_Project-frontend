@@ -38,22 +38,19 @@ const Community = () => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
-            fetch('http://localhost:8080/groups/supportGroups',{
-                crossDomain: true,
-                headers: {
-                    'Content-Type':'application/json',
-                    Accept: "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`     
-                },    
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setGroupsData(data);
-            });
-        }
+        fetch('http://localhost:8080/groups/supportGroups',{
+            crossDomain: true,
+            headers: {
+                'Content-Type':'application/json',
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",    
+            },    
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            setGroupsData(data);
+        });
     }, []);
 
     return (
