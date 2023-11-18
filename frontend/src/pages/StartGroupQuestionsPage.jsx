@@ -32,7 +32,7 @@ const formats = [
 ];
 
 const StartGroupQuestionsPage = () => {
-  const [content, setContent] = useState('');
+  const [check, setCheck] = useState(false);
   const navigate = useNavigate();
 
 
@@ -139,12 +139,14 @@ const StartGroupQuestionsPage = () => {
         </div>
       </form>
       <div className="grpguidlines">
-        <input type="checkbox" />
+        <input type="checkbox" onChange={() => {setCheck(!check)}}/>
         <span>I have agreed to all the community guidelines</span>
       </div>
-      <div className="grpbtn">
+      {check && (
+        <div className="grpbtn">
           <button type='submit' className='grpbtn'>Submit details</button>
         </div>
+      )}
     </div>
   )
 }
