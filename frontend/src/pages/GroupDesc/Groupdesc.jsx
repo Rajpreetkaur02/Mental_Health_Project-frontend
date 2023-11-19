@@ -3,12 +3,13 @@ import '../../styles/Groupdesc.css'
 import Navbar from '../../components/Navbar/Navbar'
 import GroupAbout from '../../components/GroupAbout/GroupAbout'
 import GroupSidebar from '../../components/GroupSidebar/GroupSidebar'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 // import groupsData from '../../utils/groupsdata.js';
 
 const Groupdesc = () => {
     const [component, setComponentActive] = useState(<GroupAbout/>);
     const [groupsData, setGroupsData] = useState([]);
+    const navigate = useNavigate();
     const id = useParams();
     console.log(id);
 
@@ -55,6 +56,7 @@ const Groupdesc = () => {
                 },    
             })
             alert("Group Joined Successfully")
+            navigate("/dashboard")
         } else {
             alert("Already in a Group")
         }

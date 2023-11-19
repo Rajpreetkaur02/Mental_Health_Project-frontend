@@ -55,6 +55,7 @@ function Categories() {
                     localStorage.setItem('id', data._id);
                     localStorage.setItem('name', data.name)
                     localStorage.setItem('email', data.username);
+                    window.location.reload();
                 }
             });
         }
