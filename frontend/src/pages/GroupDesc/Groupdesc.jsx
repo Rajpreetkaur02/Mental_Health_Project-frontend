@@ -43,9 +43,9 @@ const Groupdesc = () => {
     async function updateMembers(e) {
         e.preventDefault();
 
-        const response = await fetch('http://localhost:8080/extra/addDetails', {
-            method: 'POST',
-            body: JSON.stringify({ "type": "member", "userId": localStorage.getItem('id'), "groupId": id.id }),
+        const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
+            method: 'PUT',
+            body: JSON.stringify(id.id),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -66,7 +66,7 @@ const Groupdesc = () => {
             alert("Group Joined Successfully")
             navigate("/dashboard")
         } else {
-            alert("Already in a Group")
+            alert("Already in this Group")
         }
     }
 

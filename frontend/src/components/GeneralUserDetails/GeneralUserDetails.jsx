@@ -82,7 +82,7 @@ function GeneralUserDetails() {
                         <option value="₹20,00,000 +">₹20,00,000 +</option>
                     </select>
                 </div>
-                <button onClick={submitExtraDetails} type='submit'>Go To Dashboard<AiOutlineArrowRight/></button>
+                <button onClick={submitExtraDetails} type='submit'>Go To Community<AiOutlineArrowRight/></button>
             </form>
         </div>
     </>
