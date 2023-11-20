@@ -61,10 +61,23 @@ function QuestionsPage() {
             .then(response => response.json());
   
         displayResults(resp.prediction, currentModel);
+        finalResults(resp.prediction);
+        localStorage.setItem("result", resp.prediction * 100)
         } catch (err) {
             displayResults(-1, currentModel);
         }
     };
+
+    function finalResults(resul) {
+        fetch('http://localhost:8080/extra/addDetails', {
+            method: 'POST',
+            body: JSON.stringify({ "userId": localStorage.getItem('id'), "result": resul * 100}),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+    }
   
     const displayResults = (result, currentModel) => {
         let resultText;
@@ -103,12 +116,6 @@ function QuestionsPage() {
 
             {questionsActive && (
                 <>
-                {/* <div className='mainQuestionsBar'>
-                    <div className='questionsCompletedBar'>
-                        <div style={{width: `${(values.length / 13) * 100}%`, height:"0.5vh"}} className='innerQuestionsBar'></div>
-                    </div>
-                    <h3>{Math.ceil((values.length / 13) * 100)}%</h3>
-                </div> */}
                 <div className="radio-parent">
                     {questionsData
                     .filter((question) => question.type === id.id)

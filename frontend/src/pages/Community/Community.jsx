@@ -57,11 +57,13 @@ const Community = () => {
         <div>
             <Navbar />
             <div className='communityMain'>
-            <div className="startgrpbtn">
-                            <Link to={{ pathname: `/startgroup` }}>
-                                <button>Start A New Support Group</button>
-                            </Link>
-                        </div>
+                {localStorage.getItem('result') < 40 && (
+                    <div className="startgrpbtn">
+                        <Link to={{ pathname: `/startgroup` }}>
+                            <button>Start A New Support Group</button>
+                        </Link>
+                    </div>
+                )}
                 <div className='communityTop'>
                     <div className='communityTopLeft'>
                         <img src={Support} alt="" />

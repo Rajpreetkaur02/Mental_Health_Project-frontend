@@ -99,20 +99,26 @@ const StartGroupQuestionsPage = () => {
         }
     });  
     if (response.status === 200) {
-        alert("Group Created Successfully!");
-        navigate('/community');   
+        const res = await fetch('http://localhost:8080/extra/addDetails',{
+            method: 'POST',
+            body: JSON.stringify({"type": "admin", "userId": localStorage.getItem('id')}),
+            headers: {
+              'Content-Type':'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`     
+            }
+        });
+        alert("Group Created Successfully! You will be contacted by our team after review!");
+        logout();
     } else {
         alert("Error!");
     }
     
-    const res = await fetch('http://localhost:8080/extra/addDetails',{
-        method: 'POST',
-        body: JSON.stringify({"type": "admin", "userId": localStorage.getItem('id')}),
-        headers: {
-          'Content-Type':'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`     
-        }
-    });
+  }
+
+  function logout() {
+    localStorage.clear();
+        alert('User Logged Out!')
+        window.location.reload();
   }
 
 
