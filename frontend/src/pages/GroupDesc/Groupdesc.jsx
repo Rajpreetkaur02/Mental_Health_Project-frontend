@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import '../../styles/Groupdesc.css'
 import Navbar from '../../components/Navbar/Navbar'
-import GroupAbout from '../../components/GroupAbout/GroupAbout'
+import GroupAbout from '../../components/GroupDescComponents/GroupAbout'
 import GroupSidebar from '../../components/GroupSidebar/GroupSidebar'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FaLocationDot } from "react-icons/fa6";
 import { GrGroup } from "react-icons/gr";
 import { IoPersonOutline } from "react-icons/io5";
+import swal from 'sweetalert';
 
 // import groupsData from '../../utils/groupsdata.js';
 
 const Groupdesc = () => {
     const [groupsData, setGroupsData] = useState([]);
+    const [isMember, setMember] = useState(false);
     const navigate = useNavigate();
     const id = useParams();
     console.log(id);
@@ -35,7 +37,7 @@ const Groupdesc = () => {
                 .then((data) => {
                     console.log(data);
                     setGroupsData(data);
-                    setComponentActive(<GroupAbout data={data.about}/>)
+                    setComponentActive(<GroupAbout data={data.about} />)
                 });
         }
     }, []);
@@ -63,10 +65,19 @@ const Groupdesc = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
-            alert("Group Joined Successfully")
+            swal({
+                title: "Welcome!",
+                text: "You've successfully joined the group!",
+                icon: "success",
+                button: "OK",
+            });
             navigate("/dashboard")
         } else {
-            alert("Already in a Group")
+            swal({
+                title: "Already in a group!",
+                text: "You've already joined a group!",
+                button: "OK",
+            });
         }
     }
 
@@ -83,13 +94,18 @@ const Groupdesc = () => {
                         <p><GrGroup />   {groupsData.members} members</p>
                         <p><IoPersonOutline />   Organized by <span>{groupsData.organizer}</span></p>
                     </div>
-                    <div className='joinbutton'>
-                        <button onClick={updateMembers}>Join Group</button>
-                    </div>
+                    {!isMember && (
+                        <>
+                            <div className='joinbutton'>
+                                <button onClick={updateMembers}>Join Group</button>
+                            </div>
+                        </>
+                    )}
+
                 </div>
-                
+
                 <div className="groupelements">
-                    <GroupSidebar componentHandler={setComponentActive} />
+                    <GroupSidebar componentHandler={setComponentActive} data={isMember}/>
                     {component}
                 </div>
 
