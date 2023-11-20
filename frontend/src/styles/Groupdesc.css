@@ -1,9 +1,7 @@
 .descheader{
     justify-content: space-around;
     display: flex;
-    padding: 20px;
-    border-bottom: 1px solid grey;
-    width: 80%;
+    padding: 50px 20px 40px 20px; 
     margin: auto;
 }
 
@@ -12,37 +10,106 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 10px;
 }
 
 .joinbutton{
     display: flex;
     flex-direction: column;
+    width: 15%;
     justify-content: center;
 }
 
-#GroupSidebar{
-    display: flex;
+.joinbutton button{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: blue;
+    border: none;
+    color: #fff;
+    font-weight: 600;
 }
+
+.topicsSection{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    padding: 20px;
+
+}
+
+.topicsSection p{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.topicboxes{
+    padding-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+#topicbox{
+    padding: 10px;
+    background-color: #dbedf0;
+    border-radius: 10px;
+}
+
+/* SIDEBAR CSS */
 
 .groupelements ul{
     display: flex;
+    background-color: #e9e9eb;
+    text-decoration: none;
+    list-style: none;
+    gap: 20px;
     width: 80%;
     margin: auto;
-    justify-content: space-around;
-    border-bottom: 1px solid grey;  
-    text-decoration: none;
-    padding: 20px;
+    color: grey;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .groupelements ul li{
-    text-decoration: none; 
+    padding: 10px;
+    position: relative;
+    display: inline-block;
 }
+
+.groupelements ul li:hover{
+    color: black;
+}
+
+.groupelements ul li::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+    background-color: orange;
+}
+
+.groupelements ul li:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    color: black;
+}
+
+
+/* ABOUT SECTION */
 
 .grpaboutcontainer{
     width: 80%;
     margin: auto;
+    line-height: 1.5;
+    padding: 10px;
 }
+
+
 
 .grpeventscontainer, .grppostcontainer{
     width: 80%;
@@ -57,3 +124,4 @@
 .grpeventscontainer h1, .grppostcontainer h1{
     opacity: 0.2;
 }
+

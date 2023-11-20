@@ -1,9 +1,11 @@
 import React from 'react'
+import '../../styles/Groupdesc.css'
 
-const GroupAbout = () => {
+const GroupAbout = (props) => {
   return (
     <div className='grpaboutcontainer'>
-      <h1>About</h1>
+      <h2 id='grpcardheading'>What we’re about</h2>
+      <div className="groupcarddesc" dangerouslySetInnerHTML={{__html: props.data}}></div>
     </div>
   )
 }
