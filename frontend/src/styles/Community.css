@@ -10,11 +10,13 @@
 }
 
 .startgrpbtn button{
-    background: transparent;
-    border: 2px solid ;
+    background-color: #0f172a;
+    border: none;
     padding: 15px;
     border-radius: 5px;
     font-weight: 600;
+    color: #fff;
+    cursor: pointer;
 }
 
 .communityTop {
@@ -73,30 +75,6 @@
     padding-top: 3%;
 } */
 
-
-/* Groups Card CSS */
-
-.communityBottom {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: auto auto;
-    padding: 40px;
-}
-
-.groupcardcontainer{
-    padding: 20px;
-    height: 50vh;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.groupcardtitle{
-    font-size: 1.5rem;
-    font-weight: 600;
-}
 
 /* START A NEW GROUP PAGE */
 
