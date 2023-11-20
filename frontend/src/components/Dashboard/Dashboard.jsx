@@ -45,53 +45,83 @@ function Dashboard() {
 
   const formattedDate = today.toLocaleDateString(undefined, options);
 
+  const [moodHistory, setMoodHistory] = useState([]);
+  let i = 0;
   console.log(formattedDate);
   // console.log(loggedInUserDetails.name)
+  useEffect(() => {
+    fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+      crossDomain: true, 
+      headers: { 'Content-Type':'application/json', 
+        Accept: "application/json", 
+        "Access-Control-Allow-Origin": "*", 
+        'Authorization': `Bearer ${localStorage.getItem('token')}` 
+      } 
+    }).then(res => res.json()) 
+    .then((data) => { 
+      console.log(data) 
+      setMoodHistory(data) 
+    }); 
+  })
+  
+  const data = moodHistory.map((moods) => {
+    if (moods.mood === '😊 Happy') {
+      i = i + 1;
+      return {...moods, Mood: 3, name: `Day ${i}`}
+    } else if (moods.mood === '😐 Neutral') {
+      i = i + 1;
+      return {...moods, Mood: 2, name: `Day ${i}`}
+    } else {
+      i = i + 1;
+      return {...moods, Mood: 1, name: `Day ${i}`}
+    }
+    
+  })
 
-  const data = [
-    {
-      name: "Day 1",
-      Productivity: 4,
-      Mood: 2,
-      // amt: 2400,
-    },
-    {
-      name: "Day 2",
-      Productivity: 5,
-      Mood: 7,
-      // amt: 2210,
-    },
-    {
-      name: "Day 3",
-      Productivity: 2,
-      Mood: 6,
-      // amt: 2290,
-    },
-    {
-      name: "Day 4",
-      Productivity: 5,
-      Mood: 8,
-      // amt: 2000,
-    },
-    {
-      name: "Day 5",
-      Productivity: 3,
-      Mood: 6,
-      // amt: 2181,
-    },
-    {
-      name: "Day 6",
-      Productivity: 4,
-      Mood: 1,
-      // amt: 2500,
-    },
-    {
-      name: "Day 7",
-      Productivity: 10,
-      Mood: 3,
-      // amt: 2100,
-    },
-  ];
+  // const data = [
+  //   {
+  //     name: "Day 1",
+  //     Productivity: 4,
+  //     Mood: 2,
+  //     // amt: 2400,
+  //   },
+  //   {
+  //     name: "Day 2",
+  //     Productivity: 5,
+  //     Mood: 7,
+  //     // amt: 2210,
+  //   },
+  //   {
+  //     name: "Day 3",
+  //     Productivity: 2,
+  //     Mood: 6,
+  //     // amt: 2290,
+  //   },
+  //   {
+  //     name: "Day 4",
+  //     Productivity: 5,
+  //     Mood: 8,
+  //     // amt: 2000,
+  //   },
+  //   {
+  //     name: "Day 5",
+  //     Productivity: 3,
+  //     Mood: 6,
+  //     // amt: 2181,
+  //   },
+  //   {
+  //     name: "Day 6",
+  //     Productivity: 4,
+  //     Mood: 1,
+  //     // amt: 2500,
+  //   },
+  //   {
+  //     name: "Day 7",
+  //     Productivity: 10,
+  //     Mood: 3,
+  //     // amt: 2100,
+  //   },
+  // ];
 
   return (
     <main className={classes["main-container"]}>
