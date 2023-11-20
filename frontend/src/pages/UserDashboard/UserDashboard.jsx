@@ -12,7 +12,6 @@ const UserDashboard = () => {
 
     const [component, setComponentActive] = useState(<Dashboard/>);
     
-
     useEffect(() => {
         setLoading(true);
         setTimeout(() => {
@@ -45,6 +44,20 @@ const UserDashboard = () => {
                 }
             });
         }
+        fetch(`http://localhost:8080/extra/detail/${localStorage.getItem('id')}`, {
+            crossDomain: true,
+            headers: {
+                'Content-Type':'application/json',
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*", 
+                'Authorization': `Bearer ${localStorage.getItem('token')}`        
+            },    
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            localStorage.setItem("result", data.result)
+        });
     }, []);
 
     return (
