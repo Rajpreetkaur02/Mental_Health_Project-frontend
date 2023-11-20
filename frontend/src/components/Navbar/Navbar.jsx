@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import "./Navbar.css";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 const Navbar = ({isHomePage}) => {
-    // useEffect(() => {
-    //     if (localStorage.getItem('token') !== null) {
-    //         fetch('http://localhost:8080/current-user',{
-    //             crossDomain: true,
-    //             headers: {
-    //                 'Content-Type':'application/json',
-    //                 Accept: "application/json",
-    //                 "Access-Control-Allow-Origin": "*",
-    //                 'Authorization': `Bearer ${localStorage.getItem('token')}`     
-    //             },    
-    //         })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //         });
-    //     }
-    // }, []);
+    const navigate = useNavigate();
 
     function logout() {
         localStorage.clear();
         alert('User Logged Out!')
         window.location.reload();
+    }
+
+    function goToDash() {
+        navigate("/dashboard")
     }
 
     return (
@@ -47,6 +36,7 @@ const Navbar = ({isHomePage}) => {
                 localStorage.getItem('token') !== null ? (
                     <div className={`${isHomePage ? 'homepage-navRight' : 'navRight'}`}>
                         <ul>
+                            <li title='Go To Dashboard' className={`${isHomePage ? 'homepage-dashIcon' : 'dashIcon'}`} onClick={goToDash}><FaRegCircleUser size={20}/></li>
                             <li className={`${isHomePage ? 'homepage-greeting' : 'greeting'}`}>Hello ,  {localStorage.getItem('name')}</li>
                             <li className={`${isHomePage ? 'homepage-logout' : 'logout'}`} onClick={logout}>Logout</li>
                         </ul>

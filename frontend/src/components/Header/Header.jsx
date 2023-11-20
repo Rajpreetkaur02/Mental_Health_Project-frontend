@@ -11,10 +11,15 @@ import { useNavigate } from 'react-router-dom';
 
 function Header({ sidebarHandler }) {
   const navigate = useNavigate();
+
   function logout() {
     localStorage.removeItem('token');
     alert("User Logged Out!");
     navigate("/login");
+  }
+
+  function handleHomepageButtonClick() {
+    navigate("/")
   }
 
   return (
@@ -27,6 +32,7 @@ function Header({ sidebarHandler }) {
         <BsSearch className={classes.icon} />
       </div>
       <div className={classes["header-right"]}>
+        <button onClick={handleHomepageButtonClick}>Go To Homepage</button>
         <BsFillBellFill className={classes.icon} title="Notifications"/>
         <BsPersonCircle className={classes.icon} title="Profile" />
         <MdLogout onClick={logout} className={classes.icon} title="Logout"/>

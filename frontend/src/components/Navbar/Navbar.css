@@ -103,6 +103,21 @@ nav ul {
     font-weight: bold;
 }
 
+.homepage-dashIcon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+}
+
+.dashIcon {
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+}
+
 .navCenter ul li a, .homepage-navCenter ul li a {
     display: inline-block;
     position: relative;
