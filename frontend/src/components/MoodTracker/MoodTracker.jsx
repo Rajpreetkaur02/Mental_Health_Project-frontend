@@ -5,27 +5,12 @@ const MoodTracker = () => {
   const [mood, setMood] = useState('😐 Neutral'); 
   const [moodHistory, setMoodHistory] = useState([]); 
   
-  useEffect(() => { 
-    fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
-      crossDomain: true, 
-      headers: { 'Content-Type':'application/json', 
-        Accept: "application/json", 
-        "Access-Control-Allow-Origin": "*", 
-        'Authorization': `Bearer ${localStorage.getItem('token')}` 
-      } 
-    }).then(res => res.json()) 
-    .then((data) => { 
-      console.log(data) 
-      setMoodHistory(data) 
-    }); 
-  }) 
-  
-  const handleMoodChange = newMood => { 
+  const handleMoodChange = async (newMood) => { 
     setMood(newMood); 
     console.log(mood) 
     console.log(moodHistory) 
-
-    fetch(`http://localhost:8080/extra/addMood/${localStorage.getItem('id')}`,{ 
+  
+    await fetch(`http://localhost:8080/extra/addMood/${localStorage.getItem('id')}`,{ 
       method: 'PUT', 
       headers: { 
         'Content-Type':'application/json', 
@@ -35,7 +20,35 @@ const MoodTracker = () => {
       }, 
       body: JSON.stringify({"mood": newMood, "timestamp": new Date().toLocaleString()}), 
     }); 
+    fetchData();
   };
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+        crossDomain: true, 
+        headers: { 'Content-Type':'application/json', 
+          Accept: "application/json", 
+          "Access-Control-Allow-Origin": "*", 
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        } 
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json()
+      .then((data) => {
+        console.log(data)
+        setMoodHistory(data) 
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  useEffect(() => { 
+    fetchData();
+  },[]) 
   
   return ( 
     <div className="mood-tracker">
@@ -47,11 +60,7 @@ const MoodTracker = () => {
     </div>
     <div className="mood-history">
       <h3>Mood History</h3>
-      {moodHistory.length === 0 ? (
-        <ul className='listMoodHistory'>
-          <li>No Record!</li>
-        </ul>
-      ) : (
+      {moodHistory.length !== 0 ? (
         <ul className='listMoodHistory'>
           {moodHistory.map((entry, index) => (
             <li key={index}>
@@ -59,6 +68,10 @@ const MoodTracker = () => {
               <hr style={{marginTop: '10px'}}/>
             </li>
           ))}
+        </ul>
+      ) : (
+        <ul className='listMoodHistory'>
+          <li>No Record!</li>
         </ul>
       )}
     </div>

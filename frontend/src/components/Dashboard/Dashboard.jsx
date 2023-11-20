@@ -49,20 +49,32 @@ function Dashboard() {
   let i = 0;
   console.log(formattedDate);
   // console.log(loggedInUserDetails.name)
-  useEffect(() => {
-    fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
-      crossDomain: true, 
-      headers: { 'Content-Type':'application/json', 
-        Accept: "application/json", 
-        "Access-Control-Allow-Origin": "*", 
-        'Authorization': `Bearer ${localStorage.getItem('token')}` 
-      } 
-    }).then(res => res.json()) 
-    .then((data) => { 
-      console.log(data) 
-      setMoodHistory(data) 
-    }); 
-  })
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+        crossDomain: true, 
+        headers: { 'Content-Type':'application/json', 
+          Accept: "application/json", 
+          "Access-Control-Allow-Origin": "*", 
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        } 
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json()
+      .then((data) => {
+        console.log(data)
+        setMoodHistory(data) 
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  useEffect(() => { 
+    fetchData();
+  },[]) 
   
   const data = moodHistory.map((moods) => {
     if (moods.mood === '😊 Happy') {
