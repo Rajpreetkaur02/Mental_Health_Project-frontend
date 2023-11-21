@@ -13,6 +13,7 @@ import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import MoodTracker from "../MoodTracker/MoodTracker";
 import Dashboard from "../Dashboard/Dashboard";
+import Support from "../Support Groups/Support";
 import Plan from "../Plan/Plan";
 import { useState } from "react";
 
@@ -53,7 +54,8 @@ function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
             <TbMoodPlus className={classes.icon} /> Mood Tracker
         </li>
 
-        <li className={classes["sidebar-list-item"]}>
+
+        <li  onClick={() => {componentHandler(<Support/>); setActive('Support')}} className={`${classes["sidebar-list-item"]} ${active === 'Support' ? `${classes["itemActive"]}` : ''}`}>
             <BsPeopleFill className={classes.icon} /> Support Groups
         </li>
 

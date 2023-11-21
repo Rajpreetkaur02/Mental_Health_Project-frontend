@@ -14,6 +14,7 @@ import swal from 'sweetalert';
 const Groupdesc = () => {
     const [groupsData, setGroupsData] = useState([]);
     const [isMember, setMember] = useState(false);
+    const [groups, setGroups] = useState([]); 
     const navigate = useNavigate();
     const id = useParams();
     console.log(id);
@@ -65,13 +66,14 @@ const Groupdesc = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
+
             swal({
                 title: "Welcome!",
                 text: "You've successfully joined the group!",
                 icon: "success",
                 button: "OK",
             });
-            navigate("/dashboard")
+            navigate("/community")
         } else {
             swal({
                 title: "Already in this group!",
@@ -81,11 +83,38 @@ const Groupdesc = () => {
         }
     }
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const result = await response.json()
+                .then((data) => {
+                    console.log(data);
+                    setGroups(data);
+                })
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+
     return (
         <div>
             <Navbar />
-            {/* {groupsData.filter((data) => data.id == id.id)
-            .map((data) => ( */}
             <>
                 <div className="descheader">
                     <div className="descheading">
@@ -105,7 +134,7 @@ const Groupdesc = () => {
                 </div>
 
                 <div className="groupelements">
-                    <GroupSidebar componentHandler={setComponentActive} data={isMember}/>
+                    <GroupSidebar componentHandler={setComponentActive} data={isMember} />
                     {component}
                 </div>
 
@@ -117,8 +146,7 @@ const Groupdesc = () => {
                         ))}
                     </div>
                 </div>
-            </>
-            {/* ))} */}
+            </> 
 
         </div>
     )

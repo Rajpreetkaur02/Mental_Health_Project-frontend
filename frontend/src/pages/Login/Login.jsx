@@ -4,6 +4,7 @@ import img from '../../assets/TaeAugust07.jpg';
 import './Login.css';
 import Navbar from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert'
 
 function Login() {
     const [userDetails, setUserDetails] = useState({
@@ -42,7 +43,7 @@ function Login() {
                 navigate("/dashboard");
             })
         } else {
-            alert('Wrong Credentials!');
+            swal ( "Wrong Credentials" ,  "Something went wrong!" ,  "error" )
         }
     }
 
