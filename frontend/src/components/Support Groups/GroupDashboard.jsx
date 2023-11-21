@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import './Support.css'
+import { GrGroup } from "react-icons/gr";
+import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const GroupDashboard = ({groupId}) => {
     const [groupDetails, setGroupDetails] = useState([]);
@@ -31,12 +35,45 @@ const GroupDashboard = ({groupId}) => {
     },[groupId]);
     // console.log(groupDetails)
 
+    function handleGroupLeave() {
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to leave this group?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Group left successfully!", {
+                icon: "success",
+              });
+            } else {
+              swal("Thanks for not leaving us!");
+            }
+          });
+    }
+
   return (
     <div>
         {groupDetails ? (
         <div className="dashsupportcontainer">
-            <div>{groupDetails.title}</div>
-            <div>{groupDetails.members}</div>
+            <div className="grpleft">
+                <div className="grpname">{groupDetails.title}</div>
+                <div className="grporg">Organized by {groupDetails.organizer}</div>
+                <div className="grpmembers"><GrGroup/> {groupDetails.members} members</div>
+                <div className="grptopics"></div>
+            </div>
+            <div className="grpright">
+                <div className="grpview">
+                    <Link to={`/groupdesc/${groupDetails._id}`}>
+                        <button>View</button>
+                    </Link>
+                </div>
+                <div className="grpleave">
+                    <button onClick={handleGroupLeave}>Leave</button>
+                </div>
+            </div>
         </div>
         ) : (
             <p>Loading</p>

@@ -38,7 +38,11 @@ function Login() {
             const result = response.json()
             .then(data => {
                 console.log(data)
-                alert("User Logged In!");
+                swal({
+                    title: "Welcome!",
+                    text: "User logged In Successfully!",
+                    icon: "success",
+                });
                 localStorage.setItem("token", data.token);
                 navigate("/dashboard");
             })

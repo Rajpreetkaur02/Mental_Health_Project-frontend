@@ -38,7 +38,7 @@ const Support = () => {
 
   return (
     <div>
-        <div className="supportgrpcontainer">
+        <div className="supportcontainer">
             <h3>Your Support Groups</h3>
             {groups.map((groupId) => (
               <GroupDashboard key={groupId} groupId={groupId}/>
