@@ -10,12 +10,16 @@
 .planBox {
     background-color: white;
     border-radius: 25px;
-    padding: 3% 2% 3% 4%;
+    padding: 0% 2% 3% 4%;
     text-align: center;
 }
 
 .planBoxItem {
-    padding: 3% 3%;
+    /* padding: 3% 3%; */
     border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    height: 15vh;
+    justify-content: center;
 }
 
