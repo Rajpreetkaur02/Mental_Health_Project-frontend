@@ -17,7 +17,7 @@ const Groupdesc = () => {
     const [groups, setGroups] = useState([]); 
     const navigate = useNavigate();
     const id = useParams();
-    console.log(id);
+    // console.log(id);
 
     const [component, setComponentActive] = useState(<GroupAbout />);
 
@@ -99,7 +99,7 @@ const Groupdesc = () => {
             }
             const result = await response.json()
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     setGroups(data);
                 })
         } catch (error) {
@@ -110,6 +110,19 @@ const Groupdesc = () => {
     useEffect(() => {
         fetchData();
     }, [])
+
+    useEffect(() => {
+        // Check if id exists in the groups array
+        const idExists = groups.some(group => JSON.parse(group) === id.id);
+
+        if (idExists) {
+            setMember(true);
+            console.log(`exist`);
+        } else {
+            setMember(false);
+            console.log(`not exists`);
+        }
+    }, [id, groups]);
 
 
     return (
@@ -134,7 +147,7 @@ const Groupdesc = () => {
                 </div>
 
                 <div className="groupelements">
-                    <GroupSidebar componentHandler={setComponentActive} data={isMember} />
+                    <GroupSidebar componentHandler={setComponentActive} member={isMember}/>
                     {component}
                 </div>
 

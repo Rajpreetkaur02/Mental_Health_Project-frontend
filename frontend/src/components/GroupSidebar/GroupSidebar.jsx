@@ -10,12 +10,19 @@ import GroupPhotos from '../GroupDescComponents/GroupPhotos';
 
 
 
-const GroupSidebar = ({ componentHandler }) => {
+const GroupSidebar = ({ componentHandler, member }) => {
   const [active, setActive] = useState('GroupAbout');
   const [isMember, setMember] = useState(true);
   const [about, setAbout] = useState('');
   const id = useParams();
-  // console.log(about);
+
+  useEffect(() => {
+    if (member) {
+        setMember(true) 
+    } else {
+        setMember(false) 
+    }
+}, [member]);
 
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
