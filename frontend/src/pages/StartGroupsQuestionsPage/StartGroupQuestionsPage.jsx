@@ -170,7 +170,7 @@ const StartGroupQuestionsPage = () => {
 
         <div className="grpdesccontainer">
           <div className="descques">
-            <h2>describe your group</h2>
+            <h2>Describe your group</h2>
             <p>People will see this when we promote your group. We care about human connection, so someone will review your group to make sure it meets our community guidelines.</p>
             <ReactQuill className="descContent" value={groupDetails.about}
               modules={modules}
