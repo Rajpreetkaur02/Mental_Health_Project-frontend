@@ -7,7 +7,6 @@ import SignUp from './pages/Signup/SignUp';
 import Categories from './pages/Categories/Categories';
 import QuestionsPage from './pages/QuestionsPage/QuestionsPage';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
-import MoodTracker from './components/MoodTracker/MoodTracker';
 import PrivateRoute from './PrivateRoute';
 import Community from './pages/Community/Community';
 import Groupdesc from './pages/GroupDesc/Groupdesc';
@@ -21,8 +20,6 @@ function App() {
         <Route exact path='/' element={<HomePage/>}/>
         <Route path='/categories' element={<Categories/>}/>
         <Route path='/community' element={<Community/>}/>
-        <Route path='/groupdesc/:id' element={<Groupdesc/>}/>
-        <Route path='/startgroup' element={<StartGroupQuestionsPage/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/general' element={<GeneralUserDetails/>}></Route>
@@ -31,7 +28,8 @@ function App() {
         <Route element={<PrivateRoute/>}>
           <Route path='/questions/:id' element={<QuestionsPage/>}/>
           <Route path='/dashboard' element={<UserDashboard/>}/>
-          <Route path='/moodtracker' element={<MoodTracker/>}/>
+          <Route path='/groupdesc/:id' element={<Groupdesc/>}/>
+          <Route path='/startgroup' element={<StartGroupQuestionsPage/>}/>
         </Route>
       </Routes>
     </div>

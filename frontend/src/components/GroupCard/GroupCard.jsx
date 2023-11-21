@@ -11,9 +11,9 @@ const GroupCard = (data) => {
       <div className="groupcardcontainer">
         <div className="groupcardtitle">{data.title}</div>
         <div className="groupcardsubtitle">
-          <div className="cardbox"><span><IoLocationOutline/>{data.location}</span></div>
-          <div className="cardbox"><span><MdOutlinePublic/>public</span></div>
-          <div className="cardbox"><span><GrGroup/><span id='grpmembers'>{data.members}</span></span></div>
+          <div className="cardbox"><IoLocationOutline/>{data.location}</div>
+          <div className="cardbox"><MdOutlinePublic/>Public</div>
+          <div className="cardbox"><GrGroup/>{data.members}</div>
         </div>
         {/* <div className="groupcardmembers"><MdOutlineGroupAdd size={20}/>{data.members} members</div> */}
         <div className="groupcardorganizer">Organized by <span id='grporganizer'>{data.organizer}</span></div>

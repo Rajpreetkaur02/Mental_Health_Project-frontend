@@ -13,7 +13,7 @@ function Header({ sidebarHandler }) {
   const navigate = useNavigate();
 
   function logout() {
-    localStorage.removeItem('token');
+    localStorage.clear();
     alert("User Logged Out!");
     navigate("/login");
   }

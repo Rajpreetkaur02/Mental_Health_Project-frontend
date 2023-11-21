@@ -37,10 +37,11 @@
 
 .cardbox{
     background-color: aliceblue;
-
+    display: flex;
+    align-items: center;
     padding: 8px;
     border-radius: 5px;
-    gap: 10px;
+    gap: 5px;
 }
 
 #grpmembers{
@@ -57,4 +58,5 @@
     background-color: blue;
     border: none;
     color: #fff;
+    cursor: pointer;
 }

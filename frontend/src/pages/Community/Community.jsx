@@ -87,7 +87,7 @@ const Community = () => {
                         groupsData
                             .filter((data) => data.type === 'mental')
                             .map((data) => (
-                                <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/groupdesc/${data.id}` }}>
+                                <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/groupdesc/${data._id}` }}>
                                     <GroupCard {...data} key={data._id} />
                                 </Link>
                             )) :
@@ -96,7 +96,7 @@ const Community = () => {
                             groupsData
                                 .filter((data) => data.type === 'physical')
                                 .map((data) => (
-                                    <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/groupdesc/${data.id}` }}>
+                                    <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/groupdesc/${data._id}` }}>
                                         <GroupCard {...data} key={data._id} />
                                     </Link>
                                 ))

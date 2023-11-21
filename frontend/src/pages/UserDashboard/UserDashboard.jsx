@@ -41,23 +41,24 @@ const UserDashboard = () => {
                     localStorage.setItem('id', data._id)
                     localStorage.setItem('name', data.name)
                     localStorage.setItem('email', data.username)
+                    window.location.reload();
                 }
             });
+            fetch(`http://localhost:8080/extra/detail/${localStorage.getItem('id')}`, {
+                crossDomain: true,
+                headers: {
+                    'Content-Type':'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*", 
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`        
+                },    
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                localStorage.setItem("result", data.result)
+            });
         }
-        fetch(`http://localhost:8080/extra/detail/${localStorage.getItem('id')}`, {
-            crossDomain: true,
-            headers: {
-                'Content-Type':'application/json',
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*", 
-                'Authorization': `Bearer ${localStorage.getItem('token')}`        
-            },    
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            localStorage.setItem("result", data.result)
-        });
     }, []);
 
     return (

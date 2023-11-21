@@ -13,6 +13,12 @@
     gap: 10px;
 }
 
+.descheading p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .joinbutton{
     display: flex;
     flex-direction: column;
@@ -27,6 +33,7 @@
     border: none;
     color: #fff;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .topicsSection{

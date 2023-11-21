@@ -23,6 +23,7 @@
     padding-left: 2%;
     height: 4.5vh;
     border: 1px solid lightgray;
+    outline: none;
 }
 
 .details form button {
