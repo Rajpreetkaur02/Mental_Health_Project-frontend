@@ -34,14 +34,14 @@ const Support = () => {
         fetchData();
       },[]) 
 
-      
+      console.log(groups)
 
   return (
     <div>
         <div className="supportgrpcontainer">
             <h3>Your Support Groups</h3>
-            {groups.map(groupId => (
-              <GroupDashboard key={groupId} data={groupId}/>
+            {groups.map((groupId) => (
+              <GroupDashboard key={groupId} groupId={groupId}/>
             ))}
         </div>
     </div>
