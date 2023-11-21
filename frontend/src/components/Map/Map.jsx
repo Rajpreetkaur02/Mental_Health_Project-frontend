@@ -13,7 +13,7 @@ function Map() {
         navigator.permissions.query({ name: "geolocation" })
         .then((result) => {
             if (result.state === "granted" || result.state === "prompt") {
-                console.log(result.state);
+                // console.log(result.state);
                 displayMap();
             } else if (result.state === "denied") {
                 console.log(result.state);

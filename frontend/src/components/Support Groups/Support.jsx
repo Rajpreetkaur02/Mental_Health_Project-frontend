@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './Support.css'
+import GroupDashboard from './GroupDashboard';
 
 const Support = () => {
 
@@ -33,33 +34,15 @@ const Support = () => {
         fetchData();
       },[]) 
 
-      const fetchGroupData = async (data) => {
-        try {
-          const response = await fetch(`http://localhost:8080/groups/${data}`,{ 
-            crossDomain: true, 
-            headers: { 'Content-Type':'application/json', 
-              Accept: "application/json", 
-              "Access-Control-Allow-Origin": "*", 
-              'Authorization': `Bearer ${localStorage.getItem('token')}` 
-            } 
-          })
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          const result = await response.json()
-          .then((data) => {
-            console.log(data);
-          })
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      }
+      
 
   return (
     <div>
         <div className="supportgrpcontainer">
             <h3>Your Support Groups</h3>
-            
+            {groups.map(groupId => (
+              <GroupDashboard key={groupId} data={groupId}/>
+            ))}
         </div>
     </div>
   )
