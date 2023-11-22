@@ -124,6 +124,10 @@ const Groupdesc = () => {
         }
     }, [id, groups]);
 
+    function handlejoinchat(){
+        navigate('/chat');
+    }
+
 
     return (
         <div>
@@ -146,7 +150,7 @@ const Groupdesc = () => {
                      {isMember && (
                         <>
                             <div className='joinbutton'>
-                                <button onClick={''}>Join Group Chat</button>
+                                <button onClick={handlejoinchat}>Join Group Chat</button>
                             </div>
                         </>
                     )}
