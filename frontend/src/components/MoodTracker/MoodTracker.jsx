@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'; 
 import './MoodTracker.css'; 
-import formatISO from 'date-fns/formatISO';
+import {formatISO9075, formatISO} from 'date-fns';
 
 const MoodTracker = () => { 
   const [mood, setMood] = useState('😐 Neutral'); 
@@ -19,7 +19,7 @@ const MoodTracker = () => {
         "Access-Control-Allow-Origin": "*", 
         'Authorization': `Bearer ${localStorage.getItem('token')}` 
       }, 
-      body: JSON.stringify({"mood": newMood, "timestamp": formatISO(new Date(), { representation: 'date' })}), 
+      body: JSON.stringify({"mood": newMood, "timestamp": formatISO9075(new Date())}), 
     }); 
     fetchData();
   };
