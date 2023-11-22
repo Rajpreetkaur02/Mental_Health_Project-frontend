@@ -83,6 +83,8 @@ function Dashboard() {
       return {...data, name: key, Mood: data[key]}
   })
 
+  avgData.reverse();
+
   // const data = [
   //   {
   //     name: "Day 1",
