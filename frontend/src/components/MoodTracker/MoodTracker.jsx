@@ -67,7 +67,7 @@ const MoodTracker = () => {
         <ul className='listMoodHistory'>
           {moodHistory.map((entry, index) => (
             <li key={index}>
-              <strong>{entry.mood}</strong><br/> at {entry.timestamp}
+              <strong>{entry.mood}</strong><br/> on {entry.timestamp}
               <hr style={{marginTop: '10px'}}/>
             </li>
           ))}
