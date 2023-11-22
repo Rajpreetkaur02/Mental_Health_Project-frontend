@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'; 
 import './MoodTracker.css'; 
+import {formatISO9075, formatISO} from 'date-fns';
 
 const MoodTracker = () => { 
   const [mood, setMood] = useState('😐 Neutral'); 
   const [moodHistory, setMoodHistory] = useState([]); 
-  
+
   const handleMoodChange = async (newMood) => { 
     setMood(newMood); 
     console.log(mood) 
@@ -18,7 +19,7 @@ const MoodTracker = () => {
         "Access-Control-Allow-Origin": "*", 
         'Authorization': `Bearer ${localStorage.getItem('token')}` 
       }, 
-      body: JSON.stringify({"mood": newMood, "timestamp": new Date().toLocaleString()}), 
+      body: JSON.stringify({"mood": newMood, "timestamp": formatISO9075(new Date())}), 
     }); 
     fetchData();
   };
@@ -27,11 +28,13 @@ const MoodTracker = () => {
     try {
       const response = await fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
-        headers: { 'Content-Type':'application/json', 
+        headers: { 
+          'Content-Type':'application/json', 
           Accept: "application/json", 
           "Access-Control-Allow-Origin": "*", 
-          'Authorization': `Bearer ${localStorage.getItem('token')}` 
-        } 
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "MyDate": formatISO(new Date(), { representation: 'date' })
+        }
       })
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -64,7 +67,7 @@ const MoodTracker = () => {
         <ul className='listMoodHistory'>
           {moodHistory.map((entry, index) => (
             <li key={index}>
-              <strong>{entry.mood}</strong><br/> at {entry.timestamp}
+              <strong>{entry.mood}</strong><br/> on {entry.timestamp}
               <hr style={{marginTop: '10px'}}/>
             </li>
           ))}

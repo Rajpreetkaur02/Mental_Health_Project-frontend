@@ -45,13 +45,13 @@ function Dashboard() {
 
   const formattedDate = today.toLocaleDateString(undefined, options);
 
-  const [moodHistory, setMoodHistory] = useState([]);
+  const [data, setData] = useState({});
   let i = 0;
   console.log(formattedDate);
   // console.log(loggedInUserDetails.name)
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+      const response = await fetch(`http://localhost:8080/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 
@@ -65,29 +65,22 @@ function Dashboard() {
       const result = await response.json()
       .then((data) => {
         console.log(data)
-        setMoodHistory(data) 
+        setData(data) 
       })
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   }
-
+  console.log(data)
   useEffect(() => { 
     fetchData();
   },[]) 
   
-  const data = moodHistory.map((moods) => {
-    if (moods.mood === '😊 Happy') {
-      i = i + 1;
-      return {...moods, Mood: 3, name: `Day ${i}`}
-    } else if (moods.mood === '😐 Neutral') {
-      i = i + 1;
-      return {...moods, Mood: 2, name: `Day ${i}`}
-    } else {
-      i = i + 1;
-      return {...moods, Mood: 1, name: `Day ${i}`}
-    }
-    
+  // const data = moodHistory.map((moods) => {
+  //     return {...moods, Mood: moods., name: `Day ${i}`}  
+  // })
+  const avgData = Object.keys(data).map(key => {
+      return {...data, name: key, Mood: data[key]}
   })
 
   // const data = [
@@ -195,7 +188,7 @@ function Dashboard() {
           <LineChart
             width={500}
             height={300}
-            data={data}
+            data={avgData}
             // margin={{
             //   top: 5,
             //   right: 30,
