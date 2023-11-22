@@ -5,61 +5,39 @@ import Stomp from 'stompjs'
 import { over } from 'stompjs'; 
 
 var stompClient = null;
-
-const colors = [
-  '#2196F3', '#32c787', '#00BCD4', '#ff5652',
-  '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
-];
-
 const ChatApp = () => {
   // const [username, setUsername] = useState('');
-//   const [stompClient, setStompClient] = useState(null);
+    // const [stompClient, setStompClient] = useState(null);
+  // var stompClient = null;
+  
   const [connecting, setConnecting] = useState(true);
   const [messages, setMessages] = useState([]);
-  const [messageInput, setMessageInput] = useState('');
+  // const [messageInput, setMessageInput] = useState('');
   const [userData, setUserData] = useState({
     username: '',
     connected: false,
     message: ''
   });
+  const colors = [
+    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+  ];
 
-  // useEffect(() => {
-  //   console.log(userData);
-  // }, [userData]);
-
-
-//   useEffect(() => {
-//     if (stompClient) {
-//       stompClient.connect({}, onConnected, onError);
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [stompClient]);
-
-  const connect = () => {
-
-    // if (username.trim()) {
-    //   setUsername(username.trim());
-
-    //   const socket = new SockJS('http://localhost:8080/ws');
-    //   const stompClient = over(socket);
-    //   stompClient.connect({}, onConnected, onError);
-
-    // //   setStompClient(stomp);
-    // }
-    // console.log(username);
-
-    let Sock = new SockJS('http://locahost:8080/ws');
-    stompClient = over(Sock);
-    stompClient.connect({}, onConnected, onError);
-    
-  };
+    const connect = () => {
+      
+      const socket = new SockJS('http://localhost:8080/ws');
+      stompClient = Stomp.over(socket);
+      stompClient.connect({}, onConnected, onError);      
+    };
+  
 
   const onConnected = () => {
     setUserData({...userData,"connected": true});
+    console.log(userData)
 
     stompClient.subscribe('/topic/public', onMessageReceived);
 
-    stompClient.send("/app/addUser",
+    stompClient.send("/app/chat.addUser",
       {},
       JSON.stringify({ sender: userData.username, type: 'JOIN' })
     );
@@ -72,23 +50,21 @@ const ChatApp = () => {
   };
 
   const sendMessage = (event) => {
-    event.preventDefault();
-
-    const messageContent = messageInput.trim();
-    if (messageContent && stompClient) {
-      const chatMessage = {
+    if (stompClient) {
+      var chatMessage = {
         sender: userData.username,
-        content: messageInput,
+        content: userData.message,
         type: 'CHAT'
       };
-      stompClient.send("/app/sendMessage", {}, JSON.stringify(chatMessage));
-      setMessageInput('');
+      stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+      setUserData({...userData,"message": ""});
     }
+    event.preventDefault();
   };
 
   const onMessageReceived = (payload) => {
-    const message = JSON.parse(payload.body);
-
+    var message = JSON.parse(payload.body);
+    
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
@@ -101,15 +77,22 @@ const ChatApp = () => {
     return colors[index];
   };
 
-  const handleUsername=(event)=>{
-    const {value}=event.target;
-    setUserData({...userData,"username": value});
-  }
+const registerUser=(e)=>{
+  e.preventDefault();
+  // if(stompClient) {
+  connect();
+  // }
+}
+const handleUsername=(event)=>{
+  const {value}=event.target;
+  console.log(value)
+  setUserData({...userData,"username": value});
+}
 
-  const registerUser=()=>{
-    connect();
-  }
-
+const handleMessage =(event)=>{
+  const {value}=event.target;
+  setUserData({...userData,"message": value});
+}
   return (
     <div>
       {/* {connecting && <div className="connecting">Connecting...</div>} */}
@@ -174,7 +157,13 @@ const ChatApp = () => {
             </div>
             <ul id="messageArea">
               {messages.map((message, index) => (
-                <li key={index} className={message.type === 'JOIN' || message.type === 'LEAVE' ? 'event-message' : 'chat-message'}>
+                <li key={index} className={message.type === 'JOIN' || message.type == 'LEAVE' ? 'event-message' : 'chat-message'}>
+                  {message.type === 'JOIN' && (
+                    <li>{message.sender} joined!</li>
+                  )}
+                  {message.type === 'LEAVE' && (
+                    <li>{message.sender} left!</li>
+                  )}
                   {message.type !== 'JOIN' && message.type !== 'LEAVE' && (
                     <>
                       <i style={{ backgroundColor: getAvatarColor(message.sender) }}>{message.sender[0]}</i>
@@ -193,8 +182,8 @@ const ChatApp = () => {
                     placeholder="Type a message..."
                     autoComplete="off"
                     className="form-control"
-                    value={messageInput}
-                    onChange={(e) => setMessageInput(e.target.value)}
+                    value={userData.message}
+                    onChange={handleMessage}
                   />
                   <button type="submit" className="primary">Send</button>
                 </div>
