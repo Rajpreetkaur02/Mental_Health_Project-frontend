@@ -12,6 +12,7 @@ import Community from './pages/Community/Community';
 import Groupdesc from './pages/GroupDesc/Groupdesc';
 import StartGroupQuestionsPage from './pages/StartGroupsQuestionsPage/StartGroupQuestionsPage';
 import GeneralUserDetails from './components/GeneralUserDetails/GeneralUserDetails';
+import GroupChatPage from './pages/GroupChat/GroupChatPage'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/general' element={<GeneralUserDetails/>}></Route>
+        <Route path='/chat' element={<GroupChatPage/>}></Route>
 
 
         <Route element={<PrivateRoute/>}>
