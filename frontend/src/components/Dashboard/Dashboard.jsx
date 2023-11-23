@@ -44,7 +44,7 @@ function Dashboard() {
   };
 
   const formattedDate = today.toLocaleDateString(undefined, options);
-
+  const [tasksCompleted, setTasksCompleted] = useState(0);
   const [data, setData] = useState({});
   let i = 0;
   console.log(formattedDate);
@@ -71,10 +71,39 @@ function Dashboard() {
       console.error('Error fetching data:', error);
     }
   }
+  
+
+  const fetchTasksCompleted = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+        crossDomain: true, 
+        headers: { 'Content-Type':'application/json', 
+          Accept: "application/json", 
+          "Access-Control-Allow-Origin": "*", 
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        } 
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json()
+      .then((data) => {
+        console.log(data)
+        setTasksCompleted(data.filter((value) => value === true).length) 
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
   console.log(data)
+  
   useEffect(() => { 
     fetchData();
+    fetchTasksCompleted();
   },[]) 
+
+  console.log(tasksCompleted)
   
   // const data = moodHistory.map((moods) => {
   //     return {...moods, Mood: moods., name: `Day ${i}`}  
@@ -142,7 +171,7 @@ function Dashboard() {
           </h4>
           <p>
             Let's beat it!
-            <br /> You have 3 daily tasks to complete today.
+            <br /> You have {3 - tasksCompleted} weekly tasks to complete today.
           </p>
         </div>
         <img src={girlImg} alt="girl greeting"/>
@@ -156,7 +185,7 @@ function Dashboard() {
             <img src={tasks} alt="tick-icon"  className={classes["card_icon"]} />
           </div>
           <div className={classes.cardContent}>
-            <h5>25 Done</h5>
+            <h5>{tasksCompleted} Done</h5>
             <h6>Tasks</h6>
           </div>
         </div>
