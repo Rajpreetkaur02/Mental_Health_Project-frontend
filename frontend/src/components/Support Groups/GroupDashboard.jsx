@@ -101,9 +101,11 @@ const GroupDashboard = ({ groupId }) => {
                                         <button>View</button>
                                     </Link>
                                 </div>
-                                {/* <div className="grpleave">
-                                    <button onClick={handleGroupLeave}>Leave</button>
-                                </div> */}
+                                <div className="grpdashchat">
+                                    <Link to={'/chat'}>
+                                        <button>Chat</button>
+                                    </Link>
+                                </div>
                             </div>
                         </>
                     )}

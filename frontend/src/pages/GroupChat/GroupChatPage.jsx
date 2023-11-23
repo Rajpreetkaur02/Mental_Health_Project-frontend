@@ -2,37 +2,44 @@ import React, { useState, useEffect } from 'react';
 import './GroupChatPage.css'
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
-import { over } from 'stompjs'; 
+import { over } from 'stompjs';
+import Navbar from '../../components/Navbar/Navbar';
 
 var stompClient = null;
 const ChatApp = () => {
   // const [username, setUsername] = useState('');
-    // const [stompClient, setStompClient] = useState(null);
+  // const [stompClient, setStompClient] = useState(null);
   // var stompClient = null;
-  
+
   const [connecting, setConnecting] = useState(true);
   const [messages, setMessages] = useState([]);
+  const [GroupName, setGroupName] = useState('');
   // const [messageInput, setMessageInput] = useState('');
   const [userData, setUserData] = useState({
     username: '',
     connected: false,
     message: ''
   });
+
   const colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
   ];
 
-    const connect = () => {
-      
-      const socket = new SockJS('http://localhost:8080/ws');
-      stompClient = Stomp.over(socket);
-      stompClient.connect({}, onConnected, onError);      
-    };
-  
+  useEffect(() => {
+    setGroupName(localStorage.getItem('GroupName'))
+  }, [])
+
+  const connect = () => {
+
+    const socket = new SockJS('http://localhost:8080/ws');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, onConnected, onError);
+  };
+
 
   const onConnected = () => {
-    setUserData({...userData,"connected": true});
+    setUserData({ ...userData, "connected": true });
     console.log(userData)
 
     stompClient.subscribe('/topic/public', onMessageReceived);
@@ -57,14 +64,14 @@ const ChatApp = () => {
         type: 'CHAT'
       };
       stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-      setUserData({...userData,"message": ""});
+      setUserData({ ...userData, "message": "" });
     }
     event.preventDefault();
   };
 
   const onMessageReceived = (payload) => {
     var message = JSON.parse(payload.body);
-    
+
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
@@ -77,83 +84,31 @@ const ChatApp = () => {
     return colors[index];
   };
 
-const registerUser=(e)=>{
-  e.preventDefault();
-  // if(stompClient) {
-  connect();
-  // }
-}
-const handleUsername=(event)=>{
-  const {value}=event.target;
-  console.log(value)
-  setUserData({...userData,"username": value});
-}
+  const registerUser = (e) => {
+    e.preventDefault();
+    // if(stompClient) {
+    connect();
+    // }
+  }
+  const handleUsername = (event) => {
+    const { value } = event.target;
+    console.log(value)
+    setUserData({ ...userData, "username": value });
+  }
 
-const handleMessage =(event)=>{
-  const {value}=event.target;
-  setUserData({...userData,"message": value});
-}
+  const handleMessage = (event) => {
+    const { value } = event.target;
+    setUserData({ ...userData, "message": value });
+  }
   return (
     <div>
-      {/* {connecting && <div className="connecting">Connecting...</div>} */}
-
-      {/* {!username &&(
-        <div id="username-page">
-          <div className="username-page-container">
-            <h1 className="title">Type your username to enter the Chatroom</h1>
-            <form onSubmit={connect}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  autoComplete="off"
-                  className="form-control"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <button type="submit" className="accent username-submit">Start Chatting</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )} */}
+      <Navbar />
       
-      {userData.connected? 
-      <>
-      <h1>connected</h1>
-      </>
-      :
-      <>
-        <div id="username-page">
-          <div className="username-page-container">
-            <h1 className="title">Type your username to enter the Chatroom</h1>
-            <form onSubmit={registerUser}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  autoComplete="off"
-                  className="form-control"
-                  value={userData.username}
-                  onChange={handleUsername}
-                />
-              </div>
-              <div className="form-group">
-                <button type="submit" className="accent username-submit">Start Chatting</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </>
-      }
-
-      {userData.username && !connecting && (
+      {userData.connected && (
         <div id="chat-page">
           <div className="chat-container">
             <div className="chat-header">
-              <h2>Spring WebSocket Chat Demo - By Alibou</h2>
+              <h2>{GroupName}</h2>
             </div>
             <ul id="messageArea">
               {messages.map((message, index) => (
@@ -192,6 +147,30 @@ const handleMessage =(event)=>{
           </div>
         </div>
       )}
+
+      {!userData.connected && (
+        <div class="username-page">
+        <div className="username-page-container">
+          <h2 className="title">Type your username to enter the Chatroom</h2>
+          <form onSubmit={registerUser}>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Username"
+                autoComplete="off"
+                className="form-control"
+                value={userData.username}
+                onChange={handleUsername}
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="accent username-submit">Start Chatting</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      )}
+
     </div>
   );
 }

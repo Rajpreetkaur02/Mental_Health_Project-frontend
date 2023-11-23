@@ -66,26 +66,22 @@ button.accent {
 
 #username-page {
     text-align: center;
+    background-color: red;
 }
 
 .username-page-container {
-    background: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
-    width: 100%;
-    max-width: 500px;
-    display: inline-block;
-    margin-top: 42px;
-    vertical-align: middle;
-    position: relative;
-    padding: 35px 55px 35px;
-    min-height: 250px;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    margin-top: -160px;
+    width: 40%;
+    margin: 10% auto;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.input-group{
+    display: flex;
+    padding: 20px;
 }
 
 .username-page-container .username-submit {
@@ -99,13 +95,13 @@ button.accent {
 }
 
 .chat-container {
-    max-width: 700px;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     margin-top: 30px;
-    height: calc(100% - 60px);
+    height: 80vh;
     max-height: 600px;
     position: relative;
 }

@@ -40,6 +40,7 @@ const Groupdesc = () => {
                     console.log(data);
                     setGroupsData(data);
                     setComponentActive(<GroupAbout data={data.about} />)
+                    localStorage.setItem('GroupName', data.title);
                 });
         }
     }, []);
