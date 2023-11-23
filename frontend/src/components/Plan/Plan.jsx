@@ -7,6 +7,8 @@ import { FaSquareFontAwesomeStroke } from 'react-icons/fa6';
 function Plan() {
     const [age, setAge] = useState('');
     const [planDetail, setPlanDetail] = useState({});
+    const [checkboxes, setCheckboxes] = useState([false, false, false]);
+    const [tasksCompleted, setTasksCompleted] = useState([]);
     // const [week, setWeek] = useState(1);
 
     useEffect(() => {
@@ -40,18 +42,38 @@ function Plan() {
             setPlanDetail(data)
         });
         }
+
+        fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`, {
+            crossDomain: true,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        }).then((res) => res.json())
+        .then((data) => {
+            setTasksCompleted(data)
+        });
     })
 
-    // useEffect(() => {
-    //     const updateWeek = () => {
-    //         setWeek((prevCount) => prevCount + 1);
-    //       };
-      
-    //     const intervalId = setInterval(updateWeek, 10000);
-    
-    //     return () => clearInterval(intervalId);
-    // },[])
-    
+    const handleChange = (index) => {
+        const newCheckboxes = [...tasksCompleted];
+        newCheckboxes[index] = !newCheckboxes[index];
+        setTasksCompleted(tasksCompleted);
+        console.log(tasksCompleted)
+        
+        fetch(`http://localhost:8080/extra/task/${localStorage.getItem('id')}`,{ 
+            method: 'PUT', 
+            headers: { 
+                'Content-Type':'application/json', 
+                Accept: "application/json", 
+                "Access-Control-Allow-Origin": "*", 
+                'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+            },  
+            body: JSON.stringify(newCheckboxes)
+        }); 
+    }
 
     return (
         <>
@@ -72,8 +94,8 @@ function Plan() {
                             <Grid className='planBoxItem' item xs={6}>
                                 <p>{ele}</p>
                             </Grid>
-                            <Grid className='planBoxItem' item xs={6}>
-                                <input type="checkbox" style={{transform: 'scale(1.2)'}}/>
+                            <Grid key={idx} className='planBoxItem' item xs={6}>
+                                <input type="checkbox" style={{transform: 'scale(1.2)'}} checked={tasksCompleted[idx]} onChange={() => handleChange(idx)}/>
                             </Grid>
                             </Grid>
                         ))}
