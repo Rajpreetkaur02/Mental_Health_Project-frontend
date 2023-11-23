@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 import "./Navbar.css";
 import { FaRegCircleUser } from "react-icons/fa6";
+import swal from 'sweetalert'
 
 const Navbar = ({isHomePage}) => {
     const navigate = useNavigate();
 
     function logout() {
         localStorage.clear();
-        alert('User Logged Out!')
+        swal({
+            title: "User Logged out",
+            icon: "success",
+        });
         window.location.reload();
     }
 

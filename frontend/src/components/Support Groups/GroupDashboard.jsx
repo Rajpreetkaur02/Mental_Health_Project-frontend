@@ -4,35 +4,36 @@ import { GrGroup } from "react-icons/gr";
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
-const GroupDashboard = ({groupId}) => {
+const GroupDashboard = ({ groupId }) => {
     const [groupDetails, setGroupDetails] = useState([]);
+    const [Admin, setAdmin] = useState(false);
 
-    
+
     console.log(JSON.parse(groupId));
-    
+
     useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const response = await fetch(`http://localhost:8080/groups/${JSON.parse(groupId)}`, {
-                        crossDomain: true,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Accept: "application/json",
-                            "Access-Control-Allow-Origin": "*",
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
-                        },
-                    });
-                    const result = await response.json()
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/groups/${JSON.parse(groupId)}`, {
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
+                const result = await response.json()
                     .then((data) => {
                         console.log(data)
                         setGroupDetails(data)
                     })
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                }
-            };
-            fetchData();
-    },[groupId]);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [groupId]);
     // console.log(groupDetails)
 
     function handleGroupLeave() {
@@ -42,47 +43,80 @@ const GroupDashboard = ({groupId}) => {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("Group left successfully!", {
-                icon: "success",
-              });
-            } else {
-              swal("Thanks for not leaving us!");
-            }
-          });
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Group left successfully!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Thanks for not leaving us!");
+                }
+            });
     }
 
-  return (
-    <div>
-        {groupDetails ? (
-        <div className="dashsupportcontainer">
-            <div className="grpleft">
-                <div className="grpname">{groupDetails.title}</div>
-                <div className="grporg">Organized by {groupDetails.organizer}</div>
-                <div className="grpmembers"><GrGroup/> {groupDetails.members} members</div>
-                <div className="grptopics"></div>
-            </div>
-            <div className="grpright">
-                <div className="grpview">
-                    <Link to={`/groupdesc/${groupDetails._id}`}>
-                        <button>View</button>
-                    </Link>
-                </div>
-                <div className="grpleave">
-                    <button onClick={handleGroupLeave}>Leave</button>
-                </div>
-            </div>
-        </div>
-        ) : (
-            <p>Loading</p>
-        )
-            
+    useEffect(() => {
+        const username = localStorage.getItem('name');
+        const organizerName = groupDetails.organizer;
+        if (username === organizerName) {
+            setAdmin(true);
         }
-      
-    </div>
-  )
+    }, [groupDetails.organizer])
+
+    return (
+        <div>
+            {groupDetails ? (
+                <div className="dashsupportcontainer">
+                    {!Admin && (
+                        <>
+                            <div className="grpleft">
+                                <div className="grpname">{groupDetails.title}</div>
+                                <div className="grporg">Organized by {groupDetails.organizer}</div>
+                                <div className="grpmembers"><GrGroup /> {groupDetails.members} members</div>
+                                <div className="grptopics"></div>
+                            </div>
+                            <div className="grpright">
+                                <div className="grpview">
+                                    <Link to={`/groupdesc/${groupDetails._id}`}>
+                                        <button>View</button>
+                                    </Link>
+                                </div>
+                                <div className="grpleave">
+                                    <button onClick={handleGroupLeave}>Leave</button>
+                                </div>
+                            </div>
+                        </>
+                    )}
+                    {Admin && (
+                        <>
+                            <div className="grpleft">
+                                <div className="grpname">{groupDetails.title}</div>
+                                <div className="grporg">Organized by {groupDetails.organizer}</div>
+                                <div className="grpmembers"><GrGroup /> {groupDetails.members} members</div>
+                                <div className="grptopics"></div>
+                            </div>
+                            <div className="grpright">
+                                <div className="grpview">
+                                    <Link to={`/groupdesc/${groupDetails._id}`}>
+                                        <button>View</button>
+                                    </Link>
+                                </div>
+                                {/* <div className="grpleave">
+                                    <button onClick={handleGroupLeave}>Leave</button>
+                                </div> */}
+                            </div>
+                        </>
+                    )}
+
+                </div>
+            ) : (
+                <p>Loading</p>
+            )
+
+            }
+
+        </div>
+    )
 }
 
 export default GroupDashboard

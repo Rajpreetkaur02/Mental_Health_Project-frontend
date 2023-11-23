@@ -14,7 +14,8 @@ import swal from 'sweetalert';
 const Groupdesc = () => {
     const [groupsData, setGroupsData] = useState([]);
     const [isMember, setMember] = useState(false);
-    const [groups, setGroups] = useState([]); 
+    const [groups, setGroups] = useState([]);
+    const [Admin, setAdmin] = useState(false);
     const navigate = useNavigate();
     const id = useParams();
     // console.log(id);
@@ -44,7 +45,7 @@ const Groupdesc = () => {
     }, []);
 
     async function updateMembers(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
             method: 'PUT',
@@ -80,6 +81,32 @@ const Groupdesc = () => {
                 text: "You've already joined this group!",
                 button: "OK",
             });
+        }
+    }
+
+    async function updateAdmin(e) {
+        // e.preventDefault();
+
+        const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
+            method: 'PUT',
+            body: JSON.stringify(id.id),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        console.log(response.status)
+        if (response.status == 200) {
+            fetch(`http://localhost:8080/groups/updateGroupMembers/${id.id}`, {
+                method: 'PUT',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            })
         }
     }
 
@@ -122,9 +149,20 @@ const Groupdesc = () => {
             setMember(false);
             console.log(`not exists`);
         }
-    }, [id, groups]);
+    }, [id, groups, Admin]);
 
-    function handlejoinchat(){
+    useEffect(() => {
+        const username = localStorage.getItem('name');
+        // console.log("username = ", username);
+        const organizerName = groupsData.organizer;
+        // console.log("organizer = ", organizerName);
+        if (username === organizerName) {
+            setAdmin(true);
+            updateAdmin();
+        }
+    }, [groupsData.organizer])
+
+    function handlejoinchat() {
         navigate('/chat');
     }
 
@@ -140,14 +178,23 @@ const Groupdesc = () => {
                         <p><GrGroup />   {groupsData.members} members</p>
                         <p><IoPersonOutline />Organized by<span>{groupsData.organizer}</span></p>
                     </div>
-                    {!isMember && (
+                    {!isMember && !Admin && (
                         <>
                             <div className='joinbutton'>
                                 <button onClick={updateMembers}>Join Group</button>
                             </div>
                         </>
                     )}
-                     {isMember && (
+
+                    {isMember && !Admin && (
+                        <>
+                            <div className='joinbutton'>
+                                <button onClick={handlejoinchat}>Join Group Chat</button>
+                            </div>
+                        </>
+                    )}
+
+                    {isMember && Admin && (
                         <>
                             <div className='joinbutton'>
                                 <button onClick={handlejoinchat}>Join Group Chat</button>
@@ -158,7 +205,7 @@ const Groupdesc = () => {
                 </div>
 
                 <div className="groupelements">
-                    <GroupSidebar componentHandler={setComponentActive} member={isMember}/>
+                    <GroupSidebar componentHandler={setComponentActive} member={isMember} admin={Admin} />
                     {component}
                 </div>
 
@@ -170,7 +217,7 @@ const Groupdesc = () => {
                         ))}
                     </div>
                 </div>
-            </> 
+            </>
 
         </div>
     )
