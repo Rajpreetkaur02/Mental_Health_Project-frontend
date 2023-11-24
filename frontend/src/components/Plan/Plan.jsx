@@ -13,24 +13,27 @@ function Plan() {
     // const [week, setWeek] = useState(1);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/user/${localStorage.getItem('email')}`, {
-            crossDomain: true,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-        }).then((res) => res.json())
-        .then((data) => {
-            setAge(data.age)
-        });
-    },[age])
+        try {
+            fetch(`http://localhost:8080/user/age/${localStorage.getItem('email')}`,{ 
+              crossDomain: true, 
+              headers: { 'Content-Type':'application/json', 
+                Accept: "application/json", 
+                "Access-Control-Allow-Origin": "*", 
+                'Authorization': `Bearer ${localStorage.getItem('token')}` 
+              } 
+            }).then((res) => res.text())
+            .then((data) => {
+              setAge(data) 
+            })
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+    }, [age])
 
     useEffect(() => {
         // console.log(week)
         if (age != '') {
-        fetch(`http://localhost:8080/plans/plan/${age}`, {
+            fetch(`http://localhost:8080/plans/plan/${age}`, {
             crossDomain: true,
             headers: {
                 'Content-Type': 'application/json',
@@ -40,6 +43,7 @@ function Plan() {
             },
         }).then((res) => res.json())
         .then((data) => {
+            console.log(data)
             setPlanDetail(data)
         });
         }
@@ -54,9 +58,10 @@ function Plan() {
             },
         }).then((res) => res.json())
         .then((data) => {
+            console.log(data)
             setTasksCompleted(data)
         });
-    },[planDetail, tasksCompleted])
+    })
 
     useEffect(() => {
         setLoading(true);

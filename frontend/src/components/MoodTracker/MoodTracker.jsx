@@ -50,8 +50,11 @@ const MoodTracker = () => {
     }
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     fetchData();
+  })
+
+  useEffect(() => { 
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
