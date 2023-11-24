@@ -7,8 +7,9 @@ import { FaSquareFontAwesomeStroke } from 'react-icons/fa6';
 function Plan() {
     const [age, setAge] = useState('');
     const [planDetail, setPlanDetail] = useState({});
-    const [checkboxes, setCheckboxes] = useState([false, false, false]);
+    // const [checkboxes, setCheckboxes] = useState([false, false, false]);
     const [tasksCompleted, setTasksCompleted] = useState([]);
+    const [loading, setLoading] = useState(false);
     // const [week, setWeek] = useState(1);
 
     useEffect(() => {
@@ -24,7 +25,7 @@ function Plan() {
         .then((data) => {
             setAge(data.age)
         });
-    })
+    },[age])
 
     useEffect(() => {
         // console.log(week)
@@ -55,7 +56,14 @@ function Plan() {
         .then((data) => {
             setTasksCompleted(data)
         });
-    })
+    },[planDetail, tasksCompleted])
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 5000);
+    }, [])
 
     const handleChange = (index) => {
         const newCheckboxes = [...tasksCompleted];
@@ -73,10 +81,19 @@ function Plan() {
             },  
             body: JSON.stringify(newCheckboxes)
         }); 
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 5000);
     }
 
     return (
         <>
+        {loading ? (
+            <div className="loader-container">
+                <div className="spinner"></div>
+            </div>
+        ) : (
             <div className='mainPlanPage'>
                 <h3>Your This Week's Plan</h3>
                 <Box className="planBox" sx={{ width: '100%' }}>
@@ -108,6 +125,7 @@ function Plan() {
                     {/* </Grid> */}
                 </Box>
             </div>
+        )}
         </>
     )
 }

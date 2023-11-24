@@ -45,6 +45,7 @@ function Dashboard() {
 
   const formattedDate = today.toLocaleDateString(undefined, options);
   const [tasksCompleted, setTasksCompleted] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   let i = 0;
   console.log(formattedDate);
@@ -101,6 +102,10 @@ function Dashboard() {
   useEffect(() => { 
     fetchData();
     fetchTasksCompleted();
+    setLoading(true);
+    setTimeout(() => {
+        setLoading(false);
+    }, 5000);
   },[]) 
 
   console.log(tasksCompleted)
@@ -158,6 +163,12 @@ function Dashboard() {
   // ];
 
   return (
+    <>
+     {loading ? (
+      <div className="loader-container">
+          <div className="spinner"></div>
+      </div>) : (
+
     <main className={classes["main-container"]}>
       <div className={classes["main-title"]}>
         <h3>Dashboard</h3>
@@ -243,8 +254,10 @@ function Dashboard() {
         <DateCalendar defaultValue={dayjs()} />
         </LocalizationProvider>
       </div>
-      <Map/>
+      <Map/>  
     </main>
+      )}
+    </>
   );
 }
 export default Dashboard;
