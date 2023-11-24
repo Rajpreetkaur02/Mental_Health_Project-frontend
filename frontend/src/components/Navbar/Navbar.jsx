@@ -3,6 +3,7 @@ import {Link, NavLink, useNavigate} from 'react-router-dom';
 import "./Navbar.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import swal from 'sweetalert'
+import Logo from '../../assets/logo.png'
 
 const Navbar = ({isHomePage}) => {
     const navigate = useNavigate();
@@ -24,7 +25,8 @@ const Navbar = ({isHomePage}) => {
         <nav className={`navbar ${isHomePage ? 'homepage-navbar' : ''}`}>
             <div className='navLeft'>
                 {/* logo */}
-                <Link to="/" className={`${isHomePage ? 'homepage-title' : 'title'}`}>Website</Link>
+                <img src={Logo} width={60}/>
+                <Link to="/" className={`${isHomePage ? 'homepage-title' : 'title'}`}>MindWell</Link>
             </div>
             <div className={`${isHomePage ? 'homepage-navCenter' : 'navCenter'}`}>
                 <ul>
