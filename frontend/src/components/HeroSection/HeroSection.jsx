@@ -52,7 +52,7 @@ const HeroSection = () => {
 
                     </div>
                 </div>
-                <Chatbot />
+                {/* <Chatbot /> */}
             </div>
         </div>
     )
