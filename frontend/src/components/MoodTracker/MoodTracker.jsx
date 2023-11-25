@@ -7,6 +7,31 @@ const MoodTracker = () => {
   const [moodHistory, setMoodHistory] = useState([]); 
   const [loading, setLoading] = useState(false);
 
+  const fetchData = () => {
+    try {
+      fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+        crossDomain: true, 
+        headers: { 
+          'Content-Type':'application/json', 
+          Accept: "application/json", 
+          "Access-Control-Allow-Origin": "*", 
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "MyDate": formatISO(new Date(), { representation: 'date' })
+        }
+      })
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! Status: ${response.status}`);
+      // }
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setMoodHistory(data) 
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
   const handleMoodChange = async (newMood) => { 
     setMood(newMood); 
     console.log(mood) 
@@ -23,42 +48,24 @@ const MoodTracker = () => {
       body: JSON.stringify({"mood": newMood, "timestamp": formatISO9075(new Date())}), 
     }); 
     fetchData();
-  };
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
-        crossDomain: true, 
-        headers: { 
-          'Content-Type':'application/json', 
-          Accept: "application/json", 
-          "Access-Control-Allow-Origin": "*", 
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          "MyDate": formatISO(new Date(), { representation: 'date' })
-        }
-      })
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const result = await response.json()
-      .then((data) => {
-        console.log(data)
-        setMoodHistory(data) 
-      })
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  })
-
-  useEffect(() => { 
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 500);
+  };
+
+ 
+
+  // useEffect(() => {
+  //   fetchData();
+  // })
+
+  useEffect(() => { 
+    fetchData();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   },[]) 
   
   return ( 

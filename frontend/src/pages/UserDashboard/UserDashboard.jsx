@@ -8,16 +8,16 @@ import { useState } from "react";
 
 const UserDashboard = () => {
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
     const [component, setComponentActive] = useState(<Dashboard/>);
     
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-    }, []);
+    // useEffect(() => {
+    //     setLoading(true);
+    //     setTimeout(() => {
+    //         setLoading(false);
+    //     }, 2000);
+    // }, []);
 
     const handleSidebar = () => {
         setOpenSidebarToggle((prev) => !prev);
@@ -63,17 +63,17 @@ const UserDashboard = () => {
 
     return (
         <div className="grid-container">
-        {loading ? (
+        {/* {loading ? (
                 <div className="loader-container">
                     <div className="spinner"></div>
                 </div>
-            ) : (
+            ) : ( */}
                 <>
             <Header sidebarHandler={handleSidebar} />
             <Sidebar componentHandler={setComponentActive} sidebarHandler={handleSidebar} openSidebar={openSidebarToggle} />
                 {component}
             </>
-        )}
+        {/* )} */}
         </div>
     ); 
 }
