@@ -101,7 +101,7 @@ const ChatApp = () => {
     setUserData({ ...userData, "message": value });
   }
   return (
-    <div>
+    <div className='chatpagecontainer'>
       <Navbar />
       
       {userData.connected && (

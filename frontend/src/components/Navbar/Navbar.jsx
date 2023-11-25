@@ -25,10 +25,7 @@ const Navbar = ({isHomePage}) => {
         <nav className={`navbar ${isHomePage ? 'homepage-navbar' : ''}`}>
             <div className='navLeft'>
                 {/* logo */}
-<<<<<<< HEAD
-=======
                 <img src={Logo} width={60}/>
->>>>>>> 8da28f36e6eb400975d4fee1ed03a2d8c8aa961f
                 <Link to="/" className={`${isHomePage ? 'homepage-title' : 'title'}`}>MindWell</Link>
             </div>
             <div className={`${isHomePage ? 'homepage-navCenter' : 'navCenter'}`}>

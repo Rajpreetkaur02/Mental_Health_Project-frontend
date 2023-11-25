@@ -53,6 +53,12 @@ const GroupEvents = ({ admin }) => {
         currentProgressStep: 3,
         confirmButtonText: 'OK',
       })
+      await Queue.fire({
+        icon: 'success',
+        title: 'Your Event will be added soon!',
+        text: 'Till then you can make a post on the community page and let all the members know about it.',
+        confirmButtonText: 'OK',
+      })
     })()
   }
 
@@ -63,13 +69,18 @@ const GroupEvents = ({ admin }) => {
           <div className="eventbutton">
             <button onClick={HandleAddEvent}>Add Event</button>
           </div>
+          <div className='grpeventscontainer'>
+            <h1>Coming Soon</h1>
+            <h3>There are no events yet!</h3>
+          </div>
         </>
         :
         <>
-        <div className='grpeventscontainer'>
-            <h1>There are no events yet!</h1>
-        </div>
-          
+          <div className='grpeventscontainer'>
+            <h1>Coming Soon</h1>
+            <h3>There are no events yet!</h3>
+          </div>
+
         </>
       }
 

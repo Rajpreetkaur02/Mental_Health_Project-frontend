@@ -1,5 +1,6 @@
-.hidden {
-    display: none;
+.chatpagecontainer{
+    background-color:  #f9f8f4;
+    height: 100vh;
 }
 
 .form-control {
@@ -13,25 +14,25 @@
     margin-bottom: 15px;
 }
 
-input {
-    padding-left: 10px;
+.form-group input {
+    padding: 10px;
     outline: none;
+    border: none;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+    width: 90%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.form-group h2{
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-h1 {
-    font-size: 1.7em;
+.title{
+    margin-bottom: 30px;
 }
 
-a {
-    color: #6db33f;
-}
-
-button {
+.form-group button {
     box-shadow: none;
     border: 1px solid transparent;
     font-size: 14px;
@@ -39,12 +40,12 @@ button {
     line-height: 100%;
     white-space: nowrap;
     vertical-align: middle;
-    padding: 0.6rem 1rem;
-    border-radius: 2px;
+    /* padding: 0.6rem 1rem; */
+    border-radius: 5px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     min-height: 38px;
-}
+} 
 
 button.default {
     background-color: #e8e8e8;
@@ -53,15 +54,26 @@ button.default {
 }
 
 button.primary {
-    background-color: #6db33f;
+    background-color: blue;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
+    padding: 10px 20px 10px 20px;
 }
 
 button.accent {
-    background-color: #6db33f;
+    /* background-color: #6db33f;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
+    color: #fff; */
+
+    background-color: #EEF2FF;
+    border-radius: 8px;
+    color: #536DFE;
+    cursor: pointer;
+    border: 2px solid #536DFE;
+    line-height: 1.5;
+    padding: 10px 20px 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 #username-page {
@@ -70,6 +82,7 @@ button.accent {
 }
 
 .username-page-container {
+    background-color: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
     width: 40%;
@@ -82,6 +95,7 @@ button.accent {
 .input-group{
     display: flex;
     padding: 20px;
+    justify-content: space-around;
 }
 
 .username-page-container .username-submit {

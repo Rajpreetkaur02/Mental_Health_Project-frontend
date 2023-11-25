@@ -69,7 +69,7 @@ const HeroSection = () => {
             <img src={Heroimg} className="heroimg" />
           </div>
         </div>
-        <Chatbot />
+        {/* <Chatbot /> */}
       </div>
     </div>
   );

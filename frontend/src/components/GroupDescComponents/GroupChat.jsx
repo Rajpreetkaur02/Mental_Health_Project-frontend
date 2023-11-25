@@ -1,6 +1,13 @@
 import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const GroupChat = () => {
+  const navigate = useNavigate();
+
+  function handlejoinchat() {
+    navigate('/chat');
+}
+
   return (
     <div>
       <div className="grpchatcontainer">
@@ -14,7 +21,7 @@ const GroupChat = () => {
           <li><span>Supportive Environment: </span>Our chat room is a judgment-free zone. Whether you're seeking advice, venting, or simply looking for a listening ear, you'll find compassion and understanding from fellow community members.</li>
         </ol>
         <div className="joinchatbutton">
-          <button>Join Chat Room</button>
+          <button onClick={handlejoinchat}>Join Chat Room</button>
         </div>
       </div>
     </div>
