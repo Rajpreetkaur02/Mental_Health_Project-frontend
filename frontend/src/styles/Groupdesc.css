@@ -286,6 +286,7 @@ width: 20%;
     background: transparent;
     cursor: pointer;
     font-weight: 600;
+    border: none;
 }
 
 .commentInput{
@@ -308,6 +309,7 @@ width: 20%;
     background-color: #f2f2f2;
     color: #fff;
     border-radius: 0px 10px 10px 0px;
+    border: none;
 }
 
 
