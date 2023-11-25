@@ -27,8 +27,8 @@ nav ul {
 
 .navCenter ul li, .homepage-navCenter ul li { 
     list-style: none;
-    padding-left: 0.9rem;
-    padding-right: 0.9rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     padding-top: 0.5rem;
     margin: 0 0.5rem;
 }

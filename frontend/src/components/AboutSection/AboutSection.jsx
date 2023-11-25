@@ -1,46 +1,67 @@
-import React from 'react'
-import Search from '../../assets/search.png'
-import Plan from '../../assets/plan.png'
-import Group from '../../assets/group.png'
-import Reward from '../../assets/reward.png'
-import { FaArrowRight } from 'react-icons/fa'
+import React from "react";
+import Search from "../../assets/search.png";
+import Plan from "../../assets/plan.png";
+import Group from "../../assets/group.png";
+import Reward from "../../assets/reward.png";
+import { FaArrowRight } from "react-icons/fa";
 
 const AboutSection = () => {
   return (
     <div>
       <div className="aboutcontainer">
-        <div className="aboutheading"><span>How It Works</span></div>
+        <div className="aboutheading">
+          <span>How It Works?</span>
+        </div>
         <div className="howitworkscontainer">
           <div className="workscard">
-            <img src={Search} id='workcardimg' />
+            <img src={Search} id="workcardimg" />
             <span>Take a Mental Health test</span>
-            <p>Online screening is one of the quickest and easiest ways to determine whether you are experiencing symptoms of a mental health condition.</p>
-            <button>learn more <FaArrowRight /></button>
-
+            <p>
+              Discover your emotional well-being with our confidential
+              screening. Take the first step towards understanding your mental
+              health.
+            </p>
+            <button>
+              Learn more <FaArrowRight />
+            </button>
           </div>
           <div className="workscard">
-            <img src={Plan} id='workcardimg' />
+            <img src={Plan} id="workcardimg" />
             <span>Follow the Plan</span>
-            <p>Online screening is one of the quickest and easiest ways to determine whether you are experiencing symptoms of a mental health condition.</p>
-            <button>learn more <FaArrowRight /></button>
+            <p>
+              Commit to your mental health journey. Stick to your personalized
+              treatment plan for progress and lasting well-being.
+            </p>
+            <button>
+              Learn more <FaArrowRight />
+            </button>
           </div>
           <div className="workscard">
-            <img src={Group} id='workcardimg' />
+            <img src={Group} id="workcardimg" />
             <span>Join Support Groups</span>
-            <p>Online screening is one of the quickest and easiest ways to determine whether you are experiencing symptoms of a mental health condition.</p>
-            <button>learn more <FaArrowRight /></button>
+            <p>
+              Gain encouragement and insights by joining supportive groups for
+              shared experiences and understanding.
+            </p>
+            <button>
+              Learn more <FaArrowRight />
+            </button>
           </div>
           <div className="workscard">
-            <img src={Reward} id='workcardimg' />
-            <span>Complete the Plan and get rewarded</span>
-            <p>Online screening is one of the quickest and easiest ways to determine whether you are experiencing symptoms of a mental health condition.</p>
-            <button>learn more <FaArrowRight /></button>
+            <img src={Reward} id="workcardimg" />
+            <span>Get Counseling</span>
+            <p>
+              Access personalized guidance from certified therapists for
+              effective strategies tailored to your needs and concerns.
+            </p>
+            <button>
+              Learn more <FaArrowRight />
+            </button>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AboutSection
-
+export default AboutSection;
