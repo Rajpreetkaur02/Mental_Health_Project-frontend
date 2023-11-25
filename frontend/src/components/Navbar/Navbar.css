@@ -169,3 +169,8 @@ nav .title, .navCenter ul li a{
     background-color: #026fff;
     color: white;
 }
+
+.navLeft {
+    display: flex;
+    padding-left: 1%;
+}
