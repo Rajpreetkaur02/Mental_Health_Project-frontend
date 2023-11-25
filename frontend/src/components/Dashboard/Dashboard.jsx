@@ -44,14 +44,15 @@ function Dashboard() {
   };
 
   const formattedDate = today.toLocaleDateString(undefined, options);
-
-  const [moodHistory, setMoodHistory] = useState([]);
+  const [tasksCompleted, setTasksCompleted] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({});
   let i = 0;
   console.log(formattedDate);
   // console.log(loggedInUserDetails.name)
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+      const response = await fetch(`http://localhost:8080/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 
@@ -65,29 +66,55 @@ function Dashboard() {
       const result = await response.json()
       .then((data) => {
         console.log(data)
-        setMoodHistory(data) 
+        setData(data) 
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+  
+
+  const fetchTasksCompleted = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+        crossDomain: true, 
+        headers: { 'Content-Type':'application/json', 
+          Accept: "application/json", 
+          "Access-Control-Allow-Origin": "*", 
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        } 
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json()
+      .then((data) => {
+        console.log(data)
+        setTasksCompleted(data.filter((value) => value === true).length) 
       })
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   }
 
+  console.log(data)
+  
   useEffect(() => { 
     fetchData();
+    fetchTasksCompleted();
+    setLoading(true);
+    setTimeout(() => {
+        setLoading(false);
+    }, 5000);
   },[]) 
+
+  console.log(tasksCompleted)
   
-  const data = moodHistory.map((moods) => {
-    if (moods.mood === '😊 Happy') {
-      i = i + 1;
-      return {...moods, Mood: 3, name: `Day ${i}`}
-    } else if (moods.mood === '😐 Neutral') {
-      i = i + 1;
-      return {...moods, Mood: 2, name: `Day ${i}`}
-    } else {
-      i = i + 1;
-      return {...moods, Mood: 1, name: `Day ${i}`}
-    }
-    
+  // const data = moodHistory.map((moods) => {
+  //     return {...moods, Mood: moods., name: `Day ${i}`}  
+  // })
+  const avgData = Object.keys(data).map(key => {
+      return {...data, name: key, Mood: data[key]}
   })
 
   // const data = [
@@ -136,6 +163,12 @@ function Dashboard() {
   // ];
 
   return (
+    <>
+     {loading ? (
+      <div className="loader-container">
+          <div className="spinner"></div>
+      </div>) : (
+
     <main className={classes["main-container"]}>
       <div className={classes["main-title"]}>
         <h3>Dashboard</h3>
@@ -149,7 +182,7 @@ function Dashboard() {
           </h4>
           <p>
             Let's beat it!
-            <br /> You have 3 daily tasks to complete today.
+            <br /> You have {3 - tasksCompleted} weekly tasks to complete today.
           </p>
         </div>
         <img src={girlImg} alt="girl greeting"/>
@@ -163,7 +196,7 @@ function Dashboard() {
             <img src={tasks} alt="tick-icon"  className={classes["card_icon"]} />
           </div>
           <div className={classes.cardContent}>
-            <h5>25 Done</h5>
+            <h5>{tasksCompleted} Done</h5>
             <h6>Tasks</h6>
           </div>
         </div>
@@ -195,7 +228,7 @@ function Dashboard() {
           <LineChart
             width={500}
             height={300}
-            data={data}
+            data={avgData}
             // margin={{
             //   top: 5,
             //   right: 30,
@@ -221,8 +254,10 @@ function Dashboard() {
         <DateCalendar defaultValue={dayjs()} />
         </LocalizationProvider>
       </div>
-      <Map/>
+      <Map/>  
     </main>
+      )}
+    </>
   );
 }
 export default Dashboard;

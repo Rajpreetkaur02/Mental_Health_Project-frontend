@@ -14,9 +14,11 @@ import swal from 'sweetalert';
 const Groupdesc = () => {
     const [groupsData, setGroupsData] = useState([]);
     const [isMember, setMember] = useState(false);
+    const [groups, setGroups] = useState([]);
+    const [Admin, setAdmin] = useState(false);
     const navigate = useNavigate();
     const id = useParams();
-    console.log(id);
+    // console.log(id);
 
     const [component, setComponentActive] = useState(<GroupAbout />);
 
@@ -38,12 +40,13 @@ const Groupdesc = () => {
                     console.log(data);
                     setGroupsData(data);
                     setComponentActive(<GroupAbout data={data.about} />)
+                    localStorage.setItem('GroupName', data.title);
                 });
         }
     }, []);
 
     async function updateMembers(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
             method: 'PUT',
@@ -65,13 +68,14 @@ const Groupdesc = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
+
             swal({
                 title: "Welcome!",
                 text: "You've successfully joined the group!",
                 icon: "success",
                 button: "OK",
             });
-            navigate("/dashboard")
+            navigate("/community")
         } else {
             swal({
                 title: "Already in this group!",
@@ -81,20 +85,101 @@ const Groupdesc = () => {
         }
     }
 
+    async function updateAdmin(e) {
+        // e.preventDefault();
+
+        const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
+            method: 'PUT',
+            body: JSON.stringify(id.id),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        console.log(response.status)
+        if (response.status == 200) {
+            fetch(`http://localhost:8080/groups/updateGroupMembers/${id.id}`, {
+                method: 'PUT',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            })
+        }
+    }
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const result = await response.json()
+                .then((data) => {
+                    // console.log(data);
+                    setGroups(data);
+                })
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        // Check if id exists in the groups array
+        const idExists = groups.some(group => JSON.parse(group) === id.id);
+
+        if (idExists) {
+            setMember(true);
+            console.log(`exist`);
+        } else {
+            setMember(false);
+            console.log(`not exists`);
+        }
+    }, [id, groups, Admin]);
+
+    useEffect(() => {
+        const username = localStorage.getItem('name');
+        // console.log("username = ", username);
+        const organizerName = groupsData.organizer;
+        // console.log("organizer = ", organizerName);
+        if (username === organizerName) {
+            setAdmin(true);
+            updateAdmin();
+        }
+    }, [groupsData.organizer])
+
+    function handlejoinchat() {
+        navigate('/chat');
+    }
+
+
     return (
         <div>
             <Navbar />
-            {/* {groupsData.filter((data) => data.id == id.id)
-            .map((data) => ( */}
             <>
                 <div className="descheader">
                     <div className="descheading">
                         <h1>{groupsData.title}</h1>
                         <p><FaLocationDot color='#ff1154' />   {groupsData.location}</p>
                         <p><GrGroup />   {groupsData.members} members</p>
-                        <p><IoPersonOutline />   Organized by <span>{groupsData.organizer}</span></p>
+                        <p><IoPersonOutline />Organized by<span>{groupsData.organizer}</span></p>
                     </div>
-                    {!isMember && (
+                    {!isMember && !Admin && (
                         <>
                             <div className='joinbutton'>
                                 <button onClick={updateMembers}>Join Group</button>
@@ -102,10 +187,26 @@ const Groupdesc = () => {
                         </>
                     )}
 
+                    {isMember && !Admin && (
+                        <>
+                            <div className='joinbutton'>
+                                <button onClick={handlejoinchat}>Join Group Chat</button>
+                            </div>
+                        </>
+                    )}
+
+                    {isMember && Admin && (
+                        <>
+                            <div className='joinbutton'>
+                                <button onClick={handlejoinchat}>Join Group Chat</button>
+                            </div>
+                        </>
+                    )}
+
                 </div>
 
                 <div className="groupelements">
-                    <GroupSidebar componentHandler={setComponentActive} data={isMember}/>
+                    <GroupSidebar componentHandler={setComponentActive} member={isMember} admin={Admin} />
                     {component}
                 </div>
 
@@ -118,7 +219,6 @@ const Groupdesc = () => {
                     </div>
                 </div>
             </>
-            {/* ))} */}
 
         </div>
     )

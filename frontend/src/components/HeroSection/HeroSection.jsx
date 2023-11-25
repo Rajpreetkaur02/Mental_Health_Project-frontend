@@ -18,6 +18,7 @@ const HeroSection = () => {
             <div className="heroheading">
               Elevate your mind, <br /> Embrace your wellness!
             </div>
+
             <div className="herotext">
               <div className="herospan">
                 In mental care, there is no one-size-fits-all approach to mental

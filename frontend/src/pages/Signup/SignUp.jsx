@@ -3,6 +3,7 @@ import React from 'react';
 import img from '../../assets/TaeAugust05.jpg';
 import Navbar from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 function SignUp() {
     const[showEmergency, setShowEmergency] = useState(false);
@@ -50,7 +51,12 @@ function SignUp() {
             headers: {'Content-Type':'application/json'}
         });  
         if (response.status === 200) {
-            alert("User Registered Successfully!");
+            swal({
+                title: "Registered!",
+                text: "You have registered successfully!",
+                icon: "success",
+                button: "Ok",
+              });
             fetch("http://localhost:8080/generate-token", {
                 method: 'POST',
                 crossDomain: true,
@@ -67,13 +73,16 @@ function SignUp() {
                 window.localStorage.setItem("token", data.token);
                 navigate("/categories");
             } else {
-                alert('Wrong Credentials!');
+                swal ( "Wrong Credentials" ,  "Something went wrong!" ,  "error" )
             }
         });
             navigate("/login");
             
         } else {
-            alert("User Already Registered!");
+            swal({
+                title: "User Already Registered!",
+                button: "Ok",
+            });
         }
     }
 

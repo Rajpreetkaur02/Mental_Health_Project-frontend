@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import './GeneralUserDetails.css';
 import {AiOutlineArrowRight} from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 function GeneralUserDetails() {
     const [userDetails, setUserDetails] = useState({
@@ -27,7 +28,11 @@ function GeneralUserDetails() {
 
     async function submitExtraDetails(e) {
         if (userDetails.age == '' || userDetails.income == '' || selectedGender == '') {
-            alert("Enter Details!")
+            swal({
+                title: "Enter Details!",
+                text: "Seems like some details are missing!",
+                button: "Ok",
+            });
         } else {
             e.preventDefault();
             const response = await fetch(`http://localhost:8080/user/updateUser/${localStorage.getItem('email')}`,{
@@ -41,7 +46,11 @@ function GeneralUserDetails() {
                 body: JSON.stringify({"age": userDetails.age, "income": userDetails.income, "gender": selectedGender}),
             });  
             if (response.status === 200) {
-                alert("Details Added Successfully!");
+                swal({
+                    title: "Details Added Successfully!",
+                    icon: "success",
+                    button: "Ok",
+                });
                 navigate("/community");   
             }
         }

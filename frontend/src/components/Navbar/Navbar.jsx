@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 import "./Navbar.css";
 import { FaRegCircleUser } from "react-icons/fa6";
+import swal from 'sweetalert'
+import Logo from '../../assets/logo.png'
 
 const Navbar = ({isHomePage}) => {
     const navigate = useNavigate();
 
     function logout() {
         localStorage.clear();
-        alert('User Logged Out!')
+        swal({
+            title: "User Logged out",
+            icon: "success",
+        });
         window.location.reload();
     }
 
@@ -20,6 +25,10 @@ const Navbar = ({isHomePage}) => {
         <nav className={`navbar ${isHomePage ? 'homepage-navbar' : ''}`}>
             <div className='navLeft'>
                 {/* logo */}
+<<<<<<< HEAD
+=======
+                <img src={Logo} width={60}/>
+>>>>>>> 8da28f36e6eb400975d4fee1ed03a2d8c8aa961f
                 <Link to="/" className={`${isHomePage ? 'homepage-title' : 'title'}`}>MindWell</Link>
             </div>
             <div className={`${isHomePage ? 'homepage-navCenter' : 'navCenter'}`}>
