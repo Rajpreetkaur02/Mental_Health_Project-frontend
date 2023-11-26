@@ -193,7 +193,7 @@ const GroupPosts = () => {
           <span id='postheading'>Join the Conversation: Where Thoughts Take Flight and Ideas Find Home! 🚀✨  #CommunityChatter</span>
           <span>Share your stories, coping mechanisms or just anything that you feel like sharing!</span>
           <textarea value={postDetails.content} onChange={handleUserInputChange} type="text" name='content' placeholder='Enter your post...' required />
-          <span id='postbutton'><button onClick={handlesubmit}>post</button></span>
+          <span id='postbutton'><button onClick={handlesubmit}>Post</button></span>
         </div>
         {sortedPosts.length !== 0 ? (
           <div className="allpostscontainer">
@@ -233,13 +233,13 @@ const GroupPosts = () => {
                           <polygon points="80,80 70,70"></polygon>
                         </svg>
                       </div>
+                      <span>{entry.likes}</span>
                     </div>
                   </span>
-                  <span>{entry.likes}</span>
-                  <span id="commenticon" onClick={() => handleopencomments(entry.postID)}><FaComment color='grey' /> {entry.comments != null ? (entry.comments.length == 1 ? (`${entry.comments.length} comment`) : (`${entry.comments.length} comments`)) : ('0 comments')} </span>
+                  <span id="commenticon" onClick={() => handleopencomments(entry.postID)}><FaComment color='grey' size={23} /> {entry.comments != null ? (entry.comments.length == 1 ? (`${entry.comments.length} comment`) : (`${entry.comments.length} comments`)) : ('0 comments')} </span>
                 </div>
                 {entry.opencomments && (
-                  <>
+                  <div className='comments-part'>
 
                     <h3>Comments</h3>
                     <div className="commentscontainer">
@@ -280,7 +280,7 @@ const GroupPosts = () => {
                       />
                       <button onClick={() => handlecommentpost(entry.postID)}><IoSend size={20} color='grey'/></button>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
             ))}

@@ -251,14 +251,29 @@ width: 20%;
 .likecomment{
     display: flex;
     width: 20%;
-    justify-content: space-around;
+    /* justify-content: space-between; */
+    gap: 20px;
     align-items: center;
+    padding-left: 2%;
+}
+
+.heart-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 /* POST SECTION : COMMENTS */
 
 #commenticon{
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comments-part {
+    padding-top: 2%;
 }
 
 .commentscontainer{
