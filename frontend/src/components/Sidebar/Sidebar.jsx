@@ -51,7 +51,7 @@ function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
         </li>
 
         <li onClick={() => {componentHandler(<MoodTracker/>); setActive('MoodTracker')}} className={`${classes["sidebar-list-item"]} ${active === 'MoodTracker' ? `${classes["itemActive"]}` : ''}`}>
-            <TbMoodPlus className={classes.icon} /> Mood Tracker
+            <TbMoodPlus className={classes.icon} /> Mood, Sleep Tracker
         </li>
 
 
