@@ -50,14 +50,17 @@ function WorksheetsPage() {
       </div>
       <div className={classes.worksheetsWrapper}>
         {worksheets.map((worksheet) => (
-          <WorksheetCard
-            key={worksheet.id}
-            id={worksheet.id}
-            image={worksheet.image}
-            title={worksheet.title}
-            content={worksheet.content}
-            pdf={worksheet.pdf}
-          />
+          <>
+            {console.log(worksheet.pdf)}
+            <WorksheetCard
+              key={worksheet.id}
+              id={worksheet.id}
+              image={worksheet.image}
+              title={worksheet.title}
+              content={worksheet.content}
+              pdf={worksheet.pdf}
+            />
+          </>
         ))}
       </div>
     </>
@@ -73,7 +76,7 @@ const worksheets = [
     title: "Challenging Negative Thoughts",
     content:
       "Techniques to question and reframe negative thoughts, fostering a positive mindset.",
-    pdf: "",
+    pdf: "/pdfs/challenging-negative-thoughts.pdf",
   },
   {
     id: 2,
@@ -82,7 +85,7 @@ const worksheets = [
     title: "Coping Skills for Depression",
     content:
       "Effective coping mechanisms to manage symptoms and improve daily life with depression.",
-    pdf: "",
+    pdf: "/pdfs/coping-skills-depression.pdf",
   },
   {
     id: 3,
@@ -91,7 +94,7 @@ const worksheets = [
     title: "De-Catastrophizing",
     content:
       "Methods to reduce catastrophic thinking, promoting a more balanced perspective.",
-    pdf: "",
+    pdf: "/pdfs/decatastrophizing.pdf",
   },
   {
     id: 4,
@@ -99,7 +102,7 @@ const worksheets = [
     title: "Goal Breakdown",
     content:
       "Breaking down long-term goals into manageable steps for progress in depression management.",
-    pdf: "",
+    pdf: "/pdfs/goal-breakdown.pdf",
   },
   {
     id: 5,
@@ -107,7 +110,7 @@ const worksheets = [
     title: "Goal Exploration",
     content:
       "Discovering and setting meaningful goals aligned with managing depression effectively.",
-    pdf: "",
+    pdf: "/pdfs/goal-exploration.pdf",
   },
   {
     id: 6,
@@ -115,7 +118,7 @@ const worksheets = [
     title: "Gratitude Exercises",
     content:
       "Practices that cultivate gratitude, aiding in alleviating depressive symptoms.",
-    pdf: "",
+    pdf: "/pdfs/gratitude-exercises.pdf",
   },
   {
     id: 7,
@@ -123,7 +126,7 @@ const worksheets = [
     title: "Gratitude Journaling",
     content:
       "Creating a journal to document daily gratitude, enhancing mental well-being.",
-    pdf: "",
+    pdf: "/pdfs/gratitude-journal.pdf",
   },
   {
     id: 8,
@@ -131,7 +134,7 @@ const worksheets = [
     title: "Letter to My Past Self",
     content:
       "Writing a compassionate letter to oneself, acknowledging growth and resilience.",
-    pdf: "",
+    pdf: "/pdfs/letter-to-my-past-self.pdf",
   },
   {
     id: 9,
@@ -139,7 +142,7 @@ const worksheets = [
     title: "Self Care Assessment",
     content:
       "Assessing and developing a personalized self-care plan for managing depression.",
-    pdf: "",
+    pdf: "/pdfs/self-care-assessment.pdf",
   },
   {
     id: 10,
@@ -147,7 +150,7 @@ const worksheets = [
     title: "Self Esteem Journal",
     content:
       "Techniques and prompts to boost self-esteem and confidence in depression management.",
-    pdf: "",
+    pdf: "/pdfs/self-esteem-journal.pdf",
   },
   {
     id: 11,
@@ -155,7 +158,7 @@ const worksheets = [
     title: "Sleep Diary",
     content:
       "Tracking sleep patterns and habits to improve sleep quality in depression.",
-    pdf: "",
+    pdf: "/pdfs/sleep-diary.pdf",
   },
   {
     id: 12,
@@ -163,7 +166,7 @@ const worksheets = [
     title: "Thought Log",
     content:
       "Recording thoughts and emotions to identify patterns and manage depressive symptoms.",
-    pdf: "",
+    pdf: "/pdfs/thought-log.pdf",
   },
   {
     id: 13,
@@ -171,7 +174,7 @@ const worksheets = [
     title: "Mindfulness Exercises",
     content:
       "Practical mindfulness exercises to cultivate awareness and reduce stress in daily life.",
-    pdf: "",
+    pdf: "/pdfs/mindfulness-exercises.pdf",
   },
   {
     id: 14,
@@ -179,7 +182,7 @@ const worksheets = [
     title: "Life Story",
     content:
       "Exploring one's life journey and experiences as a therapeutic method for mental health.",
-    pdf: "",
+    pdf: "/pdfs/life-story.pdf",
   },
   {
     id: 15,
@@ -187,6 +190,6 @@ const worksheets = [
     title: "My Strengths and Weaknesses",
     content:
       "Self-reflection on personal strengths and weaknesses for self-awareness and growth.",
-    pdf: "",
+    pdf: "/pdfs/my-strengths-and-qualities.pdf",
   },
 ];
