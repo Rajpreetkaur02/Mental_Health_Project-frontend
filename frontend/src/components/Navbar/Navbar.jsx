@@ -7,6 +7,7 @@ import Logo from '../../assets/logo.png'
 
 const Navbar = ({isHomePage}) => {
     const navigate = useNavigate();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     function logout() {
         localStorage.clear();
@@ -21,6 +22,10 @@ const Navbar = ({isHomePage}) => {
         navigate("/dashboard")
     }
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
     return (
         <nav className={`navbar ${isHomePage ? 'homepage-navbar' : ''}`}>
             <div className='navLeft'>
@@ -34,8 +39,16 @@ const Navbar = ({isHomePage}) => {
                     <li><NavLink to="/about">About</NavLink></li>
                     <li><NavLink to="/categories">Take A Test</NavLink></li>
                     <li><NavLink to="/get-counselling">Get Counselling</NavLink></li>
-                    <li><NavLink to="/resources">Resources</NavLink></li> 
-                    <li><NavLink to="/blogs">Blogs</NavLink></li> 
+                    <li><NavLink onClick={toggleDropdown}>Resources</NavLink></li>
+                    {isDropdownOpen && (
+                        <div className={`${isHomePage ? 'homepage-navdropdown' : 'navdropdown'}`}>
+                            
+                            <NavLink to="/resources">Worksheets</NavLink>
+                            <NavLink to="/blogs">Blogs</NavLink>
+                           
+                        </div>
+                    )} 
+                    {/* <li><NavLink to="/blogs">Blogs</NavLink></li>  */}
                     <li><NavLink to="/community">Community</NavLink></li>
                 </ul>
             </div>

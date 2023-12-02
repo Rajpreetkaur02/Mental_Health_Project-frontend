@@ -10,7 +10,7 @@ const AboutSection = () => {
     <div>
       <div className="aboutcontainer">
         <div className="aboutheading">
-          <span>How It Works?</span>
+          <span>How MindWell Works?</span>
         </div>
         <div className="howitworkscontainer">
           <div className="workscard">

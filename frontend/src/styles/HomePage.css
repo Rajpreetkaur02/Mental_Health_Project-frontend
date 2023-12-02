@@ -82,6 +82,8 @@
 
 .heroboxes {
   display: flex;
+  width: 90%;
+  margin: auto;
 }
 
 .herobox {
@@ -201,26 +203,30 @@
 /* about section */
 
 .aboutcontainer {
-  height: 100vh;
+  height: 90vh;
   background-color: #f9f8f4;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .aboutheading {
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
 .aboutheading span {
   font-size: 3.5em;
-  padding-top: 7%;
-  padding-bottom: 1%;
   font-family: "Roboto", sans-serif;
 }
 
 .howitworkscontainer {
-  width: 90%;
+  width: 100%;
   height: auto;
-  padding: 2%;
+  padding: 1%;
   background-color: transparent;
   margin: auto;
   border-radius: 20px;
@@ -254,7 +260,7 @@
 }
 
 .workscard p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -322,7 +328,7 @@
 .questioncontainer {
   height: auto;
   background-color: #f9f8f4;
-  padding-bottom: 10%;
+  padding: 50px;
 }
 
 .questionsContent {
@@ -508,7 +514,9 @@
 
 .resources-container {
   background-color: #f9f8f4;
-  height: 80vh;
+  display: flex;
+  align-items: center;
+  height: 90vh;
 }
 .containerr {
   height: 70vh;
@@ -540,11 +548,11 @@
 
 .helpbox {
   background-color: #fff;
-  width: 40%;
+  width: 35%;
   height: 15vh;
   position: absolute;
   margin-top: 20%;
-  margin-left: 5%;
+  margin-left: 0%;
   display: flex;
   /* align-items: center;
     text-align: center; */
@@ -553,7 +561,7 @@
 }
 
 #help-button {
-  font-size: 2em;
+  font-size: 1.8em;
   display: flex;
   align-items: center;
   text-align: center;
@@ -574,7 +582,7 @@
 
 .palette {
   display: flex;
-  height: 100%;
+  height: 90%;
   width: 60%;
 }
 
@@ -582,35 +590,57 @@
   height: 100%;
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  flex-direction: column;
+  /* align-items:flex-end;
+  justify-content: center; */
   font-weight: 600;
   letter-spacing: 1px;
-  transition: flex 0.2s linear;
+  transition: flex 0.3s linear;
   border-radius: 20px;
   margin-left: 10px;
+  background-color: #fff;
 }
 
 .color h3 {
   transform: rotate(-90deg);
-  position: absolute;
+  /* position: absolute; */
+  color: white;
+  background-color: #026fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+#color-heading:hover{
+  height: auto;
 }
 
 .color:hover h3 {
   transform: rotate(0deg);
+  width: auto;
+  height: auto;
 }
 
 .color span {
   opacity: 0;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.1s linear;
 }
 
-.color img {
-  width: 100%;
+.color img{
   height: 100%;
-  border-radius: 20px;
+  width: 100%;
+  border-radius: 10px;
+  /* visibility: hidden; */
+  object-fit: contain;
+  /* margin-top: 35%; */
 }
+
+/* .color:hover img{
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+} */
 
 .color:hover {
   flex: 2;
@@ -620,3 +650,5 @@
 .color:hover span {
   opacity: 1;
 }
+
+

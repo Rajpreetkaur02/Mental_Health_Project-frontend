@@ -9,6 +9,10 @@ import Heroimg from "../../assets/heroimg.png";
 import Chatbot from "../Chatbot/Chatbot";
 import { Link } from "react-router-dom";
 
+import Article from "../../assets/blogging.png";
+import Group from "../../assets/customer-care.png";
+import Therapist from "../../assets/mental-health.png";
+
 const HeroSection = () => {
   return (
     <div>
@@ -28,7 +32,7 @@ const HeroSection = () => {
               <div className="heroboxes">
                 <div className="herobox">
                   <div>
-                    <img src={Hand} className="handicon" />
+                    <img src={Group} className="handicon" />
                   </div>
                   <div className="testboxtext">
                     <span id="boxnum">10+</span>
@@ -37,16 +41,16 @@ const HeroSection = () => {
                 </div>
                 <div className="herobox">
                   <div>
-                    <img src={Hand} className="handicon" />
+                    <img src={Article} className="handicon" />
                   </div>
                   <div className="testboxtext">
                     <span id="boxnum">100+</span>
-                    <span>Articles</span>
+                    <span>Worksheets & Blogs</span>
                   </div>
                 </div>
                 <div className="herobox">
                   <div>
-                    <img src={Hand} className="handicon" />
+                    <img src={Therapist} className="handicon" />
                   </div>
                   <div className="testboxtext">
                     <span id="boxnum">20+</span>
