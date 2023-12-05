@@ -16,8 +16,9 @@ import BlogsPage from "./pages/BlogsPage/BlogsPage";
 import BlogsDetail from "./pages/BlogsPage/BlogsDetail";
 import WorksheetsPage from "./pages/WorksheetsPage/WorksheetsPage";
 import About from "./pages/About/About";
-
-import GroupChatPage from './pages/GroupChat/GroupChatPage'
+import GroupChatPage from './pages/GroupChat/GroupChatPage';
+import Stripe from './services/Stripe';
+import Success from "./pages/PaymentSuccess/Success";
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/groupdesc/:id" element={<Groupdesc />} />
           <Route path="/startgroup" element={<StartGroupQuestionsPage />} />
+        <Route path="/payment/:id" element={<Stripe/>}></Route>
+        <Route path="/success" element={<Success/>}></Route>
         </Route>
       </Routes>
     </div>
