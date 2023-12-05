@@ -31,7 +31,7 @@ const Navbar = ({isHomePage}) => {
             <div className='navLeft'>
                 {/* logo */}
                 <img src={Logo} width={60}/>
-                <Link to="/" className={`${isHomePage ? 'homepage-title' : 'title'}`}>MindWell</Link>
+                <Link to="/" className={`${isHomePage ? 'homepage-title' : 'navTitle'}`}>MindWell</Link>
             </div>
             <div className={`${isHomePage ? 'homepage-navCenter' : 'navCenter'}`}>
                 <ul>
@@ -55,15 +55,15 @@ const Navbar = ({isHomePage}) => {
             {
                 localStorage.getItem('token') !== null ? (
                     <div className={`${isHomePage ? 'homepage-navRight' : 'navRight'}`}>
-                        <ul>
+                        <ul className='greetLogout'>
                             <li title='Go To Dashboard' className={`${isHomePage ? 'homepage-dashIcon' : 'dashIcon'}`} onClick={goToDash}><FaRegCircleUser size={20}/></li>
                             <li className={`${isHomePage ? 'homepage-greeting' : 'greeting'}`}>Hello,  {localStorage.getItem('name')}</li>
-                            <li className={`${isHomePage ? 'homepage-logout' : 'logout'}`} onClick={logout}>Logout</li>
                         </ul>
+                            <div className={`${isHomePage ? 'homepage-logout' : 'logout'}`} onClick={logout}>Logout</div>
                     </div>                
                 ) : (
                     <div className={`${isHomePage ? 'homepage-navRight' : 'navRight'}`}>
-                        <ul>
+                        <ul className={`${isHomePage ? 'homepage-loginSignup' : 'loginSignup'}`}>
                             <li><NavLink to="/login">Log In</NavLink></li>
                             <li><NavLink to="/signup">Sign Up</NavLink></li>
                         </ul>
