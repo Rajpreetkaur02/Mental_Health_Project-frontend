@@ -19,6 +19,8 @@ import About from "./pages/About/About";
 
 import GroupChatPage from './pages/GroupChat/GroupChatPage'
 
+import UploadBlog from "./components/BlogsPage/UploadBlog";
+
 function App() {
   return (
     <div className="container">
@@ -34,6 +36,7 @@ function App() {
         <Route path="/blogs/:title" element={<BlogsDetail />}></Route>
         <Route path="/resources" element={<WorksheetsPage />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/uploadBlog" Component={UploadBlog}></Route>
 
         <Route element={<PrivateRoute />}>
           <Route path="/questions/:id" element={<QuestionsPage />} />
