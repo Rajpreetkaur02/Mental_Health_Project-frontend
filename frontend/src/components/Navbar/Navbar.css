@@ -404,3 +404,51 @@ nav .title,
     border-radius: 0.5rem;
     background-color: #026fff;
 }
+
+.homepage-navdropdown, .navdropdown {
+    padding: 1%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-left: 58%;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.homepage-navdropdown{
+    background-color: #026fff;
+}
+
+.navdropdown{
+    background-color: #fff;
+}
+
+.homepage-navdropdown a, .navdropdown a{
+    padding: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: left;
+    text-decoration: none;
+}
+
+.homepage-navdropdown a, .navdropdown a{
+    color: #fff;
+}
+
+.navdropdown a {
+    color: #0f172a;
+}
+
+.homepage-navdropdown a:hover{
+    background: #b3d4ff;
+    color: #0f172a;
+    border-radius: 10px;
+}
+
+.navdropdown a:hover{
+    background: #0f172a;
+    color: #fff;
+    border-radius: 10px;
+}
