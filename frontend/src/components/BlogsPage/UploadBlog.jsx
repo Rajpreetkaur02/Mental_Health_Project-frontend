@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import classes from "../../pages/BlogsPage/BlogsPage.module.css";
-import FileUpload from './FileUpload';
 import Navbar from '../Navbar/Navbar'
 import ReactQuill from 'react-quill';
 import { useDropzone } from 'react-dropzone';
