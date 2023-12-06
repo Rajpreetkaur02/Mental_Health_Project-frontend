@@ -32,20 +32,20 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/general" element={<GeneralUserDetails />}></Route>
-        <Route path='/chat' element={<GroupChatPage/>}></Route>
         <Route path="/blogs" element={<BlogsPage />}></Route>
         <Route path="/blogs/:id" element={<BlogsDetail />}></Route>
         <Route path="/resources" element={<WorksheetsPage />}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/uploadBlog" Component={UploadBlog}></Route>
 
         <Route element={<PrivateRoute />}>
           <Route path="/questions/:id" element={<QuestionsPage />} />
           <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/groupdesc/:id" element={<Groupdesc />} />
           <Route path="/startgroup" element={<StartGroupQuestionsPage />} />
-        <Route path="/payment/:id" element={<Stripe/>}></Route>
-        <Route path="/success" element={<Success/>}></Route>
+          <Route path='/chat' element={<GroupChatPage/>}></Route>
+          <Route path="/uploadBlog" Component={UploadBlog}></Route>
+          <Route path="/payment/:id" element={<Stripe/>}></Route>
+          <Route path="/success" element={<Success/>}></Route>
         </Route>
       </Routes>
     </div>
