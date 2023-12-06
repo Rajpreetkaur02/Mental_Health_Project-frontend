@@ -76,7 +76,7 @@
   }
   
   /* spinner/processing state, errors */
-  .spinner,
+  /* .spinner,
   .spinner:before,
   .spinner:after {
     border-radius: 50%;
@@ -126,7 +126,7 @@
     transform-origin: 0px 10.2px;
     -webkit-animation: loading 2s infinite ease;
     animation: loading 2s infinite ease;
-  }
+  } */
   
   @keyframes loading {
     0% {
