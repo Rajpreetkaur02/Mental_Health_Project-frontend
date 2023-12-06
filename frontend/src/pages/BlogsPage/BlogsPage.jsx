@@ -33,6 +33,7 @@ function BlogsPage() {
         setBlogs(data);
     });
 }, []);
+
   console.log(blogs)
   return (
     <>
@@ -43,8 +44,8 @@ function BlogsPage() {
       <div className={classes.blogsWrapper}>
         {blogs.map((blog) => (
           <BlogCard
-            key={blog.id}
-            id={blog.id}
+            key={blog._id}
+            id={blog._id}
             image={blog.img}
             title={blog.title}
             content={blog.content}

@@ -34,7 +34,7 @@ function App() {
         <Route path="/general" element={<GeneralUserDetails />}></Route>
         <Route path='/chat' element={<GroupChatPage/>}></Route>
         <Route path="/blogs" element={<BlogsPage />}></Route>
-        <Route path="/blogs/:title" element={<BlogsDetail />}></Route>
+        <Route path="/blogs/:id" element={<BlogsDetail />}></Route>
         <Route path="/resources" element={<WorksheetsPage />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/uploadBlog" Component={UploadBlog}></Route>

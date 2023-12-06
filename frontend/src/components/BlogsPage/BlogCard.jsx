@@ -17,7 +17,7 @@ function BlogCard({id, image, title, upvoteCount, date}) {
       </div>
       <h4>{title}</h4>
 
-      <Link to={`/post/${id}`}>
+      <Link to={`/blogs/${id}`}>
         Read <KeyboardDoubleArrowRightIcon />
       </Link>
 

@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar'
 import ReactQuill from 'react-quill';
 import { useDropzone } from 'react-dropzone';
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { formatISO9075, formatISO } from 'date-fns';
 
 const modules = {
 
@@ -31,6 +32,7 @@ const UploadBlog = ({ }) => {
         category: '',
         content: '',
         author: localStorage.getItem('name'),
+        timestamp:''
     });
 
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -99,6 +101,7 @@ const UploadBlog = ({ }) => {
         formData.append('file', uploadedFile);
         formData.append('category', BlogDetails.category);
         formData.append('author', BlogDetails.author);
+        formData.append('timestamp', formatISO9075(new Date()))
     
         fetch("http://localhost:8080/blog/post",{
             method: 'POST',
