@@ -8,6 +8,7 @@ import ReactCanvasConfetti from "react-canvas-confetti";
 function randomInRange(min, max) {
     return Math.random() * (max - min) + min;
   }
+
   
   const canvasStyles = {
     position: "fixed",
@@ -36,6 +37,8 @@ const Success = () => {
     const refAnimationInstance = useRef(null);
   const [intervalId, setIntervalId] = useState();
 
+  const username = localStorage.getItem('name');
+
   const getInstance = useCallback((instance) => {
     refAnimationInstance.current = instance;
   }, []);
@@ -63,24 +66,32 @@ window.onload = () => {
     <>
         <div className="successwrapper">
             <div className="success">
-            <p className="icon">
+            {/* <p className="icon">
                 <span className="material-symbols-outlined">
                     <ShoppingBagIcon fontSize="large"/>
                 </span>
-            </p>
-            <h2>Thank you for your purchasing our membership!</h2>
-            <p className="emailmsg">Your membership details will be sent on your registered email.</p>
+            </p> */}
+            <h1>Welcome to a Journey of Mental Wellness!</h1>
+            <p>Dear {username}, <br/></p>
+            <p>Congratulations on taking the first step towards prioritizing your mental health and well-being! We're thrilled to welcome you to our community of individuals committed to fostering positive mental health.</p>
+            <p>Thank you for choosing us to be part of your mental health journey. Together, let's create a life filled with balance, resilience, and joy.</p>
             <p className="description">
                 If you have any questions, please email
                 <a className="mailToEmail" href="mailto:mindwell@gmail.com">
                 mindwell@gmail.com
                 </a>
             </p>
+            <p>Wishing you peace and happiness,</p>
+            <p>MindWell,</p>
+            <p>Customer Support team</p>
+            
 
             <Link to={'/'}>
-                <button type="button" className="btn">
+              <div className='gotohomebtn'>
+                <button type="button">
                 Go to Home
                 </button>
+              </div> 
             </Link>
             </div>
         </div>

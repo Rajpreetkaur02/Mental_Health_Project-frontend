@@ -18,34 +18,34 @@
   /* ORDER SUCCESSFULL */
   
   .successwrapper{
-    background-color: white;
-    font-family: "Readex Pro", Sans-serif;
+    background-color: #f9f8f4;
+    height: 100vh;
+    display: flex;
+    align-items: center;
   }
+
   .success{
-    width: 1000px;
+    width: 80%;
     margin: auto;
-    margin-top: 60px; 
     background-color: #e5eeff;
     padding: 50px;
     border-radius: 15px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     flex-direction: column;
+    gap: 10px;
+    line-height: 1.5;
   }
   
-  .icon>span {
-     color: green;
-     font-weight: 900;
-    font-size: large;
-  } 
-  .success h2{
+  .success h1{
     text-transform: capitalize;
     margin-top: 15px 0px;
-    font-weight: 900;
-    font-size: 40px;
-    font-family: "Fredoka One",cursive;
+    /* font-weight: 900;
+    font-size: 40px; */
+    /* font-family: "Fredoka One",cursive; */
     color:#324d67;
+    text-align: center;
   }
   .success .emailmsg{
      font-size: 16px;
@@ -55,20 +55,28 @@
   .cancel p{
     font-size: 20px;
     font-weight: 600;
+    text-align: left;
   }
   .mailToEmail{
     margin-left: 5px;
     color: #f02d34;
   }
   
-  .btn{
-    font-size: 16px;
-    margin-top: 10px;
-    background-color: #ffd100;
-    width: 300px;
-    padding: 10px;
+  .gotohomebtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
+
+  .gotohomebtn button{
+    padding: 10px 30px 10px 30px;
+    background-color: #f02d34;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+
   @media only screen and (max-width: 800px) {
     .success {
       width: 90%;

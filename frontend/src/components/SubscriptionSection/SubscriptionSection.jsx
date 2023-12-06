@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SubscriptionSection = () => {
   return (
@@ -76,9 +76,9 @@ const SubscriptionSection = () => {
                 </li>
               </ul>
               <div className="planaction">
-                <a className="planbutton" href="#">
+                <Link to={{ pathname: `/success` }} className="planbutton">
                   Choose plan
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@ const SubscriptionSection = () => {
                 </li>
               </ul>
               <div className="planaction">
-                <Link to={{pathname: `/payment/${2000}`}} className="planbutton">
+                <Link to={{ pathname: `/payment/${2000}` }} className="planbutton">
                   Choose plan
                 </Link>
               </div>
@@ -264,7 +264,7 @@ const SubscriptionSection = () => {
                 </li>
               </ul>
               <div className="planaction">
-                <Link to={{pathname: `/payment/${5000}`}} className="planbutton">
+                <Link to={{ pathname: `/payment/${5000}` }} className="planbutton">
                   Choose plan
                 </Link>
               </div>
