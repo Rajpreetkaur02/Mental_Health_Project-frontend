@@ -203,7 +203,7 @@
 /* about section */
 
 .aboutcontainer {
-  height: 80vh;
+  height: auto;
   background-color: #f9f8f4;
   padding: 0px;
   display: flex;
@@ -288,7 +288,7 @@
 
 .testcontainer {
   height: auto;
-  background-color: #e6f7ff;
+  background-color: #f9f8f4;
   display: flex;
   justify-content: space-around;
   line-height: 1.5;
@@ -408,7 +408,7 @@
   display: flex;
   justify-content: space-around;
   margin: auto;
-  height: 90vh;
+  height: auto;
 }
 
 .plancard {

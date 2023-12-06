@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Test from '../../assets/testimg.jpg'
+import Test from '../../assets/testimg-2-2.png'
 
 const TestSection = () => {
   return (
