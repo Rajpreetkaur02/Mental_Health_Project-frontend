@@ -31,16 +31,11 @@ const UploadBlog = ({ }) => {
         category: '',
         content: '',
         author: localStorage.getItem('name'),
-        timestamp: '',
     });
 
     const [selectedCategory, setSelectedCategory] = useState('');
-
     const categories = ['Mental Health', 'Wellness', 'Self-Care', 'Inspiration', 'Personal Story', 'Physical Health', 'other'];
-
     const [uploadedFile, setUploadedFile] = useState(null);
-
-
 
     function handleUserInputChange(e) {
         if (e && e.target) {
@@ -55,11 +50,6 @@ const UploadBlog = ({ }) => {
                 content: e,
             }));
         }
-    }
-
-    function saveDetails() {
-        console.log(BlogDetails);
-        alert('posted successfully')
     }
 
     const handleCategoryChange = (event) => {
@@ -89,14 +79,41 @@ const UploadBlog = ({ }) => {
         setUploadedFile(file);
         setBlogDetails((prevDetails) => ({
             ...prevDetails,
-            img: file.name,
+            img: file,
         }));
     };
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: handleDrop,
-        accept: 'image/*', // Specify the accepted file types
+        // accept: 'file', 
+        // Specify the accepted file types
     });
+
+    const saveDetails = (e) => {
+        e.preventDefault();
+        console.log(BlogDetails);
+        console.log(uploadedFile)
+        const formData = new FormData();
+        formData.append('title', BlogDetails.title);
+        formData.append('content', BlogDetails.content);
+        formData.append('file', uploadedFile);
+        formData.append('category', BlogDetails.category);
+        formData.append('author', BlogDetails.author);
+    
+        fetch("http://localhost:8080/blog/post",{
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                "Allow-cross-origin-access": "true"    
+            },
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => console.log('File uploaded successfully:', data))
+        .catch(error => console.error('Error uploading file:', error));
+        alert('posted successfully')
+    }
+
 
     return (
 

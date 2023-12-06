@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import BlogCard from "../../components/BlogsPage/BlogCard";
 import classes from "./BlogsPage.module.css";
 import Navbar from "../../components/Navbar/Navbar";
-import blogs from "../../blogs.json";
+// import blogs from "../../blogs.json";
 import { useNavigate } from "react-router-dom";
 import { MdAdd } from "react-icons/md";
 
 
 function BlogsPage() {
+  const [blogs, setBlogs] = useState([]);
+
   console.log(blogs);
   const navigate = useNavigate();
 
@@ -15,6 +17,23 @@ function BlogsPage() {
     navigate('/uploadBlog')
   }
 
+  useEffect(() => {
+    fetch('http://localhost:8080/blog/allPosts',{
+        crossDomain: true,
+        headers: {
+            'Content-Type':'application/json',
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",  
+            'Authorization': `Bearer ${localStorage.getItem('token')}`       
+        },    
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        setBlogs(data);
+    });
+}, []);
+  console.log(blogs)
   return (
     <>
       <Navbar />
@@ -26,7 +45,7 @@ function BlogsPage() {
           <BlogCard
             key={blog.id}
             id={blog.id}
-            image={blog.image}
+            image={blog.img}
             title={blog.title}
             content={blog.content}
             date={blog.date}

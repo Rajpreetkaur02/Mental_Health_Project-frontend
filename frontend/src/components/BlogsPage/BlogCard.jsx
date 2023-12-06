@@ -8,7 +8,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 function BlogCard({id, image, title, upvoteCount, date}) {
   return (
     <div className={classes.blogCard}>
-      <img src={image1} alt="blog" />
+      <img src={`data:image/png;base64,${image.data}`} alt="blog" />
       <div className={classes.cardBottom}>
         <p>{date}</p>
         <p>
@@ -17,7 +17,7 @@ function BlogCard({id, image, title, upvoteCount, date}) {
       </div>
       <h4>{title}</h4>
 
-      <Link >
+      <Link to={`/post/${id}`}>
         Read <KeyboardDoubleArrowRightIcon />
       </Link>
 
