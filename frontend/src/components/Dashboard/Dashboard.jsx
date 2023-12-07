@@ -86,7 +86,7 @@ function Dashboard() {
           'Authorization': `Bearer ${localStorage.getItem('token')}` 
         } 
       })
-      if (response.status == 200) {
+      if (response.status === 200) {
         const result = await response.json()
         .then((data) => {
           console.log(data)
@@ -110,10 +110,10 @@ function Dashboard() {
           'Authorization': `Bearer ${localStorage.getItem('token')}` 
         } 
       })
-      if (response.status == 200) {
+      if (response.status === 200) {
         const result = await response.json()
         .then((data) => {
-          // console.log(data)
+          console.log(data);
           setSleepData(data) 
         })
       // }
@@ -140,7 +140,7 @@ function Dashboard() {
   })
 
   const sleepDetail = Object.keys(sleepData).map(key => {
-    return {...sleepData, name: key, Sleep: sleepData[key]}
+    return {...sleepData, name: key, Sleep: (sleepData[key] < 4 || sleepData[key] > 11 ? 0 : (sleepData[key] >= 4 && sleepData[key] <= 7) || (sleepData[key] >= 9 && sleepData[key] <= 11) ? 1 : 2)}
   })
   console.log(avgData)
   console.log(sleepDetail)
@@ -163,6 +163,8 @@ function Dashboard() {
   }, []);
   const sortedMergedData = [...groupedData].sort((a, b) => new Date(a.name) - new Date(b.name));
   console.log(groupedData)
+
+  console.log(sortedMergedData)
 
   // avgData = Object.keys(sleepData).map(key => {
   //   return {...sleepData, name: key, Sleep: sleepData[key]}

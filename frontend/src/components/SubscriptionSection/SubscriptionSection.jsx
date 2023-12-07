@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SubscriptionSection = () => {
   return (
@@ -8,20 +9,20 @@ const SubscriptionSection = () => {
           <span>Our Plans</span>
         </div>
         <div className="planscontainer">
-          <div class="plancard">
-            <div class="planinner">
-              <span class="planpricing">
+          <div className="plancard">
+            <div className="planinner">
+              <span className="planpricing">
                 <span>
                   ₹0 <small>/ m</small>
                 </span>
               </span>
-              <p class="plantitle">Free Membership</p>
-              <p class="planinfo">
+              <p className="plantitle">Free Membership</p>
+              <p className="planinfo">
                 Join for free and get access to feautres like:{" "}
               </p>
-              <ul class="planfeatures">
+              <ul className="planfeatures">
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -38,7 +39,7 @@ const SubscriptionSection = () => {
                   <span>Take a Mental Health Test</span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -57,7 +58,7 @@ const SubscriptionSection = () => {
                   </span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -74,28 +75,28 @@ const SubscriptionSection = () => {
                   <span>Get access to Printable Worksheets & Blogs</span>
                 </li>
               </ul>
-              <div class="planaction">
-                <a class="planbutton" href="#">
+              <div className="planaction">
+                <Link to={{ pathname: `/success` }} className="planbutton">
                   Choose plan
-                </a>
+                </Link>
               </div>
             </div>
           </div>
 
-          <div class="plancard">
-            <div class="planinner">
-              <span class="planpricing">
+          <div className="plancard">
+            <div className="planinner">
+              <span className="planpricing">
                 <span>
                   ₹2000 <small>/ m</small>
                 </span>
               </span>
-              <p class="plantitle"> Basic Membership</p>
-              <p class="planinfo">
+              <p className="plantitle"> Basic Membership</p>
+              <p className="planinfo">
                 Upgrade for personalized plans and progress tracking.
               </p>
-              <ul class="planfeatures">
+              <ul className="planfeatures">
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -114,7 +115,7 @@ const SubscriptionSection = () => {
                   </span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -131,7 +132,7 @@ const SubscriptionSection = () => {
                   <span>Take a Mental Health Test</span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -150,7 +151,7 @@ const SubscriptionSection = () => {
                   </span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -167,29 +168,29 @@ const SubscriptionSection = () => {
                   <span>Get access to Printable Worksheets & Blogs</span>
                 </li>
               </ul>
-              <div class="planaction">
-                <a class="planbutton" href="#">
+              <div className="planaction">
+                <Link to={{ pathname: `/payment/${2000}` }} className="planbutton">
                   Choose plan
-                </a>
+                </Link>
               </div>
             </div>
           </div>
 
-          <div class="plancard">
-            <div class="planinner">
-              <span class="planpricing">
+          <div className="plancard">
+            <div className="planinner">
+              <span className="planpricing">
                 <span>
                   ₹5000 <small>/ m</small>
                 </span>
               </span>
-              <p class="plantitle">Premium Membership</p>
-              <p class="planinfo">
+              <p className="plantitle">Premium Membership</p>
+              <p className="planinfo">
                 Unlock everything: personalized counseling, tailored plans,
                 progress tracking.
               </p>
-              <ul class="planfeatures">
+              <ul className="planfeatures">
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -209,7 +210,7 @@ const SubscriptionSection = () => {
                   </span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -226,7 +227,7 @@ const SubscriptionSection = () => {
                   <span>Take a Mental Health Test</span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -245,7 +246,7 @@ const SubscriptionSection = () => {
                   </span>
                 </li>
                 <li>
-                  <span class="planicon">
+                  <span className="planicon">
                     <svg
                       height="24"
                       width="24"
@@ -262,10 +263,10 @@ const SubscriptionSection = () => {
                   <span>Get access to Printable Worksheets & Blogs</span>
                 </li>
               </ul>
-              <div class="planaction">
-                <a class="planbutton" href="#">
+              <div className="planaction">
+                <Link to={{ pathname: `/payment/${5000}` }} className="planbutton">
                   Choose plan
-                </a>
+                </Link>
               </div>
             </div>
           </div>

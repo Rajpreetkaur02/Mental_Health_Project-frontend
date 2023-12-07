@@ -7,6 +7,7 @@ import Logo from "../../assets/logo.png";
 
 const Navbar = ({ isHomePage }) => {
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   function logout() {
     localStorage.clear();
@@ -21,12 +22,19 @@ const Navbar = ({ isHomePage }) => {
     navigate("/dashboard");
   }
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <nav className={`navbar ${isHomePage ? "homepage-navbar" : ""}`}>
       <div className="navLeft">
         {/* logo */}
         <img src={Logo} width={60} />
-        <Link to="/" className={`${isHomePage ? "homepage-title" : "title"}`}>
+        <Link
+          to="/"
+          className={`${isHomePage ? "homepage-title" : "navTitle"}`}
+        >
           MindWell
         </Link>
       </div>
@@ -45,11 +53,19 @@ const Navbar = ({ isHomePage }) => {
             <NavLink to="/get-counselling">Get Counselling</NavLink>
           </li>
           <li>
-            <NavLink to="/resources">Resources</NavLink>
+            <NavLink onClick={toggleDropdown}>Resources</NavLink>
           </li>
-          <li>
-            <NavLink to="/blogs">Blogs</NavLink>
-          </li>
+          {isDropdownOpen && (
+            <div
+              className={`${
+                isHomePage ? "homepage-navdropdown" : "navdropdown"
+              }`}
+            >
+              <NavLink to="/resources">Worksheets</NavLink>
+              <NavLink to="/blogs">Blogs</NavLink>
+            </div>
+          )}
+          {/* <li><NavLink to="/blogs">Blogs</NavLink></li>  */}
           <li>
             <NavLink to="/community">Community</NavLink>
           </li>
@@ -57,7 +73,7 @@ const Navbar = ({ isHomePage }) => {
       </div>
       {localStorage.getItem("token") !== null ? (
         <div className={`${isHomePage ? "homepage-navRight" : "navRight"}`}>
-          <ul>
+          <ul className="greetLogout">
             <li
               title="Go To Dashboard"
               className={`${isHomePage ? "homepage-dashIcon" : "dashIcon"}`}
@@ -68,17 +84,19 @@ const Navbar = ({ isHomePage }) => {
             <li className={`${isHomePage ? "homepage-greeting" : "greeting"}`}>
               Hello, {localStorage.getItem("name")}
             </li>
-            <li
-              className={`${isHomePage ? "homepage-logout" : "logout"}`}
-              onClick={logout}
-            >
-              Logout
-            </li>
           </ul>
+          <div
+            className={`${isHomePage ? "homepage-logout" : "logout"}`}
+            onClick={logout}
+          >
+            Logout
+          </div>
         </div>
       ) : (
         <div className={`${isHomePage ? "homepage-navRight" : "navRight"}`}>
-          <ul>
+          <ul
+            className={`${isHomePage ? "homepage-loginSignup" : "loginSignup"}`}
+          >
             <li>
               <NavLink to="/login">Log In</NavLink>
             </li>

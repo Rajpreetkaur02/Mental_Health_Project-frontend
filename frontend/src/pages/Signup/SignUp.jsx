@@ -1,24 +1,36 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import React from 'react';
 import img from '../../assets/TaeAugust05.jpg';
 import Navbar from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import emailjs from '@emailjs/browser';
+
 
 function SignUp() {
     const[showEmergency, setShowEmergency] = useState(false);
     const [userDetails, setUserDetails] = useState({
-        name: '',
-        number: '',
-        email: '',
-        password: ''
+        user_name: '',
+        user_number: '',
+        user_email: '',
+        user_password: ''
     });
     const [emergencyDetails, setEmergencyDetails] = useState({
-        name: '',
-        number: '',
-        email: ''
+        extra_name: '',
+        extra_number: '',
+        extra_email: ''
     });
+    const [formData, setFormData] = useState({});
 
+    const form1 = useRef();
+    const form2 = useRef();
+
+    // const formData = {
+    //     user_name: form1.current.user_name.value,
+    //     extra_name: form2.current.extra_name.value,
+    //     extra_email: form2.current.extra_email.value
+    // }
+    
     const navigate = useNavigate();
 
     function handleUserInputChange(e) {
@@ -27,6 +39,10 @@ function SignUp() {
             ...prevDetails,
             [name]: value,
         }));
+        setFormData({
+            ...formData, 
+            user_name: form1.current.user_name.value
+        })
     }
 
     function handleEmergencyInputChange(e) {
@@ -35,6 +51,11 @@ function SignUp() {
             ...prevDetails,
             [name]: value,
         }));
+        setFormData({
+            ...formData, 
+            extra_name: form2.current.extra_name.value,
+            extra_email: form2.current.extra_email.value
+        })
     }
 
     function saveDetails(e) {
@@ -45,9 +66,19 @@ function SignUp() {
 
     async function submitDetails(e) {
         e.preventDefault();
+        console.log(formData)
+        emailjs.send('service_wakzvca', 'template_55qorzw', formData, 'W6vv5FFrgOHL5ZovX')
+        .then((result) => {
+            console.log(result.text);
+            // alert('Form submitted successfully!')
+        }, (error) => {
+            console.log(error.text);
+            // alert('An error has occured, Try again!')
+        });
+        // e.target.reset();
         const response = await fetch('http://localhost:8080/user/register',{
             method: 'POST',
-            body: JSON.stringify({"name": userDetails.name, "number": userDetails.number, "username": userDetails.email, "password": userDetails.password, "emergencyContact": {"name": emergencyDetails.name, "number": emergencyDetails.number, "email": emergencyDetails.email}}),
+            body: JSON.stringify({"name": userDetails.user_name, "number": userDetails.user_number, "username": userDetails.user_email, "password": userDetails.user_password, "emergencyContact": {"name": emergencyDetails.extra_name, "number": emergencyDetails.extra_number, "email": emergencyDetails.extra_email}}),
             headers: {'Content-Type':'application/json'}
         });  
         if (response.status === 200) {
@@ -60,7 +91,7 @@ function SignUp() {
             fetch("http://localhost:8080/generate-token", {
                 method: 'POST',
                 crossDomain: true,
-                body: JSON.stringify({'username': userDetails.email, 'password': userDetails.password}),
+                body: JSON.stringify({'username': userDetails.user_email, 'password': userDetails.user_password}),
                 headers: {
                     'Content-Type':'application/json',
                     Accept: "application/json",
@@ -85,7 +116,7 @@ function SignUp() {
             });
         }
     }
-
+    
   return (
     <>
     <Navbar/>
@@ -96,28 +127,28 @@ function SignUp() {
         <div className='details'>
             {!showEmergency && (<>
                 <h2>Create an Account</h2>
-                <form onSubmit={saveDetails}>
+                <form ref={form1} onSubmit={saveDetails}>
                     <label>Full Name</label>
-                    <input value={userDetails.name} onChange={handleUserInputChange} type="text" name="name" id="" placeholder='Your Name' required/>
+                    <input value={userDetails.user_name} onChange={handleUserInputChange} type="text" name="user_name" id="" placeholder='Your Name' required/>
                     <label>Mobile Number</label>
-                    <input value={userDetails.number} maxLength={10} onChange={handleUserInputChange} type="number" name="number" id="" placeholder='Enter Your Number' required/>
+                    <input value={userDetails.user_number} maxLength={10} onChange={handleUserInputChange} type="number" name="user_number" id="" placeholder='Enter Your Number' required/>
                     <label>Email</label>
-                    <input value={userDetails.email} onChange={handleUserInputChange} type="email" name="email" id="" placeholder='Email' required/>
+                    <input value={userDetails.user_email} onChange={handleUserInputChange} type="email" name="user_email" id="" placeholder='Email' required/>
                     <label>Password</label>
-                    <input value={userDetails.password} onChange={handleUserInputChange} type="password" name="password" id="" placeholder='Password' required/>
+                    <input value={userDetails.user_password} onChange={handleUserInputChange} type="password" name="user_password" id="" placeholder='Password' required/>
                     <button type='submit'>Continue</button>
                 </form>
                 </>
             )}
             {showEmergency && (<>
                 <h2>Emergency Contact Details</h2>
-                <form onSubmit={submitDetails}>
+                <form ref={form2} onSubmit={submitDetails}>
                     <label>Emergency Contact Name</label>
-                    <input value={emergencyDetails.name} onChange={handleEmergencyInputChange} type="text" name="name" id="" placeholder='Emergency Contact Name' required/>
+                    <input value={emergencyDetails.extra_name} onChange={handleEmergencyInputChange} type="text" name="extra_name" id="" placeholder='Emergency Contact Name' required/>
                     <label>Emergency Contact Mobile Number</label>
-                    <input value={emergencyDetails.number} onChange={handleEmergencyInputChange} type="number" name="number" id="" placeholder='Emergency Contact Number' required />
+                    <input value={emergencyDetails.extra_number} onChange={handleEmergencyInputChange} type="number" name="extra_number" id="" placeholder='Emergency Contact Number' required />
                     <label>Emergency Contact Email</label>
-                    <input value={emergencyDetails.email} onChange={handleEmergencyInputChange} type="email" name="email" id="" placeholder='Emergency Contact Email' required/>
+                    <input value={emergencyDetails.extra_email} onChange={handleEmergencyInputChange} type="email" name="extra_email" id="" placeholder='Emergency Contact Email' required/>
                     <button type='submit'>Register</button>
                 </form>
                 </>
