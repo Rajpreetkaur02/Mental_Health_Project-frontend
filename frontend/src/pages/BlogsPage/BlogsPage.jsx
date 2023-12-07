@@ -11,6 +11,7 @@ function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
 
+
   console.log(blogs);
   const navigate = useNavigate();
 
@@ -42,6 +43,9 @@ useEffect(() => {
       setLoading(false);
   }, 1000);
 },[]) 
+
+
+
 
   console.log(blogs)
   return (
