@@ -8,6 +8,7 @@ import "./BlogDetails.css"
 function BlogsDetail() {
   const [blogDetails, setblogdetails] = useState([]);
   const [imageSrc, setImageSrc] = useState(null);
+  const [loading, setLoading] = useState(false);
   const id = useParams();
 
   const formatTimestamp = (timestamp) => {
@@ -15,7 +16,7 @@ function BlogsDetail() {
     return formatDistanceToNow(new Date(timestamp), { addSuffix: true });
   };
   
-  useEffect(() => {
+  // useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:8080/blog/post/${id.id}`, {
@@ -39,24 +40,37 @@ function BlogsDetail() {
       }
     };
 
+  //   fetchData();
+  // }, []); 
+
+  useEffect(() => { 
     fetchData();
-  }, []); 
+    setLoading(true);
+    setTimeout(() => {
+        setLoading(false);
+    }, 1000);
+  },[]) 
 
 console.log(blogDetails)
   return (
     <>
     <Navbar/>
-    <div>
-    <div className="banner">
-        <img src={imageSrc}/>
-    </div>
-    <div class="blog">
-        <h1 class="postTitle">{blogDetails.title}</h1>
-        <p class="published"><span>{blogDetails.author}</span></p>
-        <p class="published"><span>{blogDetails.timestamp}</span></p>
-        <div class="article" dangerouslySetInnerHTML={{__html: blogDetails.content}} />
-    </div>
-    </div>
+    {loading ? (
+      <div className="loader-container">
+          <div className="spinner"></div>
+      </div>) : (
+        <div>
+        <div className="banner">
+            <img src={imageSrc}/>
+        </div>
+        <div class="blog">
+            <h1 class="postTitle">{blogDetails.title}</h1>
+            <p class="published"><span>{blogDetails.author}</span></p>
+            <p class="published"><span>{blogDetails.timestamp}</span></p>
+            <div class="article" dangerouslySetInnerHTML={{__html: blogDetails.content}} />
+        </div>
+        </div>
+      )}
     </>
   )
 }

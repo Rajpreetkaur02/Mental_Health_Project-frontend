@@ -9,6 +9,7 @@ import { MdAdd } from "react-icons/md";
 
 function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   console.log(blogs);
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function BlogsPage() {
     navigate('/uploadBlog')
   }
 
-  useEffect(() => {
+  const fetchData = () => {
     fetch('http://localhost:8080/blog/allPosts',{
         crossDomain: true,
         headers: {
@@ -32,29 +33,43 @@ function BlogsPage() {
         console.log(data);
         setBlogs(data);
     });
-}, []);
+}
+
+useEffect(() => { 
+  fetchData();
+  setLoading(true);
+  setTimeout(() => {
+      setLoading(false);
+  }, 1000);
+},[]) 
 
   console.log(blogs)
   return (
     <>
       <Navbar />
-      <div className={classes.newBlogbtn}>
-        <button onClick={handleClick}><MdAdd size={30}/> New Blog</button>
+      {loading ? (
+      <div className="loader-container">
+          <div className="spinner"></div>
+      </div>) : (
+        <>
+        <div className={classes.newBlogbtn}>
+          <button onClick={handleClick}><MdAdd size={30}/> New Blog</button>
+        </div>
+        <div className={classes.blogsWrapper}>
+          {blogs.map((blog) => (
+            <BlogCard
+              key={blog._id}
+              id={blog._id}
+              image={blog.img}
+              title={blog.title}
+              content={blog.content}
+              date={blog.date}
+              upvoteCount={blog.upvoteCount}
+            />
+          ))}
       </div>
-      <div className={classes.blogsWrapper}>
-        {blogs.map((blog) => (
-          <BlogCard
-            key={blog._id}
-            id={blog._id}
-            image={blog.img}
-            title={blog.title}
-            content={blog.content}
-            date={blog.date}
-            upvoteCount={blog.upvoteCount}
-          />
-        ))}
-        
-      </div>
+        </>
+      )}
     </>
   );
 }
