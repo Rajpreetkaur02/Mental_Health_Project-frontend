@@ -57,7 +57,6 @@ function BlogsPage() {
             upvoteCount={blog.upvoteCount}
           />
         ))}
-        
       </div>
     </>
   );

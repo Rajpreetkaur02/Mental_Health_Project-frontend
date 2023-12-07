@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
-function BlogCard({id, image, title, upvoteCount, date}) {
+function BlogCard({ id, image, title, upvoteCount, date }) {
   return (
     <div className={classes.blogCard}>
       <img src={`data:image/png;base64,${image.data}`} alt="blog" />
@@ -20,7 +20,6 @@ function BlogCard({id, image, title, upvoteCount, date}) {
       <Link to={`/blogs/${id}`}>
         Read <KeyboardDoubleArrowRightIcon />
       </Link>
-
     </div>
   );
 }
