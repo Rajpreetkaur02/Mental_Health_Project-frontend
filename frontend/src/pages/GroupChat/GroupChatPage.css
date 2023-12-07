@@ -40,7 +40,6 @@
     line-height: 100%;
     white-space: nowrap;
     vertical-align: middle;
-    /* padding: 0.6rem 1rem; */
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -61,10 +60,6 @@ button.primary {
 }
 
 button.accent {
-    /* background-color: #6db33f;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff; */
-
     background-color: #EEF2FF;
     border-radius: 8px;
     color: #536DFE;
@@ -101,7 +96,6 @@ button.accent {
 .username-page-container .username-submit {
     margin-top: 10px;
 }
-
 
 #chat-page {
     position: relative;

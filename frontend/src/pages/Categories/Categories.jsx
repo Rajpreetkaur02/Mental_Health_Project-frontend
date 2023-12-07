@@ -3,9 +3,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import HealthImg from '../../assets/mentalHealthImg.png';
 import mentalData from '../../utils/healthData.js';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Categories.css';
-
 
 function Categories() {
     const [mentalActive, setMentalActive] = useState(true);
@@ -13,6 +12,7 @@ function Categories() {
     const [isMentalActive, setIsMentalActive] = useState(false);
     const [isPhysicalActive, setIsPhysicalActive] = useState(false);
 
+    //functions used to toggle between mental and physical categories
     const mentalButtonPressed = () => {
         setMentalActive(true);
         setPhysicalActive(false);
@@ -37,37 +37,38 @@ function Categories() {
         }
     }
 
+    //fetching the current user details after sign up
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            fetch('http://localhost:8080/current-user',{
+            fetch('http://localhost:8080/current-user', {
                 crossDomain: true,
                 headers: {
-                    'Content-Type':'application/json',
+                    'Content-Type': 'application/json',
                     Accept: "application/json",
                     "Access-Control-Allow-Origin": "*",
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`     
-                },    
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
             })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                if (localStorage.getItem('name') == null) {
-                    localStorage.setItem('id', data._id);
-                    localStorage.setItem('name', data.name)
-                    localStorage.setItem('email', data.username);
-                    window.location.reload();
-                }
-            });
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (localStorage.getItem('name') == null) {
+                        localStorage.setItem('id', data._id);
+                        localStorage.setItem('name', data.name)
+                        localStorage.setItem('email', data.username);
+                        window.location.reload();
+                    }
+                });
         }
     }, []);
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className='categoryMain'>
                 <div className='categoryTop'>
                     <div className='categoryTopLeft'>
-                        <img src={HealthImg} alt=""/>
+                        <img src={HealthImg} alt="" />
                     </div>
                     <div className='categoryTopRight'>
                         <h1>Which category you fall under?</h1>
@@ -76,26 +77,26 @@ function Categories() {
                             <button onClick={physicalButtonPressed} className={isPhysicalActive ? 'physicalButton' : ''}>Physical</button>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div className='categoryBottom'>
                     {mentalActive ?
                         mentalData
                             .filter((data) => data.type === 'mental')
                             .map((data) => (
-                                <Link style={{textDecoration:'none', color:'black'}} to={{pathname: `/questions/${data.heading}`}}>
-                                    <CategoryCard {...data} key={data.id}/>
+                                <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/questions/${data.heading}` }}>
+                                    <CategoryCard {...data} key={data.id} />
                                 </Link>
                             )) :
 
-                    (physicalActive && (
-                        mentalData
-                            .filter((data) => data.type === 'physical')
-                            .map((data) => (
-                                <Link style={{textDecoration:'none', color:'black'}} to={{pathname: `/questions/${data.heading}`}}>
-                                    <CategoryCard {...data} key={data.id}/>
-                                </Link>
-                            ))  
-                        ))  
+                        (physicalActive && (
+                            mentalData
+                                .filter((data) => data.type === 'physical')
+                                .map((data) => (
+                                    <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/questions/${data.heading}` }}>
+                                        <CategoryCard {...data} key={data.id} />
+                                    </Link>
+                                ))
+                        ))
                     }
                 </div>
             </div>

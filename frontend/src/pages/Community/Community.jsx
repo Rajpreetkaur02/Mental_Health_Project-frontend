@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import '../../styles/Community.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Support from '../../assets/support.png';
-// import groupsData from '../../utils/groupsdata.js';
 import GroupCard from '../../components/GroupCard/GroupCard.jsx';
 import { Link, useParams } from 'react-router-dom';
 
@@ -13,6 +12,7 @@ const Community = () => {
     const [isPhysicalActive, setIsPhysicalActive] = useState(false);
     const [groupsData, setGroupsData] = useState([]);
 
+    //functions to toggle between physical and mental categories
     const mentalButtonPressed = () => {
         setMentalActive(true);
         setPhysicalActive(false);
@@ -37,6 +37,7 @@ const Community = () => {
         }
     }
 
+    //fetching the details of all the support groups to display on the community page
     useEffect(() => {
         fetch('http://localhost:8080/groups/supportGroups',{
             crossDomain: true,

@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "../../styles/About.module.css";
 import Navbar from "../../components/Navbar/Navbar";
-// import image from "../assets/images/hero-banner.jpg";
 
 function About() {
   return (

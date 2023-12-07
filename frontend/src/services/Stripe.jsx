@@ -3,7 +3,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
 import {useParams} from "react-router-dom"
-// import "./App.css";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -16,6 +15,7 @@ export default function App() {
   console.log(id.id)
 
   useEffect(() => {
+
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:8080/api/payment/create-intent", {
       method: "POST",
@@ -29,9 +29,11 @@ export default function App() {
       .then((data) => setClientSecret(data.clientSecret));
   }, []);
 
+
   const appearance = {
     theme: 'stripe',
   };
+  
   const options = {
     clientSecret,
     appearance,
