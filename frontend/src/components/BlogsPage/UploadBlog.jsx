@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import classes from "../../pages/BlogsPage/BlogsPage.module.css";
 import Navbar from '../Navbar/Navbar'
 import ReactQuill from 'react-quill';
 import { useDropzone } from 'react-dropzone';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { formatISO9075, formatISO } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const modules = {
     toolbar: [
@@ -37,6 +38,7 @@ const UploadBlog = ({ }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const categories = ['Mental Health', 'Wellness', 'Self-Care', 'Inspiration', 'Personal Story', 'Physical Health', 'other'];
     const [uploadedFile, setUploadedFile] = useState(null);
+    const navigate = useNavigate();
 
     function handleUserInputChange(e) {
         if (e && e.target) {
@@ -98,6 +100,7 @@ const UploadBlog = ({ }) => {
         .then(data => console.log('File uploaded successfully:', data))
         .catch(error => console.error('Error uploading file:', error));
         alert('posted successfully')
+        navigate("/blogs")
     }
 
     return (
