@@ -61,8 +61,9 @@ function BlogsPage() {
                 image={blog.img}
                 title={blog.title}
                 content={blog.content}
-                date={blog.date}
+                date={blog.timestamp}
                 upvoteCount={blog.upvoteCount}
+                author={blog.author}
               />
             ))}
           </div>

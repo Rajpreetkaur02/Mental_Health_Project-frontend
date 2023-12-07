@@ -9,6 +9,8 @@
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
+  min-height: 100vh;
+  height: auto;
 }
 
 .newBlogbtn{
