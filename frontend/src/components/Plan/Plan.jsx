@@ -5,76 +5,93 @@ import Box from '@mui/material/Box';
 import { FaSquareFontAwesomeStroke } from 'react-icons/fa6';
 
 function Plan() {
-    const [age, setAge] = useState('');
     const [planDetail, setPlanDetail] = useState({});
-    // const [checkboxes, setCheckboxes] = useState([false, false, false]);
     const [tasksCompleted, setTasksCompleted] = useState([]);
     const [loading, setLoading] = useState(false);
-    // const [week, setWeek] = useState(1);
-
-    useEffect(() => {
+    
+    const fetchAge = () => {
+        console.log("age");
         try {
             fetch(`http://localhost:8080/user/age/${localStorage.getItem('email')}`,{ 
-              crossDomain: true, 
-              headers: { 'Content-Type':'application/json', 
-                Accept: "application/json", 
-                "Access-Control-Allow-Origin": "*", 
-                'Authorization': `Bearer ${localStorage.getItem('token')}` 
-              } 
+                crossDomain: true, 
+                headers: { 
+                    'Content-Type':'application/json', 
+                    Accept: "application/json", 
+                    "Access-Control-Allow-Origin": "*", 
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` 
+                } 
             }).then((res) => res.text())
             .then((data) => {
-              setAge(data) 
+                console.log(data)
+                fetchPlan(data);
             })
-          } catch (error) {
+        } catch (error) {
             console.error('Error fetching data:', error);
-          }
-    }, [age])
-
-    useEffect(() => {
-        // console.log(week)
-        if (age != '') {
-            fetch(`http://localhost:8080/plans/plan/${age}`, {
-            crossDomain: true,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-        }).then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            setPlanDetail(data)
-        });
         }
+    }
 
-        fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`, {
-            crossDomain: true,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-        }).then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            setTasksCompleted(data)
-        });
-    })
+    const fetchPlan = (age) => {
+        console.log("plan");
+        
+        if (age != '') {
+            try {
+            fetch(`http://localhost:8080/plans/plan/${age}`, {
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            }).then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                setPlanDetail(data)
+            });
+        } catch (error) {
+            console.log(error);
+            setPlanDetail(['false', 'false', 'false'])
+        }
+        }
+    }
+
+    const fetchTasks = async () => {
+        console.log("task");
+        const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+            crossDomain: true, 
+            headers: { 'Content-Type':'application/json', 
+              Accept: "application/json", 
+              "Access-Control-Allow-Origin": "*", 
+              'Authorization': `Bearer ${localStorage.getItem('token')}` 
+            } 
+          })
+          if (response.status == 200) {
+            const result = await response.json()
+            .then((data) => {
+              console.log(data)
+              setTasksCompleted(data) 
+            })
+          // }
+        } else {
+          // console.error('Error fetching data:', error);
+          setTasksCompleted([false, false, false]);
+        }
+    }
 
     useEffect(() => {
+        fetchAge();
+        fetchTasks();
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 5000);
+        }, 1000);
     }, [])
 
     const handleChange = (index) => {
         const newCheckboxes = [...tasksCompleted];
         newCheckboxes[index] = !newCheckboxes[index];
-        setTasksCompleted(tasksCompleted);
-        console.log(tasksCompleted)
+        setTasksCompleted(newCheckboxes);
+        console.log(newCheckboxes)
         
         fetch(`http://localhost:8080/extra/task/${localStorage.getItem('id')}`,{ 
             method: 'PUT', 
@@ -86,10 +103,12 @@ function Plan() {
             },  
             body: JSON.stringify(newCheckboxes)
         }); 
+            
+        fetchAge();
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 5000);
+        }, 300);
     }
 
     return (

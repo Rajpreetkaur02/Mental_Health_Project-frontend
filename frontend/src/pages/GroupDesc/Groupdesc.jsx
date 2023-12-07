@@ -135,6 +135,8 @@ const Groupdesc = () => {
         }
     }
 
+    
+
     useEffect(() => {
         fetchData();
     }, [])
@@ -169,7 +171,7 @@ const Groupdesc = () => {
 
 
     return (
-        <div>
+        <div className='grpdescbackcontainer'>
             <Navbar />
             <>
                 <div className="descheader">

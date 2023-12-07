@@ -47,12 +47,15 @@ function Dashboard() {
   const [tasksCompleted, setTasksCompleted] = useState(0);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
-  let i = 0;
+  const [sleepData, setSleepData] = useState({});
+  
   console.log(formattedDate);
-  // console.log(loggedInUserDetails.name)
-  const fetchData = async () => {
+  
+
+  const fetchData = () => {
+    if (localStorage.getItem('id') != null) {
     try {
-      const response = await fetch(`http://localhost:8080/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
+      fetch(`http://localhost:8080/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 
@@ -60,10 +63,7 @@ function Dashboard() {
           'Authorization': `Bearer ${localStorage.getItem('token')}` 
         } 
       })
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const result = await response.json()
+      .then((res) => res.json())
       .then((data) => {
         console.log(data)
         setData(data) 
@@ -72,10 +72,12 @@ function Dashboard() {
       console.error('Error fetching data:', error);
     }
   }
+  }
   
 
   const fetchTasksCompleted = async () => {
-    try {
+    if (localStorage.getItem('id') != null) {
+    // try {
       const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
@@ -84,38 +86,87 @@ function Dashboard() {
           'Authorization': `Bearer ${localStorage.getItem('token')}` 
         } 
       })
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const result = await response.json()
-      .then((data) => {
-        console.log(data)
-        setTasksCompleted(data.filter((value) => value === true).length) 
+      if (response.status == 200) {
+        const result = await response.json()
+        .then((data) => {
+          console.log(data)
+          setTasksCompleted(data.filter((value) => value === true).length) 
+        })
+      // }
+    } else {
+      // console.error('Error fetching data:', error);
+      setTasksCompleted(0);
+    }
+  }
+  }
+
+  const fetchSleep = async () => {
+    if (localStorage.getItem('id') != null) {
+      const response = await fetch(`http://localhost:8080/extra/getSleep/${localStorage.getItem('id')}`,{ 
+        crossDomain: true, 
+        headers: { 'Content-Type':'application/json', 
+          Accept: "application/json", 
+          "Access-Control-Allow-Origin": "*", 
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        } 
       })
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      if (response.status == 200) {
+        const result = await response.json()
+        .then((data) => {
+          // console.log(data)
+          setSleepData(data) 
+        })
+      // }
+    // } else {
+      // console.error('Error fetching data:', error);
+      // setTasksCompleted(0);
+    }
     }
   }
 
-  console.log(data)
-  
   useEffect(() => { 
     fetchData();
     fetchTasksCompleted();
+    fetchSleep();
     setLoading(true);
     setTimeout(() => {
         setLoading(false);
-    }, 5000);
+    }, 1000);
   },[]) 
 
   console.log(tasksCompleted)
-  
-  // const data = moodHistory.map((moods) => {
-  //     return {...moods, Mood: moods., name: `Day ${i}`}  
-  // })
   const avgData = Object.keys(data).map(key => {
       return {...data, name: key, Mood: data[key]}
   })
+
+  const sleepDetail = Object.keys(sleepData).map(key => {
+    return {...sleepData, name: key, Sleep: sleepData[key]}
+  })
+  console.log(avgData)
+  console.log(sleepDetail)
+  const mergedData = [...avgData, ...sleepDetail]
+  console.log(mergedData)
+
+  const groupedData = mergedData.reduce((result, item) => {
+    const existingItem = result.find((i) => i.name === item.name);
+
+    if (existingItem) {
+      // Combine fields from both datasets
+      Object.keys(item).forEach((key) => {
+        existingItem[key] = existingItem[key] || item[key];
+      });
+    } else {
+      result.push({ ...item });
+    }
+
+    return result;
+  }, []);
+  const sortedMergedData = [...groupedData].sort((a, b) => new Date(a.name) - new Date(b.name));
+  console.log(groupedData)
+
+  // avgData = Object.keys(sleepData).map(key => {
+  //   return {...sleepData, name: key, Sleep: sleepData[key]}
+  // })
 
   // const data = [
   //   {
@@ -228,7 +279,7 @@ function Dashboard() {
           <LineChart
             width={500}
             height={300}
-            data={avgData}
+            data={sortedMergedData}
             // margin={{
             //   top: 5,
             //   right: 30,
@@ -247,7 +298,7 @@ function Dashboard() {
               stroke="#86c5bf"
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="Productivity" stroke="#e27259" />
+            <Line type="monotone" dataKey="Sleep" stroke="#e27259" activeDot={{ r: 8 }}/>
           </LineChart>
         </ResponsiveContainer>
         <LocalizationProvider dateAdapter={AdapterDayjs}>

@@ -51,22 +51,23 @@
 .communityTopRight {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 50%;
     gap: 20px;
 }
 
 .supportmembers{
-    width: 35%;
+    /* width: 35%; */
     display: flex;
-    margin: auto;
+    /* margin: auto; */
 }
 
 .supportmembersleft{
-    padding-left: 10px;
+    padding-right: 15px;
 }
 .supportmembersright{
     border-left: 1.5px solid grey;
-    padding-left: 20px;
+    padding-left: 15px;
 }
 /* .communityBottom {
     display: flex;
