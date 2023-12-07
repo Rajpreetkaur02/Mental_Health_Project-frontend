@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './Plan.css';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { FaSquareFontAwesomeStroke } from 'react-icons/fa6';
 
 function Plan() {
     const [planDetail, setPlanDetail] = useState({});
     const [tasksCompleted, setTasksCompleted] = useState([]);
     const [loading, setLoading] = useState(false);
     
+    // Fetch User Age
     const fetchAge = () => {
-        console.log("age");
         try {
             fetch(`http://localhost:8080/user/age/${localStorage.getItem('email')}`,{ 
                 crossDomain: true, 
@@ -22,7 +21,6 @@ function Plan() {
                 } 
             }).then((res) => res.text())
             .then((data) => {
-                console.log(data)
                 fetchPlan(data);
             })
         } catch (error) {
@@ -30,33 +28,30 @@ function Plan() {
         }
     }
 
+    // Fetch Weekly Plan According to Age
     const fetchPlan = (age) => {
-        console.log("plan");
-        
         if (age != '') {
             try {
-            fetch(`http://localhost:8080/plans/plan/${age}`, {
-                crossDomain: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-            }).then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                setPlanDetail(data)
-            });
-        } catch (error) {
-            console.log(error);
-            setPlanDetail(['false', 'false', 'false'])
-        }
+                fetch(`http://localhost:8080/plans/plan/${age}`, {
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                }).then((res) => res.json())
+                .then((data) => {
+                    setPlanDetail(data)
+                });
+            } catch (error) {
+                setPlanDetail(['false', 'false', 'false'])
+            }
         }
     }
 
+    // Fetch Tasks Completed
     const fetchTasks = async () => {
-        console.log("task");
         const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
             crossDomain: true, 
             headers: { 'Content-Type':'application/json', 
@@ -68,12 +63,9 @@ function Plan() {
           if (response.status == 200) {
             const result = await response.json()
             .then((data) => {
-              console.log(data)
               setTasksCompleted(data) 
             })
-          // }
         } else {
-          // console.error('Error fetching data:', error);
           setTasksCompleted([false, false, false]);
         }
     }
@@ -91,7 +83,6 @@ function Plan() {
         const newCheckboxes = [...tasksCompleted];
         newCheckboxes[index] = !newCheckboxes[index];
         setTasksCompleted(newCheckboxes);
-        console.log(newCheckboxes)
         
         fetch(`http://localhost:8080/extra/task/${localStorage.getItem('id')}`,{ 
             method: 'PUT', 
@@ -122,31 +113,23 @@ function Plan() {
                 <h3>Your This Week's Plan</h3>
                 <Box className="planBox" sx={{ width: '100%' }}>
                     <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                            <Grid className='planBoxItem' item xs={6}>
-                                <p><strong>Task</strong></p>
-                            </Grid>
-                            <Grid className='planBoxItem' item xs={6}>
-                                <p><strong>Completed</strong></p>
-                            </Grid>
-                            </Grid>
-                        {/* </Grid> */}
-                        {planDetail.length > 0 && planDetail.map((ele, idx) => (
-                            <Grid key = {idx} container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                            <Grid className='planBoxItem' item xs={6}>
-                                <p>{ele}</p>
-                            </Grid>
-                            <Grid key={idx} className='planBoxItem' item xs={6}>
-                                <input type="checkbox" style={{transform: 'scale(1.2)'}} checked={tasksCompleted[idx]} onChange={() => handleChange(idx)}/>
-                            </Grid>
-                            </Grid>
-                        ))}
-                        {/* <Grid className='planBoxItem' item xs={6}>
-                            <p>Play Games</p>
+                        <Grid className='planBoxItem' item xs={6}>
+                            <p><strong>Task</strong></p>
                         </Grid>
                         <Grid className='planBoxItem' item xs={6}>
-                            <input type="checkbox" style={{transform: 'scale(1.2)'}}/>
-                        </Grid> */}
-                    {/* </Grid> */}
+                            <p><strong>Completed</strong></p>
+                        </Grid>
+                        </Grid>
+                    {planDetail.length > 0 && planDetail.map((ele, idx) => (
+                        <Grid key = {idx} container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                        <Grid className='planBoxItem' item xs={6}>
+                            <p>{ele}</p>
+                        </Grid>
+                        <Grid key={idx} className='planBoxItem' item xs={6}>
+                            <input type="checkbox" style={{transform: 'scale(1.2)'}} checked={tasksCompleted[idx]} onChange={() => handleChange(idx)}/>
+                        </Grid>
+                        </Grid>
+                    ))}
                 </Box>
             </div>
         )}

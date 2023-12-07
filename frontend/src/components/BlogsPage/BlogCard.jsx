@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./BlogCard.module.css";
-import image1 from "../../assets/blogImage.jpg";
 import { Link } from "react-router-dom";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";

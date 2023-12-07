@@ -15,10 +15,8 @@ const GroupCard = (data) => {
           <div className="cardbox"><MdOutlinePublic/>Public</div>
           <div className="cardbox"><GrGroup/>{data.members}</div>
         </div>
-        {/* <div className="groupcardmembers"><MdOutlineGroupAdd size={20}/>{data.members} members</div> */}
         <div className="groupcardorganizer">Organized by <span id='grporganizer'>{data.organizer}</span></div>
         <div className="groupcardtopics">{data.topics}</div>
-        {/* <div className="groupcarddesc" dangerouslySetInnerHTML={{__html: data.about.slice(0,20)}}></div> */}
         <Link className="groupcardbutton" to={`/groupdesc/${data._id}`}>
           <button>Find out more</button>
         </Link>

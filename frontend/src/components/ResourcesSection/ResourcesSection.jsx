@@ -2,7 +2,6 @@ import React from 'react'
 import Planner from '../../assets/counselling.png'
 import Resource from '../../assets/resource.png'
 import Groups from '../../assets/groups.png'
-
 import { FaArrowRight } from 'react-icons/fa'
 
 const ResourcesSection = () => {

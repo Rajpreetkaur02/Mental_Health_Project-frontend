@@ -8,8 +8,6 @@ import GroupPosts from '../GroupDescComponents/GroupPosts';
 import GroupChat from '../GroupDescComponents/GroupChat';
 import GroupPhotos from '../GroupDescComponents/GroupPhotos';
 
-
-
 const GroupSidebar = ({ componentHandler, member, admin }) => {
   const [active, setActive] = useState('GroupAbout');
   const [isMember, setMember] = useState(true);
@@ -33,6 +31,7 @@ const GroupSidebar = ({ componentHandler, member, admin }) => {
     }
   }, [admin]);
 
+  // Fetch Group Details
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
       fetch(`http://localhost:8080/groups/${id.id}`, {
@@ -54,8 +53,6 @@ const GroupSidebar = ({ componentHandler, member, admin }) => {
 
   return (
     <div className='groupelements'>
-    
-        
           <ul>
             <li onClick={() => { componentHandler(<GroupAbout data={about} />); setActive('GroupAbout') }} className={` ${active === 'GroupAbout' ? `` : ''}`}>
               About
@@ -98,10 +95,7 @@ const GroupSidebar = ({ componentHandler, member, admin }) => {
                 </li>
               </>
             )}
-
-          </ul>
-        
-      
+          </ul>    
     </div>
   )
 }

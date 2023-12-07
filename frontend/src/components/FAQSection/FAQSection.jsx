@@ -32,6 +32,7 @@ const FAQSection = () => {
     setOpenProfile4((current) => !current);
     setPlusShow4((current) => !current);
   };
+  
   return (
     <div>
       <div className="questioncontainer">

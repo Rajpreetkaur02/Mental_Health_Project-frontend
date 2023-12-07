@@ -15,7 +15,6 @@
 }
 
 .planBoxItem {
-    /* padding: 3% 3%; */
     border-bottom: 1px solid lightgray;
     display: flex;
     align-items: center;

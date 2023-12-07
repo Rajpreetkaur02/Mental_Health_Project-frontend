@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import '../../styles/Groupdesc.css'
 import { FaComment } from "react-icons/fa6";
-import Cat from '../../assets/cat.png'
 import { useParams } from 'react-router-dom';
 import { formatISO9075, formatISO } from 'date-fns';
 import { differenceInMinutes, formatDistanceToNow } from 'date-fns';
@@ -12,8 +11,6 @@ import { IoSend } from "react-icons/io5";
 const GroupPosts = () => {
   const [postHistory, setPostHistory] = useState([]);
   const [liked, setLiked] = useState(false);
-
-  const id = useParams();
 
   const [postDetails, setpostDetails] = useState({
     postID: '',
@@ -25,12 +22,14 @@ const GroupPosts = () => {
     opencomments: false,
     visibleComments: 0
   });
-
+  
   const [commentDetails, setCommentDetails] = useState({
     username: localStorage.getItem('name'),
     content: '',
     timestamp: '',
   })
+  
+  const id = useParams();
 
   const sortedPosts = postHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
@@ -39,9 +38,9 @@ const GroupPosts = () => {
     return formatDistanceToNow(new Date(timestamp), { addSuffix: true });
   };
 
+  // Update Post Likes
   const handleIconClick = async (postId) => {
     setLiked(prevstate => !prevstate);
-    console.log("liked ", liked)
     try {
       const response = await fetch(`http://localhost:8080/groups/updatePostLikes/${id.id}`, {
         method: 'PUT',
@@ -64,7 +63,6 @@ const GroupPosts = () => {
 
   function handleUserInputChange(e) {
     const { value } = e.target;
-    console.log(value)
     setpostDetails({
       ...postDetails,
       "content": value,
@@ -72,6 +70,7 @@ const GroupPosts = () => {
     });
   }
 
+  // Add group Posts
   const handlesubmit = async () => {
     const response = await fetch(`http://localhost:8080/groups/addPost/${id.id}`, {
       method: 'PUT',
@@ -86,6 +85,7 @@ const GroupPosts = () => {
     fetchData();
   }
 
+  // Fetch Group Posts
   const fetchData = async () => {
     try {
       const response = await fetch(`http://localhost:8080/groups/getPosts/${id.id}`, {
@@ -103,7 +103,6 @@ const GroupPosts = () => {
       }
       const result = await response.json()
         .then((data) => {
-          console.log(data)
           setPostHistory(data)
         })
     } catch (error) {
@@ -117,13 +116,13 @@ const GroupPosts = () => {
 
   function handlepostcommentchange(e) {
     const { value } = e.target;
-    console.log(value)
     setCommentDetails({
       ...commentDetails,
       "content": value,
     })
   }
 
+  // Open Comments
   const handleopencomments = async (postId) => {
     const updatedPostHistory = postHistory.map(post => {
       if (post.postID === postId) {
@@ -139,9 +138,8 @@ const GroupPosts = () => {
     setPostHistory(updatedPostHistory);
   }
 
+  // Add comments API
   const handlecommentpost = async (postId) => {
-    console.log(commentDetails);
-    console.log(postId);
     const response = await fetch(`http://localhost:8080/groups/addComment/${id.id}`, {
       method: 'PUT',
       headers: {
@@ -184,8 +182,6 @@ const GroupPosts = () => {
     return colors[index];
   };
 
-
-
   return (
     <div>
       <div className="grppostcontainer">
@@ -201,9 +197,7 @@ const GroupPosts = () => {
               <div key={index} className="postcontainer">
                 <div className="postheader">
                   <div className="postimg">
-                    {/* <img src={Cat} /> */}
                     <i style={{ backgroundColor: getAvatarColor(entry.username) }}>{entry.username[0]}</i>
-                      
                   </div>
                   <div className="postname">
                     <div className="postusername">{entry.username}</div>

@@ -9,6 +9,7 @@ function Map() {
         getClientLocation();
     })
 
+    // Taking Client Location from points
     function getClientLocation() {
         navigator.permissions.query({ name: "geolocation" })
         .then((result) => {
@@ -21,6 +22,7 @@ function Map() {
         });
     }
       
+    // Display Map
     function displayMap() {
         if (!mapFrame.current || (mapFrame.current && mapFrame.current.getAttribute("src") === "")) {
             navigator.geolocation.getCurrentPosition((position) => {

@@ -9,9 +9,8 @@ const MoodTracker = () => {
   const [loading, setLoading] = useState(false);
   const [bedDateTime, setBedDateTime] = useState('');
   const [wakeupDateTime, setWakeupDateTime] = useState('');
-  // const [totalHoursSlept, setTotalHoursSlept] = useState(null);
 
-
+  // Fetch Moods
   const fetchData = () => {
     try {
       fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
@@ -24,9 +23,6 @@ const MoodTracker = () => {
           "MyDate": formatISO(new Date(), { representation: 'date' })
         }
       })
-      // if (!response.ok) {
-      //   throw new Error(`HTTP error! Status: ${response.status}`);
-      // }
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -37,6 +33,7 @@ const MoodTracker = () => {
     }
   }
 
+  // Add Mood to Db
   const handleMoodChange = async (newMood) => { 
     setMood(newMood); 
     console.log(mood) 
@@ -61,10 +58,8 @@ const MoodTracker = () => {
 
  
   const calculateHoursSlept = () => {
-    
     const bedtimeDate = new Date(`${bedDateTime}`);
     const wakeupTimeDate = new Date(`${wakeupDateTime}`);
-
     const timeDifference = wakeupTimeDate - bedtimeDate;
     const hoursSlept = timeDifference / (1000 * 60 * 60);
     
@@ -73,6 +68,7 @@ const MoodTracker = () => {
     } else if (hoursSlept.toFixed(2) == "NaN") {
       swal("Please Enter Some Value" , "" ,  "error")      
     } else {
+      // Add Sleep
       fetch(`http://localhost:8080/extra/addSleep/${localStorage.getItem('id')}`,{ 
         method: 'PUT', 
         headers: { 
@@ -84,14 +80,8 @@ const MoodTracker = () => {
         body: JSON.stringify({"hours": parseInt(hoursSlept.toFixed(2)), "dateTime": bedtimeDate.toISOString().split('T')[0]})
     }); 
     }
-
-    // setTotalHoursSlept(hoursSlept);
     console.log(parseInt(hoursSlept.toFixed(2)))
   };
-
-  // useEffect(() => {
-  //   fetchData();
-  // })
 
   useEffect(() => { 
     fetchData();
@@ -108,6 +98,7 @@ const MoodTracker = () => {
           <div className="spinner"></div>
         </div>
       ) : (
+        // Mood Tracker
       <div className="mood-tracker">
         <div className='moodAndSleep'>
         <div className='moods'>
@@ -118,6 +109,7 @@ const MoodTracker = () => {
             <button onClick={() => handleMoodChange('😞 Sad')}>😞 Sad</button>
           </div>
         </div>
+        {/* Sleep Tracker */}
         <div className='sleepTime'>
           <h3>Sleep Tracker</h3>
           <form>
