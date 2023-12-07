@@ -1,11 +1,10 @@
+
+
+/* BLOGS PAGE */
+
 .blogsWrapper {
   background-color: rgba(214, 241, 245, 0.534);
   padding: 10px 60px;
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-  justify-content: center; */
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
@@ -35,6 +34,8 @@
     justify-content: center;
     align-items: center;
 }
+
+
 
 /* UPLOAD PAGE */
 
@@ -96,7 +97,6 @@
   align-items: center;
 }
 
-
 .publishBlogbtn button{
   background-color: #EEF2FF;
     border-radius: 8px;
@@ -112,7 +112,6 @@
     justify-content: center;
     align-items: center;
 }
-
 
 
 

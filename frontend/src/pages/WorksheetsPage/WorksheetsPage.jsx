@@ -2,8 +2,6 @@ import React from "react";
 import WorksheetCard from "../../components/WorksheetsPage/WorksheetCard";
 import classes from "../../components/WorksheetsPage/WorksheetCard.module.css";
 import Navbar from "../../components/Navbar/Navbar";
-// import worksheets from "../../worksheets.json";
-// import image from "../../assets/blogImage.jpg"
 import one from "../../assets/WorksheetsImgs/challenging negative thoughts.jpg";
 import two from "../../assets/WorksheetsImgs/coping-skills-for-depression.jpg";
 import three from "../../assets/WorksheetsImgs/decatastrophising.jpg";
@@ -21,7 +19,6 @@ import fourteen from "../../assets/WorksheetsImgs/life story.jpg";
 import fifteen from "../../assets/WorksheetsImgs/strengths weaknesses.jpg";
 
 function WorksheetsPage() {
-  // console.log(worksheets);
   return (
     <>
       <Navbar />
