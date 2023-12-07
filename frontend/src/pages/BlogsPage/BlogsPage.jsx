@@ -10,6 +10,7 @@ import { MdAdd } from "react-icons/md";
 function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
 
+
   console.log(blogs);
   const navigate = useNavigate();
 
@@ -33,6 +34,9 @@ function BlogsPage() {
         setBlogs(data);
     });
 }, []);
+
+
+
 
   console.log(blogs)
   return (

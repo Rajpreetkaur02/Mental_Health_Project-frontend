@@ -8,6 +8,7 @@ import "./BlogDetails.css"
 function BlogsDetail() {
   const [blogDetails, setblogdetails] = useState([]);
   const [imageSrc, setImageSrc] = useState(null);
+  const [Author, setAuthor] = useState('')
   const id = useParams();
 
   const formatTimestamp = (timestamp) => {
@@ -34,6 +35,10 @@ function BlogsDetail() {
           const imageUrl = `data:image/png;base64,${data.img.data}`;
           setImageSrc(imageUrl);
         }
+        if(data.author) {
+          const authorInitial = data.author[0];
+          setAuthor(authorInitial);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -42,12 +47,29 @@ function BlogsDetail() {
     fetchData();
   }, []); 
 
+   
+
 console.log(blogDetails)
   return (
     <>
     <Navbar/>
-    <div>
-    <div className="banner">
+    
+    <div className='blogHeaderContainer'>
+      <div className="authorHeader">
+        <i>{Author}</i>
+        <h2>{blogDetails.author}</h2>
+        <p>Published {blogDetails.timestamp}</p>
+        <h1>{blogDetails.title}</h1>
+        <h4>{blogDetails.category}</h4>
+      </div>
+
+      <div className="banner">
+        <img src={imageSrc}/>
+      </div>
+
+     
+      <div class="article" dangerouslySetInnerHTML={{__html: blogDetails.content}} />
+    {/* <div className="banner">
         <img src={imageSrc}/>
     </div>
     <div class="blog">
@@ -55,7 +77,7 @@ console.log(blogDetails)
         <p class="published"><span>{blogDetails.author}</span></p>
         <p class="published"><span>{blogDetails.timestamp}</span></p>
         <div class="article" dangerouslySetInnerHTML={{__html: blogDetails.content}} />
-    </div>
+    </div> */}
     </div>
     </>
   )
