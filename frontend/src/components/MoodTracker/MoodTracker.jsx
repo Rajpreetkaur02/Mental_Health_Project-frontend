@@ -65,7 +65,7 @@ const MoodTracker = () => {
     
     if (hoursSlept.toFixed(2) < 0) {
       swal("Please Enter Valid Data" , "" ,  "error")      
-    } else if (hoursSlept.toFixed(2) == "NaN") {
+    } else if (hoursSlept.toFixed(2) === "NaN") {
       swal("Please Enter Some Value" , "" ,  "error")      
     } else {
       // Add Sleep
@@ -80,6 +80,7 @@ const MoodTracker = () => {
         body: JSON.stringify({"hours": parseInt(hoursSlept.toFixed(2)), "dateTime": bedtimeDate.toISOString().split('T')[0]})
     }); 
     }
+    alert("Sleep Added Successfully!")
     console.log(parseInt(hoursSlept.toFixed(2)))
   };
 

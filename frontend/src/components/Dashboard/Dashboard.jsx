@@ -9,11 +9,9 @@ import girlImg from "../../assets/greetingImg.png";
 import tasks from "../../assets/complete.svg";
 import sleep from "../../assets/sleeping.svg";
 import reports from "../../assets/reports.svg";
+import {formatISO9075, subDays} from "date-fns"
 
 import {
-  BarChart,
-  Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -76,7 +74,7 @@ function Dashboard() {
         } 
       })
       if (response.status === 200) {
-        const result = await response.json()
+        await response.json()
         .then((data) => {
           setTasksCompleted(data.filter((value) => value === true).length) 
         })
@@ -99,7 +97,7 @@ function Dashboard() {
         } 
       })
       if (response.status === 200) {
-        const result = await response.json()
+        await response.json()
         .then((data) => {
           setSleepData(data) 
         })
@@ -145,7 +143,7 @@ function Dashboard() {
 
   // Sort the final data according to dates
   const sortedMergedData = [...groupedData].sort((a, b) => new Date(a.name) - new Date(b.name));
-
+  
   return (
     <>
       {loading ? (
@@ -188,7 +186,7 @@ function Dashboard() {
                 <img src={sleep} alt="tick-icon"  className={classes["card_icon"]} />
               </div>
               <div className={classes.cardContent}>
-                <h5>100 Score</h5>
+                <h5>{sleepData[formatISO9075(subDays(new Date(), 1)).split(' ')[0]] ? sleepData[formatISO9075(subDays(new Date(), 1)).split(' ')[0]] : "Add Sleep"} Hours</h5>
                 <h6>Sleep</h6>
               </div>
             </div>
