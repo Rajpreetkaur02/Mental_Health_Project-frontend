@@ -3,11 +3,13 @@
   line-height: 1px;
   font-size: 20px;
 }
+
 .icon_header {
   vertical-align: middle;
   line-height: 1px;
   font-size: 26px;
 }
+
 .icon,
 .icon_header {
   margin-right: 5px;
@@ -20,7 +22,7 @@
   cursor: pointer;
 }
 
- #sidebar {
+#sidebar {
   grid-area: sidebar;
   height: 100%;
   background-color: #97d4e6;
@@ -73,11 +75,6 @@
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
-  /*
-    we want the z-index of the sidebar higher so that
-    the charts are not showing over the sidebar 
-    on small screens
-  */
   z-index: 12 !important;
 }
 
@@ -87,8 +84,7 @@
 
 /* Medium <= 992px */
 
-@media screen and (max-width: 992px) {
-   
+@media screen and (max-width: 992px) {   
   #sidebar {
     display: none;
   }

@@ -4,9 +4,6 @@ import image1 from "../../assets/blogImage.jpg";
 import { Link } from "react-router-dom";
 
 function WorksheetCard({ id, image, title, content, pdf }) {
-  console.log(pdf);
-  // console.log("Image", image);
-
   return (
     <div className={classes.worksheetCard}>
       <img className={classes.image} src={image} alt="worksheet" />

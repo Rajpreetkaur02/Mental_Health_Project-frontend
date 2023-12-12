@@ -5,14 +5,6 @@ import Swal from 'sweetalert2'
 const GroupEvents = ({ admin }) => {
   const [Admin, setAdmin] = useState(false);
 
-  useEffect(() => {
-    if (admin) {
-      setAdmin(true)
-    } else {
-      setAdmin(false)
-    }
-  }, [admin]);
-
   const steps = ['1', '2', '3', '4']
   const Queue = Swal.mixin({
     progressSteps: steps,
@@ -21,6 +13,14 @@ const GroupEvents = ({ admin }) => {
     showClass: { backdrop: 'swal2-noanimation' },
     hideClass: { backdrop: 'swal2-noanimation' },
   })
+
+  useEffect(() => {
+    if (admin) {
+      setAdmin(true)
+    } else {
+      setAdmin(false)
+    }
+  }, [admin]);
 
 
   function HandleAddEvent() {
@@ -80,10 +80,8 @@ const GroupEvents = ({ admin }) => {
             <h1>Coming Soon</h1>
             <h3>There are no events yet!</h3>
           </div>
-
         </>
       }
-
     </div>
   )
 }

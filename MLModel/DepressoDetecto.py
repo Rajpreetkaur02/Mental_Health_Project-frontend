@@ -11,21 +11,20 @@ from sklearn.linear_model import LogisticRegression
 from keras.models import Sequential
 from keras.layers import Dense
 
-warnings.filterwarnings("ignore", category=UserWarning) #suppress UserWarning
+warnings.filterwarnings("ignore", category=UserWarning)
 
 '''Data cleaning'''
 df = pd.read_csv("DepressoFinal.csv")
 categ = list(df.columns)
 
-# label_encoder object knows how to understand word labels...apparently
 le = preprocessing.LabelEncoder()
-# Encode Categorical Columns
+
 df[categ] = df[categ].apply(le.fit_transform)
 x = df.drop('DEPRESSED', axis = 1)
 y = df['DEPRESSED']
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=109)
-dnn_force_train = False # forces model to be trained even if its already available
+dnn_force_train = False
 
 def _check_for_dnn():
     try:
@@ -55,12 +54,12 @@ def _train_dnn(x_train=x_train, y_train=y_train):
     print('DNN loaded')
     return model
 
-dec_tree = DecisionTreeClassifier(criterion = 'entropy', random_state = 0) # decision tree
-nb = GaussianNB()    # naive-bayes
-svm = SVC(decision_function_shape='ovo')  # SVM
-knn= KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2 )    # KNN
-random_forest = RandomForestRegressor() # random forest
-logistic_reg = LogisticRegression()    # logistic regression
+dec_tree = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
+nb = GaussianNB() 
+svm = SVC(decision_function_shape='ovo')
+knn= KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2 )
+random_forest = RandomForestRegressor()
+logistic_reg = LogisticRegression()
 dnn = _check_for_dnn()
 for model in [dec_tree, nb, svm, knn, random_forest, logistic_reg]:
     model.fit(x_train, y_train)

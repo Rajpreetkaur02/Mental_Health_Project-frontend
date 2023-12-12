@@ -61,6 +61,7 @@ function GeneralUserDetails() {
         <div className='mainGeneralDetails'>
             <h1>Provide some extra details to get a personalized plan - </h1>
             <form>
+                {/* Age Part */}
                 <div className='ageTag'>
                 <label>Age Range </label>
                     <select value={userDetails.age} onChange={handleInputChange} name="age" id="" required>
@@ -72,6 +73,8 @@ function GeneralUserDetails() {
                         <option value="50+">50+</option>
                     </select>
                 </div>
+
+                {/* Gender Part */}
                 <div className='genderTag'>
                     <label>Gender</label>
                     <div className='genderButtons'>
@@ -80,6 +83,8 @@ function GeneralUserDetails() {
                         <div className={`innerGenderButtons ${selectedGender === 'Others' ? 'genderSelected' : ''}`} onClick={() => handleGenderClick('Others')}>OTHERS</div>
                     </div>
                 </div>
+
+                {/* Income Part */}
                 <div className='income'>
                     <label>Household Income</label>
                     <select onChange={handleInputChange} value={userDetails.income} name="income" id="">

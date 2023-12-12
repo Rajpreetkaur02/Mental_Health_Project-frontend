@@ -2,19 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './GroupChatPage.css'
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
-import { over } from 'stompjs';
 import Navbar from '../../components/Navbar/Navbar';
 
 var stompClient = null;
-const ChatApp = () => {
-  // const [username, setUsername] = useState('');
-  // const [stompClient, setStompClient] = useState(null);
-  // var stompClient = null;
 
+const ChatApp = () => {
   const [connecting, setConnecting] = useState(true);
   const [messages, setMessages] = useState([]);
   const [GroupName, setGroupName] = useState('');
-  // const [messageInput, setMessageInput] = useState('');
   const [userData, setUserData] = useState({
     username: '',
     connected: false,
@@ -30,14 +25,14 @@ const ChatApp = () => {
     setGroupName(localStorage.getItem('GroupName'))
   }, [])
 
+  //function to connect the user to the websocket server
   const connect = () => {
-
     const socket = new SockJS('http://localhost:8080/ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, onConnected, onError);
   };
 
-
+  //once the connection is established, add user to the chat
   const onConnected = () => {
     setUserData({ ...userData, "connected": true });
     console.log(userData)
@@ -52,10 +47,12 @@ const ChatApp = () => {
     setConnecting(false);
   };
 
+  //error in connecting to the server
   const onError = (error) => {
     console.error('Could not connect to WebSocket server. Please refresh this page to try again!', error);
   };
 
+  //sending message to the chat
   const sendMessage = (event) => {
     if (stompClient) {
       var chatMessage = {
@@ -69,12 +66,13 @@ const ChatApp = () => {
     event.preventDefault();
   };
 
+  //recieving the chat message
   const onMessageReceived = (payload) => {
     var message = JSON.parse(payload.body);
-
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
+  //this function is used to get different avatar colors
   const getAvatarColor = (messageSender) => {
     let hash = 0;
     for (let i = 0; i < messageSender.length; i++) {
@@ -86,10 +84,9 @@ const ChatApp = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
-    // if(stompClient) {
     connect();
-    // }
   }
+
   const handleUsername = (event) => {
     const { value } = event.target;
     console.log(value)
@@ -100,10 +97,11 @@ const ChatApp = () => {
     const { value } = event.target;
     setUserData({ ...userData, "message": value });
   }
+
   return (
     <div className='chatpagecontainer'>
       <Navbar />
-      
+
       {userData.connected && (
         <div id="chat-page">
           <div className="chat-container">
@@ -150,25 +148,25 @@ const ChatApp = () => {
 
       {!userData.connected && (
         <div class="username-page">
-        <div className="username-page-container">
-          <h2 className="title">Type your username to enter the Chatroom</h2>
-          <form onSubmit={registerUser}>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Username"
-                autoComplete="off"
-                className="form-control"
-                value={userData.username}
-                onChange={handleUsername}
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" className="accent username-submit">Start Chatting</button>
-            </div>
-          </form>
+          <div className="username-page-container">
+            <h2 className="title">Type your username to enter the Chatroom</h2>
+            <form onSubmit={registerUser}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  autoComplete="off"
+                  className="form-control"
+                  value={userData.username}
+                  onChange={handleUsername}
+                />
+              </div>
+              <div className="form-group">
+                <button type="submit" className="accent username-submit">Start Chatting</button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
       )}
 
     </div>

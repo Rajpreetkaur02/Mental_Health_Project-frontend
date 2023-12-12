@@ -8,10 +8,8 @@ const GroupDashboard = ({ groupId }) => {
     const [groupDetails, setGroupDetails] = useState([]);
     const [Admin, setAdmin] = useState(false);
 
-
-    console.log(JSON.parse(groupId));
-
     useEffect(() => {
+        // Fetch Specific Group Details
         const fetchData = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/groups/${JSON.parse(groupId)}`, {
@@ -25,7 +23,6 @@ const GroupDashboard = ({ groupId }) => {
                 });
                 const result = await response.json()
                     .then((data) => {
-                        console.log(data)
                         setGroupDetails(data)
                     })
             } catch (error) {
@@ -34,7 +31,6 @@ const GroupDashboard = ({ groupId }) => {
         };
         fetchData();
     }, [groupId]);
-    // console.log(groupDetails)
 
     function handleGroupLeave() {
         swal({
@@ -44,15 +40,15 @@ const GroupDashboard = ({ groupId }) => {
             buttons: true,
             dangerMode: true,
         })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Group left successfully!", {
-                        icon: "success",
-                    });
-                } else {
-                    swal("Thanks for not leaving us!");
-                }
-            });
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Group left successfully!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Thanks for not leaving us!");
+            }
+        });
     }
 
     useEffect(() => {
@@ -114,9 +110,7 @@ const GroupDashboard = ({ groupId }) => {
             ) : (
                 <p>Loading</p>
             )
-
-            }
-
+        }
         </div>
     )
 }

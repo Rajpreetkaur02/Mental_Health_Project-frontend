@@ -1,14 +1,7 @@
 import React from "react";
 import "../../styles/HomePage.css";
-//import HeroArrow from '../../assets/heroArrow.png'
-// import Article from '../assets/article.png'
-import Hand from "../../assets/hand.png";
 import Heroimg from "../../assets/heroimg.png";
-// import Happy from '../assets/happy.jpg'
-// import Support from '../assets/herosupport.jpg'
-import Chatbot from "../Chatbot/Chatbot";
 import { Link } from "react-router-dom";
-
 import Article from "../../assets/blogging.png";
 import Group from "../../assets/customer-care.png";
 import Therapist from "../../assets/mental-health.png";
@@ -73,7 +66,6 @@ const HeroSection = () => {
             <img src={Heroimg} className="heroimg" />
           </div>
         </div>
-        {/* <Chatbot /> */}
       </div>
     </div>
   );

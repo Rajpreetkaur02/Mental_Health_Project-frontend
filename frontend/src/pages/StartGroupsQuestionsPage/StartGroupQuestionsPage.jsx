@@ -6,13 +6,6 @@ import Navbar from '../../components/Navbar/Navbar';
 import '../../styles/Community.css'
 import NewGroup from '../../assets/NewGroup.png'
 
-// name
-// members:0
-// about
-// organizer: current user
-
-// users-> type: admin
-
 const modules = {
 
   toolbar: [
@@ -33,29 +26,7 @@ const formats = [
 
 const StartGroupQuestionsPage = () => {
   const [check, setCheck] = useState(false);
-  // const [loggedInUserDetails, setLoggedInUserDetails] = useState({
-  //   name: '',
-  //   email: ''
-  // });
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('token') !== null) {
-  //     fetch('http://localhost:8080/current-user',{
-  //         crossDomain: true,
-  //         headers: {
-  //             'Content-Type':'application/json',
-  //             Accept: "application/json",
-  //             "Access-Control-Allow-Origin": "*",
-  //             'Authorization': `Bearer ${localStorage.getItem('token')}`     
-  //         },    
-  //     })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //         setLoggedInUserDetails({name: data.name, email: data.username});
-  //     });
-  //   }
-  // }, [])
 
   const [groupDetails, setgroupDetails] = useState({
     title: '',
@@ -89,36 +60,36 @@ const StartGroupQuestionsPage = () => {
       'organizer': localStorage.getItem('name')
     }));
     console.log(groupDetails);
-    
-    const response = await fetch('http://localhost:8080/groups/addGroups',{
-        method: 'POST',
-        body: JSON.stringify({"title": groupDetails.title, "members": groupDetails.members, "topics": groupDetails.topics, "about": groupDetails.about, "organizer": groupDetails.organizer, "type": groupDetails.type, "location": groupDetails.location}),
-        headers: {
-          'Content-Type':'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`     
-        }
-    });  
+
+    const response = await fetch('http://localhost:8080/groups/addGroups', {
+      method: 'POST',
+      body: JSON.stringify({ "title": groupDetails.title, "members": groupDetails.members, "topics": groupDetails.topics, "about": groupDetails.about, "organizer": groupDetails.organizer, "type": groupDetails.type, "location": groupDetails.location }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
     if (response.status === 200) {
-        const res = await fetch('http://localhost:8080/extra/addDetails',{
-            method: 'POST',
-            body: JSON.stringify({"type": "admin", "userId": localStorage.getItem('id')}),
-            headers: {
-              'Content-Type':'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token')}`     
-            }
-        });
-        alert("Group Created Successfully! You will be contacted by our team after review!");
-        logout();
+      const res = await fetch('http://localhost:8080/extra/addDetails', {
+        method: 'POST',
+        body: JSON.stringify({ "type": "admin", "userId": localStorage.getItem('id') }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      alert("Group Created Successfully! You will be contacted by our team after review!");
+      logout();
     } else {
-        alert("Error!");
+      alert("Error!");
     }
-    
+
   }
 
   function logout() {
     localStorage.clear();
-        alert('User Logged Out!')
-        window.location.reload();
+    alert('User Logged Out!')
+    window.location.reload();
   }
 
 
@@ -180,27 +151,27 @@ const StartGroupQuestionsPage = () => {
             />
           </div>
           <div className="desctip">
-          <div id="tip"><span id='tipheading'>Tip</span> <br /> 
-          <span>
-          Questions to consider:
-          <ul>
-            <li>What is the group goal?</li>
-            <li>Who are you hoping to meet?</li>
-            <li>What will you do at your events?</li>
-          </ul>
-          </span>
-          </div>
+            <div id="tip"><span id='tipheading'>Tip</span> <br />
+              <span>
+                Questions to consider:
+                <ul>
+                  <li>What is the group goal?</li>
+                  <li>Who are you hoping to meet?</li>
+                  <li>What will you do at your events?</li>
+                </ul>
+              </span>
+            </div>
           </div>
         </div>
-      <div className="grpguidlines">
-        <input type="checkbox" onChange={() => {setCheck(!check)}}/>
-        <span>I have agreed to all the community guidelines</span>
-      </div>
-      {check && (
-        <div className="grpbtn">
-          <button type='submit' className='grpbtn'>Submit details</button>
+        <div className="grpguidlines">
+          <input type="checkbox" onChange={() => { setCheck(!check) }} />
+          <span>I have agreed to all the community guidelines</span>
         </div>
-      )}
+        {check && (
+          <div className="grpbtn">
+            <button type='submit' className='grpbtn'>Submit details</button>
+          </div>
+        )}
       </form>
     </div>
   )

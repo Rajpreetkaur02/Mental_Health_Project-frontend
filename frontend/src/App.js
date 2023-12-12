@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
@@ -34,7 +33,6 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/general" element={<GeneralUserDetails />}></Route>
         <Route path="/blogs" element={<BlogsPage />}></Route>
-        <Route path="/blogs/:id" element={<BlogsDetail />}></Route>
         <Route path="/resources" element={<WorksheetsPage />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/get-counselling" element={<TherapistsPage />}></Route>
@@ -46,6 +44,7 @@ function App() {
           <Route path="/startgroup" element={<StartGroupQuestionsPage />} />
           <Route path="/chat" element={<GroupChatPage />}></Route>
           <Route path="/uploadBlog" Component={UploadBlog}></Route>
+          <Route path="/blogs/:id" element={<BlogsDetail />}></Route>
           <Route path="/payment/:id" element={<Stripe />}></Route>
           <Route path="/success" element={<Success />}></Route>
         </Route>

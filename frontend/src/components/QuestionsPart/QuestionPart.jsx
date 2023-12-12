@@ -2,12 +2,10 @@ import React from 'react';
 import '../../styles/QuestionsPage.css'
 
 function QuestionPart({setValues, question, index, setError}) {
-
     const handleRadioChange = (index, value) => {
         setValues(prevValues => {
             const newValues = [...prevValues];
             newValues[index] = value;
-            console.log(newValues);
             setError('');
             return newValues;
         });

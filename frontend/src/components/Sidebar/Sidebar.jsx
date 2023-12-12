@@ -1,4 +1,3 @@
-//import React from 'react'
 import classes from "./Sidebar.module.css";
 
 import {
@@ -8,6 +7,7 @@ import {
   BsMenuButtonWideFill,
   BsFillGearFill
 } from "react-icons/bs";
+
 import {TbMoodPlus} from "react-icons/tb";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -35,16 +35,6 @@ function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
         <li onClick={() => {componentHandler(<Dashboard/>); setActive('Dashboard')}} className={`${classes["sidebar-list-item"]} ${active === 'Dashboard' ? `${classes["itemActive"]}` : ''}`}>
             <BsGrid1X2Fill className={classes.icon} /> Dashboard
         </li>
-        {/* <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillArchiveFill className='icon'/> Products
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillGrid3X3GapFill className='icon'/> Categories
-                </a>
-            </li> */}
 
         <li onClick={() => {componentHandler(<Plan/>); setActive('Plan')}} className={`${classes["sidebar-list-item"]} ${active === 'Plan' ? `${classes["itemActive"]}` : ''}`}>
             <BsListCheck className={classes.icon} /> Your Plan
@@ -53,7 +43,6 @@ function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
         <li onClick={() => {componentHandler(<MoodTracker/>); setActive('MoodTracker')}} className={`${classes["sidebar-list-item"]} ${active === 'MoodTracker' ? `${classes["itemActive"]}` : ''}`}>
             <TbMoodPlus className={classes.icon} /> Mood, Sleep Tracker
         </li>
-
 
         <li  onClick={() => {componentHandler(<Support/>); setActive('Support')}} className={`${classes["sidebar-list-item"]} ${active === 'Support' ? `${classes["itemActive"]}` : ''}`}>
             <BsPeopleFill className={classes.icon} /> Support Groups

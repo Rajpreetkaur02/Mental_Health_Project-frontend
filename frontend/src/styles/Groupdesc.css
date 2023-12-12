@@ -1,17 +1,16 @@
-.grpdescbackcontainer{
+.grpdescbackcontainer {
     background: #f9f8f4;
     height: auto;
 }
 
-
-.descheader{
+.descheader {
     justify-content: space-around;
     display: flex;
-    padding: 50px 20px 40px 20px; 
+    padding: 50px 20px 40px 20px;
     margin: auto;
 }
 
-.descheading{
+.descheading {
     height: 20vh;
     display: flex;
     flex-direction: column;
@@ -25,14 +24,14 @@
     gap: 10px;
 }
 
-.joinbutton{
+.joinbutton {
     display: flex;
     flex-direction: column;
     width: 15%;
     justify-content: center;
 }
 
-.joinbutton button{
+.joinbutton button {
     background-color: #EEF2FF;
     border-radius: 8px;
     box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
@@ -45,35 +44,37 @@
     font-weight: 600;
 }
 
-.topicsSection{
+.topicsSection {
     width: 80%;
     margin: auto;
     display: grid;
     padding-top: 20px;
     padding-bottom: 40px;
-    
+
 }
 
-.topicsSection p{
+.topicsSection p {
     font-size: 1.3rem;
     font-weight: 600;
 }
 
-.topicboxes{
+.topicboxes {
     padding-top: 10px;
     display: flex;
     gap: 10px;
 }
 
-#topicbox{
+#topicbox {
     padding: 10px;
     background-color: #dbedf0;
     border-radius: 10px;
+    width: auto;
 }
+
 
 /* TOPBAR CSS */
 
-.groupelements ul{
+.groupelements ul {
     display: flex;
     background-color: #e9e9eb;
     text-decoration: none;
@@ -86,17 +87,17 @@
     border-radius: 5px;
 }
 
-.groupelements ul li{
+.groupelements ul li {
     padding: 10px;
     position: relative;
     display: inline-block;
 }
 
-.groupelements ul li:hover{
+.groupelements ul li:hover {
     color: black;
 }
 
-.groupelements ul li::after{
+.groupelements ul li::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -110,7 +111,7 @@
     background-color: orange;
 }
 
-.groupelements ul li:hover::after{
+.groupelements ul li:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
     color: black;
@@ -119,7 +120,7 @@
 
 /* ABOUT SECTION */
 
-.grpaboutcontainer{
+.grpaboutcontainer {
     width: 80%;
     margin: auto;
     line-height: 1.5;
@@ -127,14 +128,14 @@
     min-height: 60vh;
 }
 
-.grpaboutcontainer img{
+.grpaboutcontainer img {
     display: block;
-margin-left: auto;
-margin-right: auto;
-width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
-.grpreviewcontainer{
+.grpreviewcontainer {
     width: 80%;
     margin: auto;
     display: flex;
@@ -144,19 +145,21 @@ width: 20%;
     min-height: 70vh;
 }
 
-.grpeventscontainer h1, .grpeventscontainer h3, .grpreviewcontainer h1{
+.grpeventscontainer h1,
+.grpeventscontainer h3,
+.grpreviewcontainer h1 {
     opacity: 0.2;
 }
 
 
 /* POSTS SECTION */
 
-.grppostcontainer{
+.grppostcontainer {
     width: 80%;
     margin: auto;
 }
 
-.newpostcontainer{
+.newpostcontainer {
     background-color: #dbedf0;
     width: 80%;
     margin: 40px auto;
@@ -167,7 +170,7 @@ width: 20%;
     border-radius: 10px;
 }
 
-.newpostcontainer textarea{
+.newpostcontainer textarea {
     min-height: 20vh;
     background-color: #fafafa;
     border: none;
@@ -175,13 +178,13 @@ width: 20%;
     padding: 20px;
 }
 
-#postbutton{
+#postbutton {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#postbutton button{
+#postbutton button {
     padding: 10px 40px 10px 40px;
     background-color: blue;
     color: #fff;
@@ -190,11 +193,11 @@ width: 20%;
     border: none;
 }
 
-#postheading{
+#postheading {
     font-size: 1.5rem;
 }
 
-.postcontainer{
+.postcontainer {
     padding: 20px;
     gap: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -202,24 +205,23 @@ width: 20%;
     background-color: #fff;
 }
 
-.postheader{
+.postheader {
     display: flex;
     align-items: center;
 }
 
-.postname{
+.postname {
     padding: 10px;
     gap: 20px;
 }
 
-.postusername{
+.postusername {
     color: blue;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
-.postimg i{
-    /* position: absolute; */
+.postimg i {
     width: 42px;
     height: 42px;
     overflow: hidden;
@@ -234,24 +236,23 @@ width: 20%;
     text-transform: uppercase;
 }
 
-.postTime{
+.postTime {
     color: grey;
 }
 
-.postcontainer p{
+.postcontainer p {
     padding: 20px;
 }
 
-.allpostscontainer{
+.allpostscontainer {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.likecomment{
+.likecomment {
     display: flex;
     width: 20%;
-    /* justify-content: space-between; */
     gap: 20px;
     align-items: center;
     padding-left: 2%;
@@ -265,7 +266,7 @@ width: 20%;
 
 /* POST SECTION : COMMENTS */
 
-#commenticon{
+#commenticon {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -276,35 +277,35 @@ width: 20%;
     padding-top: 2%;
 }
 
-.commentscontainer{
+.commentscontainer {
     width: 80%;
     margin: auto;
 }
 
-.onecommentcontainer{
+.onecommentcontainer {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
 }
 
-.commentheader{
+.commentheader {
     background-color: #f2f2f2;
     width: 90%;
     border-radius: 0px 10px 10px 10px;
 }
 
-.loadmorecomments{
+.loadmorecomments {
     padding: 10px;
 }
 
-.loadmorecomments button{
+.loadmorecomments button {
     background: transparent;
     cursor: pointer;
     font-weight: 600;
     border: none;
 }
 
-.commentInput{
+.commentInput {
     padding: 10px;
     display: flex;
     justify-content: space-around;
@@ -312,7 +313,7 @@ width: 20%;
     margin: 20px auto auto auto;
 }
 
-.commentInput input{
+.commentInput input {
     width: 100%;
     border: none;
     background-color: #f2f2f2;
@@ -320,15 +321,12 @@ width: 20%;
     padding: 15px;
 }
 
-.commentInput button{
+.commentInput button {
     background-color: #f2f2f2;
     color: #fff;
     border-radius: 0px 10px 10px 0px;
     border: none;
 }
-
-
-
 
 /* POST SECTION : HEART ICON*/
 
@@ -339,37 +337,37 @@ width: 20%;
     height: 30px;
     transition: .3s;
     display: flex;
-  }
-  
-  .heart-container .checkbox {
+}
+
+.heart-container .checkbox {
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
     z-index: 20;
     cursor: pointer;
-  }
-  
-  .heart-container .svg-container {
+}
+
+.heart-container .svg-container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .heart-container .svg-outline,
-          .heart-container .svg-filled {
+}
+
+.heart-container .svg-outline,
+.heart-container .svg-filled {
     fill: var(--heart-color);
     position: absolute;
-  }
-  
-  .heart-container .svg-filled {
+}
+
+.heart-container .svg-filled {
     animation: keyframes-svg-filled 2s;
     display: none;
-  }
-  
-  .heart-container .svg-celebrate {
+}
+
+.heart-container .svg-celebrate {
     position: absolute;
     animation: keyframes-svg-celebrate .5s;
     animation-fill-mode: forwards;
@@ -377,21 +375,19 @@ width: 20%;
     stroke: var(--heart-color);
     fill: var(--heart-color);
     stroke-width: 0px;
-  }
-  
-  .heart-container .checkbox:checked~.svg-container .svg-filled {
-    display: block
-  }
-  
-  .heart-container .checkbox:checked~.svg-container .svg-celebrate {
-    display: block
-  }
+}
 
+.heart-container .checkbox:checked~.svg-container .svg-filled {
+    display: block
+}
 
+.heart-container .checkbox:checked~.svg-container .svg-celebrate {
+    display: block
+}
 
 /* CHAT SECTION */
 
-.grpchatcontainer{
+.grpchatcontainer {
     width: 80%;
     margin: auto;
     display: flex;
@@ -400,25 +396,25 @@ width: 20%;
     padding: 10px;
 }
 
-#grpchatheading{
+#grpchatheading {
     text-align: center;
 }
 
-.grpchatcontainer ol li{
+.grpchatcontainer ol li {
     line-height: 1.5;
 }
 
-.grpchatcontainer ol li span{
+.grpchatcontainer ol li span {
     font-weight: 600;
 }
 
-.joinchatbutton{
+.joinchatbutton {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.joinchatbutton button{
+.joinchatbutton button {
     background-color: #ffe6ed;
     border-radius: 8px;
     box-shadow: rgb(255, 204, 218) 0 2px 4px, rgb(255, 204, 218) 0 7px 13px -3px, #ffb3c8 0 -3px 0 inset;
@@ -434,7 +430,7 @@ width: 20%;
 
 /* EVENTS SECTION */
 
-.grpeventscontainer{
+.grpeventscontainer {
     width: 80%;
     margin: auto;
     display: flex;
@@ -444,7 +440,7 @@ width: 20%;
     min-height: 70vh;
 }
 
-.eventbutton{
+.eventbutton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -463,5 +459,3 @@ width: 20%;
     font-size: 1rem;
     font-weight: 600;
 }
-
-

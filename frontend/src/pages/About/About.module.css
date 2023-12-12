@@ -1,10 +1,9 @@
 .banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../assets/hero-banner.jpg");
+    url("../../assets/hero-banner.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 330px;
-  /* width: 100vw; */
   color: #fff;
   padding: 40px 100px;
   overflow: hidden;
@@ -21,9 +20,6 @@
   letter-spacing: 2px;
   margin: 0;
   padding: 20px 60px;
-  /* border: 1px solid white; */
-  /* border-radius: 15px; */
-  /* background-color: rgba(0, 0, 0, 0.68); */
   color: white;
 }
 
@@ -31,8 +27,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("../assets/pattern-05.png"),
-    url("../assets/pattern-06.png");
+  background-image: url("../../assets/pattern-05.png"),
+    url("../../assets/pattern-06.png");
   background-position: left bottom, right top;
   background-repeat: no-repeat, no-repeat;
   background-size: auto, auto;
@@ -43,7 +39,6 @@
   background-color: white;
   width: 80%;
   padding: 80px 120px;
-  /* z-index: 1000; */
   margin-top: -80px;
   margin-bottom: 80px;
 }
@@ -73,14 +68,12 @@
     width: 100%;
     padding: 0px 60px;
   }
+
   .bannerHeading h1 {
     font-weight: bold;
     font-size: 1.2rem;
     margin: 0;
     padding: 8px 25px;
-    /* border: 1px solid white;
-      border-radius: 15px;
-      background-color: rgba(0, 0, 0, 0.68); */
   }
 
   .aboutDiv .content {

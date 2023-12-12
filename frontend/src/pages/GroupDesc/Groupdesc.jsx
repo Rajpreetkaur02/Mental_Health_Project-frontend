@@ -9,8 +9,6 @@ import { GrGroup } from "react-icons/gr";
 import { IoPersonOutline } from "react-icons/io5";
 import swal from 'sweetalert';
 
-// import groupsData from '../../utils/groupsdata.js';
-
 const Groupdesc = () => {
     const [groupsData, setGroupsData] = useState([]);
     const [isMember, setMember] = useState(false);
@@ -18,12 +16,12 @@ const Groupdesc = () => {
     const [Admin, setAdmin] = useState(false);
     const navigate = useNavigate();
     const id = useParams();
-    // console.log(id);
 
     const [component, setComponentActive] = useState(<GroupAbout />);
 
     const topics = groupsData.topics ? groupsData.topics.split(', ') : [];
 
+    //fetching details of a specific group using id
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
             fetch(`http://localhost:8080/groups/${id.id}`, {
@@ -45,9 +43,9 @@ const Groupdesc = () => {
         }
     }, []);
 
+    //adding the support group to the users joinedGroups array and 
+    //updating the number of members in the specific support groups
     async function updateMembers(e) {
-        // e.preventDefault();
-
         const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
             method: 'PUT',
             body: JSON.stringify(id.id),
@@ -76,6 +74,7 @@ const Groupdesc = () => {
                 button: "OK",
             });
             navigate("/community")
+
         } else {
             swal({
                 title: "Already in this group!",
@@ -85,9 +84,9 @@ const Groupdesc = () => {
         }
     }
 
+    //if the user is the one who created the support group, 
+    //the group will be added to the user's details and members will be updated
     async function updateAdmin(e) {
-        // e.preventDefault();
-
         const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
             method: 'PUT',
             body: JSON.stringify(id.id),
@@ -111,6 +110,8 @@ const Groupdesc = () => {
         }
     }
 
+
+    //fetching the details of all the groups joined by each user 
     const fetchData = async () => {
         try {
             const response = await fetch(`http://localhost:8080/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
@@ -127,7 +128,6 @@ const Groupdesc = () => {
             }
             const result = await response.json()
                 .then((data) => {
-                    // console.log(data);
                     setGroups(data);
                 })
         } catch (error) {
@@ -135,13 +135,12 @@ const Groupdesc = () => {
         }
     }
 
-    
-
     useEffect(() => {
         fetchData();
     }, [])
 
     useEffect(() => {
+
         // Check if id exists in the groups array
         const idExists = groups.some(group => JSON.parse(group) === id.id);
 
@@ -154,11 +153,10 @@ const Groupdesc = () => {
         }
     }, [id, groups, Admin]);
 
+    //to check if the current user is the admin of the group
     useEffect(() => {
         const username = localStorage.getItem('name');
-        // console.log("username = ", username);
         const organizerName = groupsData.organizer;
-        // console.log("organizer = ", organizerName);
         if (username === organizerName) {
             setAdmin(true);
             updateAdmin();
@@ -168,7 +166,6 @@ const Groupdesc = () => {
     function handlejoinchat() {
         navigate('/chat');
     }
-
 
     return (
         <div className='grpdescbackcontainer'>
@@ -206,7 +203,7 @@ const Groupdesc = () => {
                     )}
 
                 </div>
-
+                
                 <div className="groupelements">
                     <GroupSidebar componentHandler={setComponentActive} member={isMember} admin={Admin} />
                     {component}
@@ -221,7 +218,6 @@ const Groupdesc = () => {
                     </div>
                 </div>
             </>
-
         </div>
     )
 }

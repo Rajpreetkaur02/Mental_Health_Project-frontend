@@ -23,7 +23,6 @@ import fourteen from "../../assets/WorksheetsImgs/life story.jpg";
 import fifteen from "../../assets/WorksheetsImgs/strengths weaknesses.jpg";
 
 function WorksheetsPage() {
-  // console.log(worksheets);
   return (
     <>
       <Navbar />

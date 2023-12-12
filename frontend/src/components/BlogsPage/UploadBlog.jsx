@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import classes from "../../pages/BlogsPage/BlogsPage.module.css";
 import Navbar from '../Navbar/Navbar'
 import ReactQuill from 'react-quill';
 import { useDropzone } from 'react-dropzone';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { formatISO9075, formatISO } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const modules = {
-
     toolbar: [
         [{ 'header': [1, 2, false] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
@@ -38,6 +38,7 @@ const UploadBlog = ({ }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const categories = ['Mental Health', 'Wellness', 'Self-Care', 'Inspiration', 'Personal Story', 'Physical Health', 'other'];
     const [uploadedFile, setUploadedFile] = useState(null);
+    const navigate = useNavigate();
 
     function handleUserInputChange(e) {
         if (e && e.target) {
@@ -63,18 +64,6 @@ const UploadBlog = ({ }) => {
         }));
     };
 
-//     useEffect(() => {
-//         console.log('Uploaded file:', uploadedFile.name);
-//         setBlogDetails((prevDetails) => ({
-//             ...prevDetails,
-//             img: uploadedFile.name,
-//         }));
-// },[BlogDetails])
-
-
-    
-  
-
     const handleDrop = (acceptedFiles) => {
         // Handle the dropped files
         const file = acceptedFiles[0];
@@ -87,14 +76,10 @@ const UploadBlog = ({ }) => {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: handleDrop,
-        // accept: 'file', 
-        // Specify the accepted file types
     });
 
     const saveDetails = (e) => {
         e.preventDefault();
-        console.log(BlogDetails);
-        console.log(uploadedFile)
         const formData = new FormData();
         formData.append('title', BlogDetails.title);
         formData.append('content', BlogDetails.content);
@@ -115,11 +100,10 @@ const UploadBlog = ({ }) => {
         .then(data => console.log('File uploaded successfully:', data))
         .catch(error => console.error('Error uploading file:', error));
         alert('posted successfully')
+        navigate("/blogs")
     }
 
-
     return (
-
         <div>
             <Navbar />
             <div className={classes.UploadPageContainer}>
@@ -138,8 +122,10 @@ const UploadBlog = ({ }) => {
                     <span>Every Story Matters, Every Voice Resonates</span>
                     <p>Together, We Illuminate the Path to Healing.</p>
                 </div>
-                <form onSubmit={saveDetails}>
 
+                {/* Form to write a blog */}
+
+                <form onSubmit={saveDetails}>
                     <div className={classes.Blogques}>
                         <h2>What will be the title of your blog?</h2>
                         <input value={BlogDetails.title} onChange={handleUserInputChange} type="text" name='title' placeholder='Enter a compelling title for your blog post.' required />
@@ -184,8 +170,6 @@ const UploadBlog = ({ }) => {
                         </select>
                     </div>
 
-
-
                     <div className={classes.Blogques}>
                         <h2>Write Your Blog!</h2>
                         <ReactQuill className={classes.BlogContent} value={BlogDetails.content}
@@ -200,10 +184,7 @@ const UploadBlog = ({ }) => {
                     <div className={classes.publishBlogbtn}>
                         <button type='submit'>Publish</button>
                     </div>
-
                 </form>
-
-
             </div>
         </div>
     )

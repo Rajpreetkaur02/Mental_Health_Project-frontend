@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -29,7 +29,6 @@ const Navbar = ({ isHomePage }) => {
   return (
     <nav className={`navbar ${isHomePage ? "homepage-navbar" : ""}`}>
       <div className="navLeft">
-        {/* logo */}
         <img src={Logo} width={60} />
         <Link
           to="/"
@@ -65,7 +64,6 @@ const Navbar = ({ isHomePage }) => {
               <NavLink to="/blogs">Blogs</NavLink>
             </div>
           )}
-          {/* <li><NavLink to="/blogs">Blogs</NavLink></li>  */}
           <li>
             <NavLink to="/community">Community</NavLink>
           </li>

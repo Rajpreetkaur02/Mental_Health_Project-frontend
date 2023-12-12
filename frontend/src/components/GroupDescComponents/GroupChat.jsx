@@ -1,12 +1,12 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const GroupChat = () => {
   const navigate = useNavigate();
 
   function handlejoinchat() {
     navigate('/chat');
-}
+  }
 
   return (
     <div>
