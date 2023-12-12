@@ -2,6 +2,8 @@ import React from "react";
 import WorksheetCard from "../../components/WorksheetsPage/WorksheetCard";
 import classes from "../../components/WorksheetsPage/WorksheetCard.module.css";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer.jsx";
+
 // import worksheets from "../../worksheets.json";
 // import image from "../../assets/blogImage.jpg"
 import one from "../../assets/WorksheetsImgs/challenging negative thoughts.jpg";
@@ -26,7 +28,12 @@ function WorksheetsPage() {
     <>
       <Navbar />
       <div className={classes.bodyText}>
-        <h1>Free Printable Worksheets</h1>
+        <div className={classes.banner}>
+          <div className={classes.bannerHeading}>
+            <h1>Free Printable Worksheets </h1>
+          </div>
+        </div>
+
         <h3>Explore and Empower Yourself!</h3>
         <p>
           Our free resources are designed to provide valuable tools and guidance
@@ -63,6 +70,7 @@ function WorksheetsPage() {
           </>
         ))}
       </div>
+      <Footer />
     </>
   );
 }

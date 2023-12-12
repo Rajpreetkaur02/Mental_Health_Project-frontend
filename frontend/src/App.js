@@ -21,6 +21,7 @@ import Stripe from "./services/Stripe";
 import Success from "./pages/PaymentSuccess/Success";
 
 import UploadBlog from "./components/BlogsPage/UploadBlog";
+import TherapistsPage from "./pages/TherapistsPage/TherapistsPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/blogs/:id" element={<BlogsDetail />}></Route>
         <Route path="/resources" element={<WorksheetsPage />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/get-counselling" element={<TherapistsPage />}></Route>
 
         <Route element={<PrivateRoute />}>
           <Route path="/questions/:id" element={<QuestionsPage />} />

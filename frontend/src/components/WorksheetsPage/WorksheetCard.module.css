@@ -1,3 +1,28 @@
+.banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../../assets/worksheets-banner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 330px;
+  color: #fff;
+  padding: 40px 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.bannerHeading h1 {
+  font-weight: bold;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 20px 60px;
+  color: rgb(255, 255, 255);
+}
+
 .bodyText {
   text-align: center;
   background-color: rgba(214, 241, 245, 0.534);
@@ -6,7 +31,7 @@
   /* margin-top: -80px; */
 }
 
-.bodyText h1 {
+/* .bodyText h1 {
   margin: 0;
   font-size: 50px;
   width: 100%;
@@ -15,7 +40,7 @@
   text-align: center;
   background-color: #026fff;
   color: white;
-}
+} */
 
 .bodyText h3 {
   color: #026fff;
@@ -74,7 +99,7 @@
 
 .button {
   width: 70%;
-  background-color: blue;
+  background-color: rgb(43, 43, 236);
   margin: auto;
   margin-top: 20px;
   display: flex;
