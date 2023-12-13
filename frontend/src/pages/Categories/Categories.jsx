@@ -4,6 +4,7 @@ import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import HealthImg from '../../assets/mentalHealthImg.png';
 import mentalData from '../../utils/healthData.js';
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
 import './Categories.css';
 
 function Categories() {
@@ -100,6 +101,7 @@ function Categories() {
                     }
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

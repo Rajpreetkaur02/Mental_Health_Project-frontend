@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import Support from '../../assets/support.png';
 import GroupCard from '../../components/GroupCard/GroupCard.jsx';
 import { Link, useParams } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer'
 
 const Community = () => {
     const [mentalActive, setMentalActive] = useState(true);
@@ -104,6 +105,7 @@ const Community = () => {
                         ))
                     }
                 </div>
+            <Footer/>
             </div>
         </div>
     )
