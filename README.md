@@ -33,13 +33,13 @@ Self assessment test page:
 
 Support groups page:
 
-<img width="960" alt="Screenshot 2023-12-16 193611" src="https://github.com/Rajpreetkaur02/Mental_Health_Project-frontend/assets/78468285/efd2750d-ae5f-4266-94c8-8d58c13d56bf">
+<img width="912" alt="Screenshot 2023-12-16 193611" src="https://github.com/Rajpreetkaur02/Mental_Health_Project-frontend/assets/78468285/df0ffac1-da3b-463e-93fd-53f38a175c93">
 
 ![grp](https://github.com/Rajpreetkaur02/Mental_Health_Project-frontend/assets/78468285/d51a42f7-ff31-4dcd-9e79-348551614008)
 
 community post page:
 
-<img width="955" alt="Screenshot 2023-12-16 193802" src="https://github.com/Rajpreetkaur02/Mental_Health_Project-frontend/assets/78468285/e0598175-a3bf-4a38-b088-256569dc4769">
+<img width="904" alt="Screenshot 2023-12-16 193802" src="https://github.com/Rajpreetkaur02/Mental_Health_Project-frontend/assets/78468285/84eaf700-0e23-426e-9bb9-a4764deebea9">
 
 group chat page:
 
