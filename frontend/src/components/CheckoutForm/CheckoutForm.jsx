@@ -57,7 +57,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://mentalhealth-api-xa6u.onrender.com/success",
+        return_url: "https://mindwell-pi.vercel.app/success",
       },
     });
 
