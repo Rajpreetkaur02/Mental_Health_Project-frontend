@@ -61,7 +61,7 @@ const StartGroupQuestionsPage = () => {
     }));
     console.log(groupDetails);
 
-    const response = await fetch('http://localhost:8080/groups/addGroups', {
+    const response = await fetch('https://mentalhealth-api-xa6u.onrender.com/groups/addGroups', {
       method: 'POST',
       body: JSON.stringify({ "title": groupDetails.title, "members": groupDetails.members, "topics": groupDetails.topics, "about": groupDetails.about, "organizer": groupDetails.organizer, "type": groupDetails.type, "location": groupDetails.location }),
       headers: {
@@ -70,7 +70,7 @@ const StartGroupQuestionsPage = () => {
       }
     });
     if (response.status === 200) {
-      const res = await fetch('http://localhost:8080/extra/addDetails', {
+      const res = await fetch('https://mentalhealth-api-xa6u.onrender.com/extra/addDetails', {
         method: 'POST',
         body: JSON.stringify({ "type": "admin", "userId": localStorage.getItem('id') }),
         headers: {

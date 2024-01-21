@@ -13,7 +13,7 @@ const MoodTracker = () => {
   // Fetch Moods
   const fetchData = () => {
     try {
-      fetch(`http://localhost:8080/extra/getMood/${localStorage.getItem('id')}`,{ 
+      fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getMood/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 
           'Content-Type':'application/json', 
@@ -39,7 +39,7 @@ const MoodTracker = () => {
     console.log(mood) 
     console.log(moodHistory) 
   
-    await fetch(`http://localhost:8080/extra/addMood/${localStorage.getItem('id')}`,{ 
+    await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addMood/${localStorage.getItem('id')}`,{ 
       method: 'PUT', 
       headers: { 
         'Content-Type':'application/json', 
@@ -69,7 +69,7 @@ const MoodTracker = () => {
       swal("Please Enter Some Value" , "" ,  "error")      
     } else {
       // Add Sleep
-      fetch(`http://localhost:8080/extra/addSleep/${localStorage.getItem('id')}`,{ 
+      fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addSleep/${localStorage.getItem('id')}`,{ 
         method: 'PUT', 
         headers: { 
             'Content-Type':'application/json', 

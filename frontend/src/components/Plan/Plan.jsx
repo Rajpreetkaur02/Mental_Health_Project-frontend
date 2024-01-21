@@ -11,7 +11,7 @@ function Plan() {
     // Fetch User Age
     const fetchAge = () => {
         try {
-            fetch(`http://localhost:8080/user/age/${localStorage.getItem('email')}`,{ 
+            fetch(`https://mentalhealth-api-xa6u.onrender.com/user/age/${localStorage.getItem('email')}`,{ 
                 crossDomain: true, 
                 headers: { 
                     'Content-Type':'application/json', 
@@ -32,7 +32,7 @@ function Plan() {
     const fetchPlan = (age) => {
         if (age != '') {
             try {
-                fetch(`http://localhost:8080/plans/plan/${age}`, {
+                fetch(`https://mentalhealth-api-xa6u.onrender.com/plans/plan/${age}`, {
                     crossDomain: true,
                     headers: {
                         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ function Plan() {
 
     // Fetch Tasks Completed
     const fetchTasks = async () => {
-        const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
             crossDomain: true, 
             headers: { 'Content-Type':'application/json', 
               Accept: "application/json", 
@@ -84,7 +84,7 @@ function Plan() {
         newCheckboxes[index] = !newCheckboxes[index];
         setTasksCompleted(newCheckboxes);
         
-        fetch(`http://localhost:8080/extra/task/${localStorage.getItem('id')}`,{ 
+        fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/task/${localStorage.getItem('id')}`,{ 
             method: 'PUT', 
             headers: { 
                 'Content-Type':'application/json', 

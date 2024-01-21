@@ -43,7 +43,7 @@ function Dashboard() {
   const fetchData = () => {
     if (localStorage.getItem('id') != null) {
       try {
-        fetch(`http://localhost:8080/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
+        fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
           crossDomain: true, 
           headers: { 'Content-Type':'application/json', 
             Accept: "application/json", 
@@ -65,7 +65,7 @@ function Dashboard() {
 
   const fetchTasksCompleted = async () => {
     if (localStorage.getItem('id') != null) {
-      const response = await fetch(`http://localhost:8080/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 
@@ -88,7 +88,7 @@ function Dashboard() {
 
   const fetchSleep = async () => {
     if (localStorage.getItem('id') != null) {
-      const response = await fetch(`http://localhost:8080/extra/getSleep/${localStorage.getItem('id')}`,{ 
+      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getSleep/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 

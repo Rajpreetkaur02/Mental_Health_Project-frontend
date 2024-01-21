@@ -22,7 +22,7 @@ function BlogsDetail() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/blog/post/${id.id}`,
+        `https://mentalhealth-api-xa6u.onrender.com/blog/post/${id.id}`,
         {
           crossDomain: true,
           headers: {

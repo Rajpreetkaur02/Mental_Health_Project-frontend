@@ -17,7 +17,7 @@ function BlogsPage() {
 
   //fetch the data of all the posts to display on the main page
   const fetchData = () => {
-    fetch('http://localhost:8080/blog/allPosts', {
+    fetch('https://mentalhealth-api-xa6u.onrender.com/blog/allPosts', {
       crossDomain: true,
       headers: {
         'Content-Type': 'application/json',

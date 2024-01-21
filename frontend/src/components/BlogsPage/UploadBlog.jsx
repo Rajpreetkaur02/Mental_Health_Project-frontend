@@ -88,7 +88,7 @@ const UploadBlog = ({ }) => {
         formData.append('author', BlogDetails.author);
         formData.append('timestamp', formatISO9075(new Date()))
     
-        fetch("http://localhost:8080/blog/post",{
+        fetch("https://mentalhealth-api-xa6u.onrender.com/blog/post",{
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

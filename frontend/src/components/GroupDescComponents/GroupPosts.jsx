@@ -42,7 +42,7 @@ const GroupPosts = () => {
   const handleIconClick = async (postId) => {
     setLiked(prevstate => !prevstate);
     try {
-      const response = await fetch(`http://localhost:8080/groups/updatePostLikes/${id.id}`, {
+      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/updatePostLikes/${id.id}`, {
         method: 'PUT',
         crossDomain: true,
         body: JSON.stringify(postId),
@@ -72,7 +72,7 @@ const GroupPosts = () => {
 
   // Add group Posts
   const handlesubmit = async () => {
-    const response = await fetch(`http://localhost:8080/groups/addPost/${id.id}`, {
+    const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/addPost/${id.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const GroupPosts = () => {
   // Fetch Group Posts
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/groups/getPosts/${id.id}`, {
+      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/getPosts/${id.id}`, {
         crossDomain: true,
         headers: {
           'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ const GroupPosts = () => {
 
   // Add comments API
   const handlecommentpost = async (postId) => {
-    const response = await fetch(`http://localhost:8080/groups/addComment/${id.id}`, {
+    const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/addComment/${id.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

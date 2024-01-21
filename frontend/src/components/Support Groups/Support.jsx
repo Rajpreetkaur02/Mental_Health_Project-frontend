@@ -9,7 +9,7 @@ const Support = () => {
     // Get Groups Joined
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/extra/getJoinedGroups/${localStorage.getItem('id')}`,{ 
+        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getJoinedGroups/${localStorage.getItem('id')}`,{ 
           crossDomain: true, 
           headers: { 'Content-Type':'application/json', 
             Accept: "application/json", 

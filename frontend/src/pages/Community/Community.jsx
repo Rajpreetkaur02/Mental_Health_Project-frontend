@@ -40,7 +40,7 @@ const Community = () => {
 
     //fetching the details of all the support groups to display on the community page
     useEffect(() => {
-        fetch('http://localhost:8080/groups/supportGroups',{
+        fetch('https://mentalhealth-api-xa6u.onrender.com/groups/supportGroups',{
             crossDomain: true,
             headers: {
                 'Content-Type':'application/json',

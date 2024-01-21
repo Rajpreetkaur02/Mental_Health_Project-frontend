@@ -17,7 +17,7 @@ export default function App() {
   useEffect(() => {
 
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:8080/api/payment/create-intent", {
+    fetch("https://mentalhealth-api-xa6u.onrender.com/api/payment/create-intent", {
       method: "POST",
       headers: {'Content-Type':'application/json',
       Accept: "application/json",

@@ -25,7 +25,7 @@ function Login() {
     //generating the token once the user login
     async function login(e) {
         e.preventDefault();
-        const response = await fetch("http://localhost:8080/generate-token", {
+        const response = await fetch("https://mentalhealth-api-xa6u.onrender.com/generate-token", {
             method: 'POST',
             crossDomain: true,
             body: JSON.stringify({ 'username': userDetails.email, 'password': userDetails.password }),

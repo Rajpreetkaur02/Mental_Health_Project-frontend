@@ -34,7 +34,7 @@ const GroupSidebar = ({ componentHandler, member, admin }) => {
   // Fetch Group Details
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
-      fetch(`http://localhost:8080/groups/${id.id}`, {
+      fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/${id.id}`, {
         crossDomain: true,
         headers: {
           'Content-Type': 'application/json',

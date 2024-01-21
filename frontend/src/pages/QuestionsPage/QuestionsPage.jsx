@@ -71,7 +71,7 @@ function QuestionsPage() {
     };
 
     function finalResults(resul) {
-        fetch('http://localhost:8080/extra/addDetails', {
+        fetch('https://mentalhealth-api-xa6u.onrender.com/extra/addDetails', {
             method: 'POST',
             body: JSON.stringify({ "userId": localStorage.getItem('id'), "result": resul * 100 }),
             headers: {

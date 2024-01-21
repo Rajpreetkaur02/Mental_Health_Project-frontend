@@ -67,7 +67,7 @@ function SignUp() {
                 console.log(error.text);
             });
 
-        const response = await fetch('http://localhost:8080/user/register', {
+        const response = await fetch('https://mentalhealth-api-xa6u.onrender.com/user/register', {
             method: 'POST',
             body: JSON.stringify({ "name": userDetails.user_name, "number": userDetails.user_number, "username": userDetails.user_email, "password": userDetails.user_password, "emergencyContact": { "name": emergencyDetails.extra_name, "number": emergencyDetails.extra_number, "email": emergencyDetails.extra_email } }),
             headers: { 'Content-Type': 'application/json' }
@@ -79,7 +79,7 @@ function SignUp() {
                 icon: "success",
                 button: "Ok",
             });
-            fetch("http://localhost:8080/generate-token", {
+            fetch("https://mentalhealth-api-xa6u.onrender.com/generate-token", {
                 method: 'POST',
                 crossDomain: true,
                 body: JSON.stringify({ 'username': userDetails.user_email, 'password': userDetails.user_password }),

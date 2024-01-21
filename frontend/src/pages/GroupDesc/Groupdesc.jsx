@@ -24,7 +24,7 @@ const Groupdesc = () => {
     //fetching details of a specific group using id
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            fetch(`http://localhost:8080/groups/${id.id}`, {
+            fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/${id.id}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const Groupdesc = () => {
     //adding the support group to the users joinedGroups array and 
     //updating the number of members in the specific support groups
     async function updateMembers(e) {
-        const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
+        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addGroup/${localStorage.getItem('id')}`, {
             method: 'PUT',
             body: JSON.stringify(id.id),
             headers: {
@@ -56,7 +56,7 @@ const Groupdesc = () => {
         })
         console.log(response.status)
         if (response.status == 200) {
-            fetch(`http://localhost:8080/groups/updateGroupMembers/${id.id}`, {
+            fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/updateGroupMembers/${id.id}`, {
                 method: 'PUT',
                 crossDomain: true,
                 headers: {
@@ -87,7 +87,7 @@ const Groupdesc = () => {
     //if the user is the one who created the support group, 
     //the group will be added to the user's details and members will be updated
     async function updateAdmin(e) {
-        const response = await fetch(`http://localhost:8080/extra/addGroup/${localStorage.getItem('id')}`, {
+        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addGroup/${localStorage.getItem('id')}`, {
             method: 'PUT',
             body: JSON.stringify(id.id),
             headers: {
@@ -97,7 +97,7 @@ const Groupdesc = () => {
         })
         console.log(response.status)
         if (response.status == 200) {
-            fetch(`http://localhost:8080/groups/updateGroupMembers/${id.id}`, {
+            fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/updateGroupMembers/${id.id}`, {
                 method: 'PUT',
                 crossDomain: true,
                 headers: {
@@ -114,7 +114,7 @@ const Groupdesc = () => {
     //fetching the details of all the groups joined by each user 
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
+            const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',

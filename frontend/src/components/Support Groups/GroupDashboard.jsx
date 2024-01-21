@@ -12,7 +12,7 @@ const GroupDashboard = ({ groupId }) => {
         // Fetch Specific Group Details
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/groups/${JSON.parse(groupId)}`, {
+                const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/${JSON.parse(groupId)}`, {
                     crossDomain: true,
                     headers: {
                         'Content-Type': 'application/json',

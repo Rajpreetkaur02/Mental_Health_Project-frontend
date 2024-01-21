@@ -35,7 +35,7 @@ function GeneralUserDetails() {
             });
         } else {
             e.preventDefault();
-            const response = await fetch(`http://localhost:8080/user/updateUser/${localStorage.getItem('email')}`,{
+            const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/user/updateUser/${localStorage.getItem('email')}`,{
                 method: 'PUT',
                 headers: {
                     'Content-Type':'application/json',

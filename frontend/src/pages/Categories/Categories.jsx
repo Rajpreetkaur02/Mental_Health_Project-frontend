@@ -41,7 +41,7 @@ function Categories() {
     //fetching the current user details after sign up
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            fetch('http://localhost:8080/current-user', {
+            fetch('https://mentalhealth-api-xa6u.onrender.com/current-user', {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
