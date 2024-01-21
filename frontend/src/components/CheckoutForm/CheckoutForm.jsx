@@ -57,7 +57,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/success",
+        return_url: "https://mentalhealth-api-xa6u.onrender.com/success",
       },
     });
 
