@@ -600,7 +600,7 @@
 
 @media only screen and (max-width: 800px) {
   .herocontainer {
-    padding: 10px 30px;
+    padding: 10px 25px;
     height: 55vh;
   }
 
@@ -623,6 +623,29 @@
   .herospan {
     padding: 0;
     width: 90vw;
+  }
+
+  .heroboxes {
+    width: 90vw;
+    padding-bottom: 3%;
+  }
+
+  .herotext button {
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .herobox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .testboxtext {
+    display: flex;
+    flex-direction: column;
   }
   
 }
