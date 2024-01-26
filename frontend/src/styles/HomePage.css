@@ -598,4 +598,31 @@
   opacity: 1;
 }
 
+@media only screen and (max-width: 800px) {
+  .herocontainer {
+    padding: 10px 30px;
+    height: 55vh;
+  }
 
+  .heroleft {
+    width: 60%;
+  }
+
+  .heroheading {
+    font-size: 2em;
+    padding-bottom: 2%;
+    font-family: "Roboto", sans-serif;
+    padding-left: 0;
+  }
+
+  .heroimg {
+    width: 38vw;
+    height: 18vh;
+  }
+
+  .herospan {
+    padding: 0;
+    width: 90vw;
+  }
+  
+}
