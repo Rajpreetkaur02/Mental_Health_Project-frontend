@@ -29,7 +29,7 @@ const Navbar = ({ isHomePage }) => {
 
   return (
     <nav className={`navbar ${isHomePage ? "homepage-navbar" : ""}`}>
-      <div className="menuIcon">
+      <div className={`${isHomePage ? "homepage-menuIcon" : "menuIcon"}`}>
 
       <MenuIcon/>
       </div>

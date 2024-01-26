@@ -226,6 +226,7 @@ nav {
     .menuIcon {
         display: block;
         padding-left: 2%;
+        color: white;
         padding-right: 2%;
     }
 
@@ -233,7 +234,7 @@ nav {
         width: 45%;
     }
 
-    .homepage-navRight {
+    .navRight, .homepage-navRight {
         width: 45%;
     }
 
@@ -243,8 +244,7 @@ nav {
         width: auto;
     }
 
-    .homepage-loginSignup li {
-        
+    .loginSignup li, .homepage-loginSignup li {    
         width: auto;
     }
 }
