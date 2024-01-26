@@ -691,4 +691,33 @@
   .helpline {
     padding-top: 10%;
   }
+
+  .resources-container {
+    height: 50vh;
+  }
+
+  .containerr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resources-left {
+    width: auto;
+  }
+
+  .palette {
+    width: auto;
+    height: auto;
+    padding-top: 40%;
+  }
+
+  #leftheading {
+    font-size: 2em;
+  }
+
+  .helpbox { 
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
 }
