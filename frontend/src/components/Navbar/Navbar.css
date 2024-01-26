@@ -213,3 +213,38 @@ nav {
     color: #fff;
     border-radius: 10px;
 }
+
+.menuIcon {
+    display: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .navCenter, .homepage-navCenter {
+        display: none;
+    }
+
+    .menuIcon {
+        display: block;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .navLeft {
+        width: 45%;
+    }
+
+    .homepage-navRight {
+        width: 45%;
+    }
+
+    .loginSignup, .homepage-loginSignup {
+        padding-left: 0;
+        gap: 10px;
+        width: auto;
+    }
+
+    .homepage-loginSignup li {
+        
+        width: auto;
+    }
+}

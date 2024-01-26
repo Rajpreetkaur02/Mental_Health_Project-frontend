@@ -4,6 +4,7 @@ import "./Navbar.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import swal from "sweetalert";
 import Logo from "../../assets/logo.png";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = ({ isHomePage }) => {
   const navigate = useNavigate();
@@ -28,6 +29,10 @@ const Navbar = ({ isHomePage }) => {
 
   return (
     <nav className={`navbar ${isHomePage ? "homepage-navbar" : ""}`}>
+      <div className="menuIcon">
+
+      <MenuIcon/>
+      </div>
       <div className="navLeft">
         <img src={Logo} width={60} />
         <Link
