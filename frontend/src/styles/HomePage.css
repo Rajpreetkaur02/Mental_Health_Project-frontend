@@ -632,7 +632,8 @@
 
   .herotext button {
     width: auto;
-    margin-right: -25%;
+    margin-left: auto;
+    margin-right: -10%;
   }
 
   .herobox {
@@ -647,8 +648,19 @@
     flex-direction: column;
   }
 
+  .aboutcontainer {
+    padding-top: 8%;
+  }
+
+  .aboutheading {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0;
+  }
+
   .aboutheading span {
     font-size: 2em;
+    text-align: center;
   }
   
   .howitworkscontainer {
@@ -715,9 +727,31 @@
     font-size: 2em;
   }
 
+  #help-button {
+    font-size: 1.5em;
+  }
+
   .helpbox { 
     width: 90%;
     height: auto;
     padding: 20px;
+  }
+
+  .planscontainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .plancard {
+    width: 100%;
+  }
+
+  .questioncontainer {
+    padding-right: 10%;
+  }
+
+  .questionsContent {
+    width: 100%;
   }
 }

@@ -23,7 +23,7 @@ const footer = () => {
                         <AiOutlineLinkedin size={30} />
                     </div>
                 </div>
-                <div className="footerSection">
+                <div className="footerSection" style={{display: "none"}}>
                     <h3>Explore</h3>
                     <Link to="/categories">Self Assessment</Link>
                     <Link to="/">Get Counselling</Link>
@@ -31,7 +31,7 @@ const footer = () => {
                     <Link to="/resources">Worksheets</Link>
                     <Link to="/community">Community</Link>
                 </div>
-                <div className="footerSection">
+                <div className="footerSection" style={{display: "none"}}>
                     <h3>Contact Us</h3>
                     <a className="mailToEmail" href="mailto:mindwell@gmail.com">mindwell@gmail.com</a>
                     <p>24, DLF Cyber Hub,<br/> Gurugram</p>
