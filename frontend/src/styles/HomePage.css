@@ -662,5 +662,33 @@
     width: auto;
   }
   
+  .testcontainer {
+    display: flex;
+    flex-direction: column;
+  }
 
+  .testcontainerLeft{
+    width: auto;
+    height: auto;
+  }
+
+  .testcontainerRight {
+    width: auto;
+    padding: 0;
+    text-align: center;
+  }
+
+  .testheading {
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testsubheading button {
+    width: auto;
+  }
+
+  .helpline {
+    padding-top: 10%;
+  }
 }
