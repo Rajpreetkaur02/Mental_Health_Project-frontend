@@ -99,12 +99,17 @@
     padding: 0 8px 0 12px;
   }
 
+  .header-left input , .header-left {
+    width: 55%;
+  }
+
   .header-right button {
     display: none;
   }
 
   .header-right {
     display: flex;
+    width: 40%;
   }
 
   .icon {
