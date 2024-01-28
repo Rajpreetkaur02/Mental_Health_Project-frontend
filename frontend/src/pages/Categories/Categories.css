@@ -1,5 +1,6 @@
 .categoryMain {
-    height: 100vh;
+    height: auto;
+    padding-bottom: 5%;
 }
 
 .categoryTop {
@@ -91,4 +92,23 @@
     filter: blur(2px) brightness(1.5);
     left: -10px;
     z-index: 1;
+}
+
+@media only screen and (max-width: 800px) {
+    .categoryTop {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 70vh;
+    }
+
+    .categoryTopRight h1 {
+        text-align: center;
+    }
+
+    .categoryBottom {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 5%;
+    }
 }
