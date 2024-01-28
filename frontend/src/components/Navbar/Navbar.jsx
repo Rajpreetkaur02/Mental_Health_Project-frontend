@@ -5,10 +5,12 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import swal from "sweetalert";
 import Logo from "../../assets/logo.png";
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Navbar = ({ isHomePage }) => {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [navActive, setNavActive] = useState(false);
 
   function logout() {
     localStorage.clear();
@@ -17,6 +19,10 @@ const Navbar = ({ isHomePage }) => {
       icon: "success",
     });
     window.location.reload();
+  }
+
+  const navToggle = () => {
+    setNavActive(!navActive);
   }
 
   function goToDash() {
@@ -28,10 +34,48 @@ const Navbar = ({ isHomePage }) => {
   };
 
   return (
-    <nav className={`navbar ${isHomePage ? "homepage-navbar" : ""}`}>
-      <div className={`${isHomePage ? "homepage-menuIcon" : "menuIcon"}`}>
+    // <>
 
-      <MenuIcon/>
+    <nav className={`navbar ${isHomePage ? "homepage-navbar" : ""}`}>
+
+    {
+        navActive && (
+          <div className="mobileNavbar">
+            <div className="navbarToggle">
+              <CloseIcon onClick={navToggle}/>
+            </div>
+
+            <div className="navItemsOnActive">
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li><hr/>
+              <li>
+                <NavLink to="/about">About</NavLink>
+              </li><hr/>
+              <li>
+                <NavLink to="/categories">Take A Test</NavLink>
+              </li><hr/>
+              <li>
+                <NavLink to="/get-counselling">Get Counselling</NavLink>
+              </li><hr/>
+              <li>
+                <NavLink to="/resources">Worksheets</NavLink>
+              </li><hr/>
+              <li>
+              <NavLink to="/blogs">Blogs</NavLink>
+              </li><hr/>
+              <li>
+                <NavLink to="/community">Community</NavLink>
+              </li><hr/>
+            </ul>
+          </div>
+        </div>
+        )
+      }
+
+      <div className={`${isHomePage ? "homepage-menuIcon" : "menuIcon"}`}>
+        <MenuIcon onClick={navToggle}/>
       </div>
       <div className="navLeft">
         <img src={Logo} width={60} />

@@ -214,9 +214,55 @@ nav {
     border-radius: 10px;
 }
 
-.menuIcon {
+.menuIcon, .homepage-menuIcon {
     display: none;
 }
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
+}
+
+.mobileNavbar {
+    position: absolute;  
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    left: -100%;
+    overflow: hidden;
+    -webkit-animation: slide 0.5s forwards;
+    animation: slide 0.5s forwards;
+    top: 0; 
+    position: fixed;
+}
+
+.navbarToggle {
+    padding: 5%;
+}
+
+.navItemsOnActive ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+}
+
+.navItemsOnActive ul hr {
+    width: 40%;
+    border: 1px solid #f1f1f1;
+}
+
+.navItemsOnActive ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+
 
 @media only screen and (max-width: 800px) {
     .navCenter, .homepage-navCenter {
@@ -228,6 +274,10 @@ nav {
         padding-left: 2%;
         color: white;
         padding-right: 2%;
+    }
+
+    .homepage-menuIcon {
+        display: block;
     }
 
     .navLeft {
