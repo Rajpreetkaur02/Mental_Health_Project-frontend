@@ -100,10 +100,15 @@
 
     .moods, .mood-buttons button {
         width: 100%;
+        color: black;
     }
 
     .sleepTime {
         padding-top: 5%;
         width: 100%;
+    }
+
+    .sleepTime input {
+        color: black;
     }
 }
