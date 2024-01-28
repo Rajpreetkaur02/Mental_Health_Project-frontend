@@ -113,3 +113,15 @@
 .button:hover {
   transform: scale(1.03);
 }
+
+@media only screen and (max-width: 800px) {
+  .worksheetsWrapper {
+    grid-template-columns: 1fr;
+    padding: 0 5% 5%;
+  }
+
+  .bodyText p {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
