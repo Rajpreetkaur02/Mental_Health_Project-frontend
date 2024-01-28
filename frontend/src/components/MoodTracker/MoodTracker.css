@@ -108,7 +108,7 @@
         width: 100%;
     }
 
-    .sleepTime input {
+    .sleepTime input, .sleepTime button {
         color: black;
     }
 }
