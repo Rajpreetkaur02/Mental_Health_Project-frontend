@@ -227,3 +227,27 @@
 .quesheading p{
     line-height: 1.5;
 }
+
+@media only screen and (max-width: 800px) {
+    .communityTop {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .communityTopLeft img {
+        height: 50vh;
+    }
+
+    .communityTopRight {
+        width: 100%;
+        padding: 5%;
+    }
+
+    .communityTopRight h1, .communityTopRight h2 {
+        text-align: center;
+    }
+
+    .communityTopRight p {
+        text-align: center;
+    }
+}

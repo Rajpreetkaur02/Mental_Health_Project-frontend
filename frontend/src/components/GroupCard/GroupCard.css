@@ -59,3 +59,21 @@
     color: #fff;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 800px) {
+    .communityBottom {
+        grid-template-columns: 1fr;
+        padding: 5%;
+    }
+
+    .groupcardcontainer {
+        width: auto;
+    }
+
+    .topicboxes {
+        width: inherit;
+        display: flex;
+        flex: 3;
+        flex-wrap: wrap;
+    }
+}
