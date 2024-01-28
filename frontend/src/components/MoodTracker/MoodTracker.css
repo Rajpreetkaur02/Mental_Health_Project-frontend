@@ -91,3 +91,19 @@
     cursor: pointer;
     width: 30%;
 }
+
+@media only screen and (max-width: 800px) {
+    .moodAndSleep {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .moods, .mood-buttons button {
+        width: 100%;
+    }
+
+    .sleepTime {
+        padding-top: 5%;
+        width: 100%;
+    }
+}
