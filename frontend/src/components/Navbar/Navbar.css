@@ -298,7 +298,9 @@ nav {
         width: auto;
     }
 
-    .homepage-logout {
-        height: auto;
+    .homepage-logout, .logout {
+        display: flex;
+        align-items: center;
+        height: 5vh;
     }
 }

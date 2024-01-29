@@ -462,7 +462,7 @@
 
 @media only screen and (max-width: 800px) {
     .groupelements ul {
-        width: 100%;
+        width: auto;
         padding: 0;
         gap: 1px;
     }
@@ -478,7 +478,7 @@
     .descheader {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 40px;
     }
 
     .descheading {
