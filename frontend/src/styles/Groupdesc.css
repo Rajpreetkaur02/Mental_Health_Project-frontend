@@ -467,6 +467,10 @@
         gap: 1px;
     }
 
+    .groupelements ul li {
+        width: auto;
+    }
+
     .newpostcontainer {
         width: 100%;
     }
