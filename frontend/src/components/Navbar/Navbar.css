@@ -265,8 +265,9 @@ nav {
 
 
 @media only screen and (max-width: 800px) {
-    .greeting {
+    .greeting, .homepage-greeting {
         width: auto;
+        font-size: 0.9em;
     }
 
     .greetLogout {

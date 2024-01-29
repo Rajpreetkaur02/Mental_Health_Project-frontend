@@ -129,7 +129,7 @@ const Navbar = ({ isHomePage }) => {
               <FaRegCircleUser size={20} />
             </li>
             <li className={`${isHomePage ? "homepage-greeting" : "greeting"}`}>
-              Hello, {localStorage.getItem("name")}
+              Hello,<br/> {localStorage.getItem("name")}
             </li>
           </ul>
           <div
