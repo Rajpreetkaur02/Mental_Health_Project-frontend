@@ -297,4 +297,8 @@ nav {
     .loginSignup li, .homepage-loginSignup li {    
         width: auto;
     }
+
+    .homepage-logout {
+        height: auto;
+    }
 }

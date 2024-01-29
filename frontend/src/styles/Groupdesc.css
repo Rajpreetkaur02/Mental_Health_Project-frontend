@@ -459,3 +459,40 @@
     font-size: 1rem;
     font-weight: 600;
 }
+
+@media only screen and (max-width: 800px) {
+    .groupelements ul {
+        width: 100%;
+        padding: 0;
+        gap: 1px;
+    }
+
+    .newpostcontainer {
+        width: 100%;
+    }
+
+    .commenticon {
+        width: auto;
+    }
+
+    .descheader {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .descheading {
+        text-align: center;
+    }
+
+    .joinbutton {
+        align-self: center;
+        width: fit-content;
+    }
+
+    .topicboxes {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
