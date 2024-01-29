@@ -303,4 +303,9 @@ nav {
         align-items: center;
         height: 5vh;
     }
+
+    .navRight, .homepage-navRight {
+        display: flex;
+        align-items: center;
+    }
 }

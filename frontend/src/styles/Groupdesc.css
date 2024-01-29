@@ -462,7 +462,7 @@
 
 @media only screen and (max-width: 800px) {
     .groupelements ul {
-        width: auto;
+        width: 100vw;
         padding: 0;
         gap: 1px;
     }
