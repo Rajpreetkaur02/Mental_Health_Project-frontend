@@ -136,3 +136,35 @@
 .FileUpload p span{
   color: #536DFE;
 }
+
+@media only screen and (max-width: 800px) {
+  .newBlogbtn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .blogsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .UploadPageContainer {
+    padding: 5%;
+  }
+
+  .UploadPageContainer h1 {
+    text-align: center;
+  }
+
+  .FileUpload {
+    width: auto;
+  }
+
+  .Blogques select {
+    width: auto;
+  }
+
+  .BlogContent {
+    width: auto;
+  }
+}

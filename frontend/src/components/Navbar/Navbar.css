@@ -265,6 +265,14 @@ nav {
 
 
 @media only screen and (max-width: 800px) {
+    .greeting {
+        width: auto;
+    }
+
+    .greetLogout {
+        gap: 5px;
+    }
+
     .navCenter, .homepage-navCenter {
         display: none;
     }

@@ -462,13 +462,14 @@
 
 @media only screen and (max-width: 800px) {
     .groupelements ul {
-        width: 100vw;
+        width: auto;
         padding: 0;
         gap: 1px;
     }
 
     .groupelements ul li {
         width: auto;
+        font-size: 0.9em;
     }
 
     .newpostcontainer {
