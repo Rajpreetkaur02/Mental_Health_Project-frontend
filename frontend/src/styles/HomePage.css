@@ -705,12 +705,13 @@
   }
 
   .resources-container {
-    height: 65vh;
+    height: auto;
   }
 
   .containerr {
     display: flex;
     flex-direction: column;
+    height: auto;
   }
 
   .resources-left {
