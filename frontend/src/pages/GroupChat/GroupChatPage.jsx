@@ -35,11 +35,10 @@ const ChatApp = () => {
   //once the connection is established, add user to the chat
   const onConnected = () => {
     setUserData({ ...userData, "connected": true });
-    console.log(userData)
 
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe(`/topic/${GroupName}`, onMessageReceived);
 
-    stompClient.send("/app/chat.addUser",
+    stompClient.send(`/app/chat/${GroupName}/addUser`,
       {},
       JSON.stringify({ sender: userData.username, type: 'JOIN' })
     );
@@ -60,7 +59,7 @@ const ChatApp = () => {
         content: userData.message,
         type: 'CHAT'
       };
-      stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+      stompClient.send(`/app/chat/${GroupName}/sendMessage`, {}, JSON.stringify(chatMessage));
       setUserData({ ...userData, "message": "" });
     }
     event.preventDefault();
