@@ -49,7 +49,7 @@ def _train_dnn(x_train=x_train, y_train=y_train):
     model.add(Dense(1, activation='sigmoid'))
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     model.fit(x_train, y_train, epochs=20)
-    model.save('seq_model')
+    model.save('seq_model.h5')
     print("Saved DNN")
     print('DNN loaded')
     return model
