@@ -17,7 +17,7 @@ function QuestionsPage() {
     const [error, setError] = useState('');
     const [isVisible, setIsVisible] = useState(true);
     const [detailsActive, setDetailsActive] = useState(false);
-    const url = 'http://0.0.0.0:8000/depdet/';
+    const url = 'https://mentalhealthmlmodel-3-0.onrender.com:8000/depdet/';
     const id = useParams();
 
     useEffect(() => {
