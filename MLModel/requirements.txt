@@ -4,4 +4,4 @@ pandas
 scikit-learn
 keras
 tensorflow
-uwsgi
+gunicorn
