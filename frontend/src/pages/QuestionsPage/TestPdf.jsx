@@ -10,6 +10,7 @@ import {
 } from '@react-pdf/renderer';
 import Logo from "../../assets/logo.png";
 import {format} from 'date-fns';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const styles = StyleSheet.create({
     container: {
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: 'Helvetica',
         marginBottom: 10,
-        paddingLeft: 12,
+        paddingLeft: 18,
     },
     boldText: {
         fontFamily: 'Helvetica-Bold',
@@ -110,7 +111,7 @@ const TestPDF = ({ testData, result, onPdfGenerated }) => {
                     </View>
                 </View>
                 <View style={styles.section}>
-                    <Text style={styles.heading}>TEST QUESTIONS & ANSWERS</Text>
+                    <Text style={styles.heading}>TEST REPORT</Text>
                     <Text style={styles.question}>{`Name:`}<Text style={styles.name}> {`${localStorage.getItem('name')}`}</Text></Text>
 
                     <View style={styles.section}>
@@ -131,7 +132,7 @@ const TestPDF = ({ testData, result, onPdfGenerated }) => {
         ).toBlob();
         onPdfGenerated(blob);
     };
-    return <div>PDF generated</div>;
+    return <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}><InfoOutlinedIcon/>Report generated! You can download it from reports section in dashboard.</div>;
 };
   
 export default TestPDF;

@@ -122,7 +122,7 @@ function SignUp() {
                             <label>Full Name</label>
                             <input value={userDetails.user_name} onChange={handleUserInputChange} type="text" name="user_name" id="" placeholder='Your Name' required />
                             <label>Mobile Number</label>
-                            <input value={userDetails.user_number} maxLength={10} onChange={handleUserInputChange} type="number" name="user_number" id="" placeholder='Enter Your Number' required />
+                            <input value={userDetails.user_number} min={6000000000} max={9999999999} onChange={handleUserInputChange} type="number" name="user_number" id="" placeholder='Enter Your Number' required />
                             <label>Email</label>
                             <input value={userDetails.user_email} onChange={handleUserInputChange} type="email" name="user_email" id="" placeholder='Email' required />
                             <label>Password</label>
