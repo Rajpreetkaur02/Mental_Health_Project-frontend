@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/QuestionsPage.css'
 
-function QuestionPart({setValues, question, index, setError}) {
+function QuestionPart({setValues, question, index, setError, setTestData}) {
     const handleRadioChange = (index, value) => {
         setValues(prevValues => {
             const newValues = [...prevValues];
@@ -9,6 +9,15 @@ function QuestionPart({setValues, question, index, setError}) {
             setError('');
             return newValues;
         });
+
+        const newObj = {
+            ques: question.quest,
+            ans: (value === 1) ? 'Yes' : 'No'
+          };
+
+        setTestData(
+            prevState => [...prevState, newObj]
+        );
     }
 
     return (

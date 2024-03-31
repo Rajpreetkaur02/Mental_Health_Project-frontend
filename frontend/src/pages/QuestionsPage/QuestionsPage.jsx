@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import questionsData from '../../utils/questions.js';
 import '../../styles/QuestionsPage.css';
 import QuestionPart from '../../components/QuestionsPart/QuestionPart.jsx';
@@ -6,6 +6,7 @@ import image from '../../assets/quesBackground-2.png';
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link, useParams } from 'react-router-dom';
 import GeneralUserDetails from '../../components/GeneralUserDetails/GeneralUserDetails.jsx';
+import TestPDF from './TestPdf.jsx';
 
 function QuestionsPage() {
     const [loading, setLoading] = useState(false);
@@ -17,8 +18,13 @@ function QuestionsPage() {
     const [error, setError] = useState('');
     const [isVisible, setIsVisible] = useState(true);
     const [detailsActive, setDetailsActive] = useState(false);
-    const url = 'https://mentalhealthmlmodel-11-0.onrender.com/depdet/';
+    const [testData, setTestData] = useState([]);
+    const [pdfSaved, setPdfSaved] = useState(false);
+    const url = 'http://127.0.0.1:5000/depdet/';
     const id = useParams();
+
+    const apiUrl = "http://localhost:8080"
+    // https://mentalhealth-api-xa6u.onrender.com
 
     useEffect(() => {
         setLoading(true);
@@ -26,6 +32,32 @@ function QuestionsPage() {
             setLoading(false);
         }, 2000);
     }, []);
+
+    const savePDF = useCallback(async (pdfBlob) => {
+        if (pdfSaved) {
+            console.log('PDF has already been saved');
+            return;
+          }
+        try {
+        console.log(pdfBlob)
+        console.log('savePDF function called');
+          const formData = new FormData();
+          formData.append('pdfFile', pdfBlob, 'test_results.pdf');
+          const response = await fetch(`${apiUrl}/extra/addReport/${localStorage.getItem('id')}`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Credentials": "true"
+            },
+          })
+          console.log('PDF saved successfully:', response.data);
+          setPdfSaved(true);
+        } catch (error) {
+          console.error('Failed to save PDF:', error);
+        }
+    }, [pdfSaved]);
 
 
     //to handle the next button to display the next question
@@ -50,6 +82,7 @@ function QuestionsPage() {
         const currentValues = values;
         console.log(currentValues);
         const currentModel = 7;
+        console.log(testData)
 
         if (currentModel === -1) {
             return;
@@ -71,12 +104,14 @@ function QuestionsPage() {
     };
 
     function finalResults(resul) {
-        fetch('https://mentalhealth-api-xa6u.onrender.com/extra/addDetails', {
+        fetch(`${apiUrl}/extra/addDetails`, {
             method: 'POST',
             body: JSON.stringify({ "userId": localStorage.getItem('id'), "result": resul * 100 }),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": "true"
             }
         })
     }
@@ -123,7 +158,7 @@ function QuestionsPage() {
                                     .filter((question) => question.type === id.id)
                                     .slice(index, index + 1).map(question =>
                                         <div className={`content ${isVisible ? 'visible' : ''}`}>
-                                            <QuestionPart setError={setError} setValues={setValues} question={question} index={index} />
+                                            <QuestionPart setError={setError} setValues={setValues} question={question} index={index} setTestData={setTestData} />
                                         </div>
                                     )}
 
@@ -150,6 +185,10 @@ function QuestionsPage() {
                         <div id="result">
                             <h1>{result}</h1>
                             <button onClick={() => { setAnswerActive(false); setQuestionsActive(false); setDetailsActive(true) }}>Continue<AiOutlineArrowRight /></button>
+                            {result != null && (
+                            <TestPDF testData={testData} result={result} onPdfGenerated={savePDF} />
+                            )
+                            }
                         </div>
                     )}
 

@@ -1,7 +1,6 @@
-Flask
+flask
 numpy
 pandas
 scikit-learn
 keras
-tensorflow
-gunicorn
+tf.keras

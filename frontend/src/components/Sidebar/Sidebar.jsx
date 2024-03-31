@@ -16,6 +16,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Support from "../Support Groups/Support";
 import Plan from "../Plan/Plan";
 import { useState } from "react";
+import Reports from "../Reports/Reports";
 
 function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
   const [active, setActive] = useState('Dashboard');
@@ -44,11 +45,11 @@ function Sidebar({ openSidebar, sidebarHandler, componentHandler }) {
             <TbMoodPlus className={classes.icon} /> Mood, Sleep Tracker
         </li>
 
-        <li  onClick={() => {componentHandler(<Support/>); setActive('Support')}} className={`${classes["sidebar-list-item"]} ${active === 'Support' ? `${classes["itemActive"]}` : ''}`}>
+        <li onClick={() => {componentHandler(<Support/>); setActive('Support')}} className={`${classes["sidebar-list-item"]} ${active === 'Support' ? `${classes["itemActive"]}` : ''}`}>
             <BsPeopleFill className={classes.icon} /> Support Groups
         </li>
 
-        <li className={classes["sidebar-list-item"]}>
+        <li onClick={() => {componentHandler(<Reports/>); setActive('Reports')}}className={`${classes["sidebar-list-item"]} ${active === 'Reports' ? `${classes["itemActive"]}` : ''}`}>
             <BsMenuButtonWideFill className={classes.icon} /> Reports
         </li>
         <li className={classes["sidebar-list-item"]}>
