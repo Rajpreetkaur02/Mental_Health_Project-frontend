@@ -23,8 +23,8 @@ function QuestionsPage() {
     const url = 'http://127.0.0.1:5000/depdet/';
     const id = useParams();
 
-    const apiUrl = "http://localhost:8080"
-    // https://mentalhealth-api-xa6u.onrender.com
+    const apiUrl = "https://mentalhealth-api-xa6u.onrender.com";
+    // "http://localhost:8080"
 
     useEffect(() => {
         setLoading(true);
