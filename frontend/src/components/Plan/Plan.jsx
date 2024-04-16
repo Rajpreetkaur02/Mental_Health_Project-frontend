@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Plan.css';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import axiosapi from '../../services/axiosapi';
 
 function Plan() {
     const [planDetail, setPlanDetail] = useState({});
@@ -11,7 +12,7 @@ function Plan() {
     // Fetch User Age
     const fetchAge = () => {
         try {
-            fetch(`https://mentalhealth-api-xa6u.onrender.com/user/age/${localStorage.getItem('email')}`,{ 
+            axiosapi.get(`/user/age/${localStorage.getItem('email')}`, { 
                 crossDomain: true, 
                 headers: { 
                     'Content-Type':'application/json', 
@@ -19,8 +20,8 @@ function Plan() {
                     "Access-Control-Allow-Origin": "*", 
                     'Authorization': `Bearer ${localStorage.getItem('token')}` 
                 } 
-            }).then((res) => res.text())
-            .then((data) => {
+            }).then((res) => {
+                const data = res.data;
                 fetchPlan(data);
             })
         } catch (error) {
@@ -32,7 +33,7 @@ function Plan() {
     const fetchPlan = (age) => {
         if (age != '') {
             try {
-                fetch(`https://mentalhealth-api-xa6u.onrender.com/plans/plan/${age}`, {
+                axiosapi.get(`/plans/plan/${age}`, {
                     crossDomain: true,
                     headers: {
                         'Content-Type': 'application/json',
@@ -40,8 +41,8 @@ function Plan() {
                         "Access-Control-Allow-Origin": "*",
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },
-                }).then((res) => res.json())
-                .then((data) => {
+                }).then((res) => {
+                    const data = res.data;
                     setPlanDetail(data)
                 });
             } catch (error) {
@@ -52,19 +53,17 @@ function Plan() {
 
     // Fetch Tasks Completed
     const fetchTasks = async () => {
-        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+        const response = await axiosapi.get(`/extra/tasksCompleted/${localStorage.getItem('id')}`, { 
             crossDomain: true, 
             headers: { 'Content-Type':'application/json', 
               Accept: "application/json", 
               "Access-Control-Allow-Origin": "*", 
               'Authorization': `Bearer ${localStorage.getItem('token')}` 
             } 
-          })
-          if (response.status == 200) {
-            const result = await response.json()
-            .then((data) => {
-              setTasksCompleted(data) 
-            })
+        })
+        if (response.status == 200) {
+            const data = await response.data;
+            setTasksCompleted(data);
         } else {
           setTasksCompleted([false, false, false]);
         }
@@ -84,15 +83,13 @@ function Plan() {
         newCheckboxes[index] = !newCheckboxes[index];
         setTasksCompleted(newCheckboxes);
         
-        fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/task/${localStorage.getItem('id')}`,{ 
-            method: 'PUT', 
+        axiosapi.put(`/extra/task/${localStorage.getItem('id')}`, newCheckboxes, { 
             headers: { 
                 'Content-Type':'application/json', 
                 Accept: "application/json", 
                 "Access-Control-Allow-Origin": "*", 
                 'Authorization': `Bearer ${localStorage.getItem('token')}`, 
-            },  
-            body: JSON.stringify(newCheckboxes)
+            },
         }); 
             
         fetchAge();

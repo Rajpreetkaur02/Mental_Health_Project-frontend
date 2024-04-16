@@ -4,7 +4,8 @@ import Navbar from '../../components/Navbar/Navbar'
 import Support from '../../assets/support.png';
 import GroupCard from '../../components/GroupCard/GroupCard.jsx';
 import { Link, useParams } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer'
+import Footer from '../../components/Footer/Footer';
+import axiosapi from '../../services/axiosapi.js';
 
 const Community = () => {
     const [mentalActive, setMentalActive] = useState(true);
@@ -40,7 +41,7 @@ const Community = () => {
 
     //fetching the details of all the support groups to display on the community page
     useEffect(() => {
-        fetch('https://mentalhealth-api-xa6u.onrender.com/groups/supportGroups',{
+        axiosapi.get('/groups/supportGroups', {
             crossDomain: true,
             headers: {
                 'Content-Type':'application/json',
@@ -48,8 +49,8 @@ const Community = () => {
                 "Access-Control-Allow-Origin": "*",    
             },    
         })
-        .then((res) => res.json())
-        .then((data) => {
+        .then((res) => {
+            const data = res.data;
             console.log(data);
             setGroupsData(data);
         });

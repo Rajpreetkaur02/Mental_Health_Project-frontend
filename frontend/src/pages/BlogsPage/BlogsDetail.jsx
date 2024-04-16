@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { differenceInMinutes, formatDistanceToNow } from "date-fns";
 import Navbar from "../../components/Navbar/Navbar";
 import "./BlogDetails.css";
+import axiosapi from '../../services/axiosapi';
 
 function BlogsDetail() {
   const [blogDetails, setblogdetails] = useState([]);
@@ -21,8 +22,7 @@ function BlogsDetail() {
   //fetching data of a specific post using the id to display the blog content
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `https://mentalhealth-api-xa6u.onrender.com/blog/post/${id.id}`,
+      const response = await axiosapi.get(`/blog/post/${id.id}`,
         {
           crossDomain: true,
           headers: {

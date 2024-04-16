@@ -6,6 +6,7 @@ import mentalData from '../../utils/healthData.js';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import './Categories.css';
+import axiosapi from '../../services/axiosapi.js';
 
 function Categories() {
     const [mentalActive, setMentalActive] = useState(true);
@@ -41,7 +42,7 @@ function Categories() {
     //fetching the current user details after sign up
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            fetch('https://mentalhealth-api-xa6u.onrender.com/current-user', {
+            axiosapi.get('/current-user', {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,8 +51,8 @@ function Categories() {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
-                .then((res) => res.json())
-                .then((data) => {
+                .then((res) => {
+                    const data = res.data;
                     console.log(data);
                     if (localStorage.getItem('name') == null) {
                         localStorage.setItem('id', data._id);

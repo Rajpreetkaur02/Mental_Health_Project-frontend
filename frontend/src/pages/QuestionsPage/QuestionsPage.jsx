@@ -7,6 +7,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link, useParams } from 'react-router-dom';
 import GeneralUserDetails from '../../components/GeneralUserDetails/GeneralUserDetails.jsx';
 import TestPDF from './TestPdf.jsx';
+import axiosapi from '../../services/axiosapi.js'
 
 function QuestionsPage() {
     const [loading, setLoading] = useState(false);
@@ -22,9 +23,6 @@ function QuestionsPage() {
     const [pdfSaved, setPdfSaved] = useState(false);
     const url = 'http://127.0.0.1:5000/depdet/';
     const id = useParams();
-
-    const apiUrl = "https://mentalhealth-api-xa6u.onrender.com";
-    // "http://localhost:8080"
 
     useEffect(() => {
         setLoading(true);
@@ -43,9 +41,7 @@ function QuestionsPage() {
         console.log('savePDF function called');
           const formData = new FormData();
           formData.append('pdfFile', pdfBlob, 'test_results.pdf');
-          const response = await fetch(`${apiUrl}/extra/addReport/${localStorage.getItem('id')}`, {
-            method: 'POST',
-            body: formData,
+          const response = await axiosapi.post(`/extra/addReport/${localStorage.getItem('id')}`, formData, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
               "Access-Control-Allow-Origin": "*",
@@ -104,9 +100,10 @@ function QuestionsPage() {
     };
 
     function finalResults(resul) {
-        fetch(`${apiUrl}/extra/addDetails`, {
-            method: 'POST',
-            body: JSON.stringify({ "userId": localStorage.getItem('id'), "result": resul * 100 }),
+        axiosapi.post(`/extra/addDetails`, { 
+            "userId": localStorage.getItem('id'), 
+            "result": resul * 100 
+        }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

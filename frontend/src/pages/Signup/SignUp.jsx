@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import emailjs from '@emailjs/browser';
+import axiosapi from '../../services/axiosapi';
 
 function SignUp() {
     const [showEmergency, setShowEmergency] = useState(false);
@@ -67,9 +68,17 @@ function SignUp() {
                 console.log(error.text);
             });
 
-        const response = await fetch('https://mentalhealth-api-xa6u.onrender.com/user/register', {
-            method: 'POST',
-            body: JSON.stringify({ "name": userDetails.user_name, "number": userDetails.user_number, "username": userDetails.user_email, "password": userDetails.user_password, "emergencyContact": { "name": emergencyDetails.extra_name, "number": emergencyDetails.extra_number, "email": emergencyDetails.extra_email } }),
+        const response = await axiosapi.post('/user/register', { 
+            "name": userDetails.user_name, 
+            "number": userDetails.user_number, 
+            "username": userDetails.user_email, 
+            "password": userDetails.user_password, 
+            "emergencyContact": { 
+                "name": emergencyDetails.extra_name, 
+                "number": emergencyDetails.extra_number, 
+                "email": emergencyDetails.extra_email
+            }
+        }, {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.status === 200) {
@@ -79,27 +88,27 @@ function SignUp() {
                 icon: "success",
                 button: "Ok",
             });
-            fetch("https://mentalhealth-api-xa6u.onrender.com/generate-token", {
-                method: 'POST',
+            axiosapi.post("/generate-token", { 
+                'username': userDetails.user_email, 
+                'password': userDetails.user_password 
+            }, {
                 crossDomain: true,
-                body: JSON.stringify({ 'username': userDetails.user_email, 'password': userDetails.user_password }),
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: "application/json",
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Credentials": "true"
                 }
-            }).then((res) => res.json())
-                .then((data) => {
-                    if (data.token !== "") {
-                        window.localStorage.setItem("token", data.token);
-                        navigate("/categories");
-                    } else {
-                        swal("Wrong Credentials", "Something went wrong!", "error")
-                    }
-                });
+            }).then((res) => {
+                const data = res.data
+                if (data.token !== "") {
+                    window.localStorage.setItem("token", data.token);
+                    navigate("/categories");
+                } else {
+                    swal("Wrong Credentials", "Something went wrong!", "error")
+                }
+            })
             navigate("/login");
-
         } else {
             swal({
                 title: "User Already Registered!",

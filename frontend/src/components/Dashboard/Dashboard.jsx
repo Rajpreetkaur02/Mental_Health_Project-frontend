@@ -9,7 +9,8 @@ import girlImg from "../../assets/greetingImg.png";
 import tasks from "../../assets/complete.svg";
 import sleep from "../../assets/sleeping.svg";
 import reports from "../../assets/reports.svg";
-import {formatISO9075, subDays} from "date-fns"
+import {formatISO9075, subDays} from "date-fns";
+import axiosapi from '../../services/axiosapi'
 
 import {
   XAxis,
@@ -43,7 +44,7 @@ function Dashboard() {
   const fetchData = () => {
     if (localStorage.getItem('id') != null) {
       try {
-        fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/moodsAvg/${localStorage.getItem('id')}`,{ 
+        axiosapi.get(`/extra/moodsAvg/${localStorage.getItem('id')}`, { 
           crossDomain: true, 
           headers: { 'Content-Type':'application/json', 
             Accept: "application/json", 
@@ -51,8 +52,8 @@ function Dashboard() {
             'Authorization': `Bearer ${localStorage.getItem('token')}` 
           } 
         })
-        .then((res) => res.json())
-        .then((data) => {
+        .then((res) => {
+          const data = res.data;
           setData(data) 
         })
       } catch (error) {
@@ -65,7 +66,7 @@ function Dashboard() {
 
   const fetchTasksCompleted = async () => {
     if (localStorage.getItem('id') != null) {
-      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
+      const response = await axiosapi.get(`/extra/tasksCompleted/${localStorage.getItem('id')}`,{ 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 
@@ -74,13 +75,11 @@ function Dashboard() {
         } 
       })
       if (response.status === 200) {
-        await response.json()
-        .then((data) => {
-          setTasksCompleted(data.filter((value) => value === true).length) 
-        })
-      } else {
-        setTasksCompleted(0);
+        const data = await response.data
+        setTasksCompleted(data.filter((value) => value === true).length) 
       }
+    } else {
+        setTasksCompleted(0);
     }
   }
 
@@ -88,7 +87,7 @@ function Dashboard() {
 
   const fetchSleep = async () => {
     if (localStorage.getItem('id') != null) {
-      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getSleep/${localStorage.getItem('id')}`,{ 
+      const response = await axiosapi.get(`/extra/getSleep/${localStorage.getItem('id')}`, { 
         crossDomain: true, 
         headers: { 'Content-Type':'application/json', 
           Accept: "application/json", 
@@ -97,10 +96,8 @@ function Dashboard() {
         } 
       })
       if (response.status === 200) {
-        await response.json()
-        .then((data) => {
-          setSleepData(data) 
-        })
+        const data = await response.data
+        setSleepData(data) 
       }
     }
   }

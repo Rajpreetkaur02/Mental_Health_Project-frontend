@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './MoodTracker.css'; 
 import {formatISO9075, formatISO} from 'date-fns';
 import swal from 'sweetalert';
+import axiosapi from '../../services/axiosapi';
 
 const MoodTracker = () => { 
   const [mood, setMood] = useState('😐 Neutral'); 
@@ -13,7 +14,7 @@ const MoodTracker = () => {
   // Fetch Moods
   const fetchData = () => {
     try {
-      fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getMood/${localStorage.getItem('id')}`,{ 
+      axiosapi.get(`/extra/getMood/${localStorage.getItem('id')}`, { 
         crossDomain: true, 
         headers: { 
           'Content-Type':'application/json', 
@@ -23,8 +24,8 @@ const MoodTracker = () => {
           "MyDate": formatISO(new Date(), { representation: 'date' })
         }
       })
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res) => {
+        const data = res.data;
         console.log(data)
         setMoodHistory(data) 
       })
@@ -39,15 +40,16 @@ const MoodTracker = () => {
     console.log(mood) 
     console.log(moodHistory) 
   
-    await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addMood/${localStorage.getItem('id')}`,{ 
-      method: 'PUT', 
+    await axiosapi.put(`/extra/addMood/${localStorage.getItem('id')}`, {
+      "mood": newMood,
+      "timestamp": formatISO9075(new Date())
+    }, { 
       headers: { 
         'Content-Type':'application/json', 
         Accept: "application/json", 
         "Access-Control-Allow-Origin": "*", 
         'Authorization': `Bearer ${localStorage.getItem('token')}` 
       }, 
-      body: JSON.stringify({"mood": newMood, "timestamp": formatISO9075(new Date())}), 
     }); 
     fetchData();
     setLoading(true);
@@ -69,16 +71,17 @@ const MoodTracker = () => {
       swal("Please Enter Some Value" , "" ,  "error")      
     } else {
       // Add Sleep
-      fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addSleep/${localStorage.getItem('id')}`,{ 
-        method: 'PUT', 
+      axiosapi.put(`/extra/addSleep/${localStorage.getItem('id')}`, {
+        "hours": parseInt(hoursSlept.toFixed(2)), 
+        "dateTime": bedtimeDate.toISOString().split('T')[0]
+      }, { 
         headers: { 
             'Content-Type':'application/json', 
             Accept: "application/json", 
             "Access-Control-Allow-Origin": "*", 
             'Authorization': `Bearer ${localStorage.getItem('token')}`, 
         },  
-        body: JSON.stringify({"hours": parseInt(hoursSlept.toFixed(2)), "dateTime": bedtimeDate.toISOString().split('T')[0]})
-    }); 
+      }); 
     }
     alert("Sleep Added Successfully!")
     console.log(parseInt(hoursSlept.toFixed(2)))

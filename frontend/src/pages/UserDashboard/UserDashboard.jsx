@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import { useState } from "react";
+import axiosapi from '../../services/axiosapi';
 
 const UserDashboard = () => {
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -15,7 +16,7 @@ const UserDashboard = () => {
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            fetch('https://mentalhealth-api-xa6u.onrender.com/current-user', {
+            axiosapi.get('/current-user', {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,8 +25,8 @@ const UserDashboard = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
-                .then((res) => res.json())
-                .then((data) => {
+                .then((res) => {
+                    const data = res.data;
                     console.log(data);
                     if (localStorage.getItem('name') === null) {
                         localStorage.setItem('id', data._id)
@@ -34,7 +35,7 @@ const UserDashboard = () => {
                         window.location.reload();
                     }
                 });
-            fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/detail/${localStorage.getItem('id')}`, {
+            axiosapi.get(`/extra/detail/${localStorage.getItem('id')}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,8 +44,8 @@ const UserDashboard = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
-                .then((res) => res.json())
-                .then((data) => {
+                .then((res) => {
+                    const data = res.data;
                     console.log(data);
                     localStorage.setItem("result", data.result)
                 });

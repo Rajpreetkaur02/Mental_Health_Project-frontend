@@ -8,6 +8,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { GrGroup } from "react-icons/gr";
 import { IoPersonOutline } from "react-icons/io5";
 import swal from 'sweetalert';
+import axiosapi from '../../services/axiosapi';
 
 const Groupdesc = () => {
     const [groupsData, setGroupsData] = useState([]);
@@ -24,7 +25,7 @@ const Groupdesc = () => {
     //fetching details of a specific group using id
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
-            fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/${id.id}`, {
+            axiosapi.get(`/groups/${id.id}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,8 +34,8 @@ const Groupdesc = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             })
-                .then((res) => res.json())
-                .then((data) => {
+                .then((res) => {
+                    const data = res.data;
                     console.log(data);
                     setGroupsData(data);
                     setComponentActive(<GroupAbout data={data.about} />)
@@ -46,9 +47,7 @@ const Groupdesc = () => {
     //adding the support group to the users joinedGroups array and 
     //updating the number of members in the specific support groups
     async function updateMembers(e) {
-        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addGroup/${localStorage.getItem('id')}`, {
-            method: 'PUT',
-            body: JSON.stringify(id.id),
+        const response = await axiosapi.put(`/extra/addGroup/${localStorage.getItem('id')}`, id.id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -56,8 +55,7 @@ const Groupdesc = () => {
         })
         console.log(response.status)
         if (response.status == 200) {
-            fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/updateGroupMembers/${id.id}`, {
-                method: 'PUT',
+            axiosapi.put(`/groups/updateGroupMembers/${id.id}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,9 +85,7 @@ const Groupdesc = () => {
     //if the user is the one who created the support group, 
     //the group will be added to the user's details and members will be updated
     async function updateAdmin(e) {
-        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/addGroup/${localStorage.getItem('id')}`, {
-            method: 'PUT',
-            body: JSON.stringify(id.id),
+        const response = await axiosapi.put(`/extra/addGroup/${localStorage.getItem('id')}`, id.id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -97,8 +93,7 @@ const Groupdesc = () => {
         })
         console.log(response.status)
         if (response.status == 200) {
-            fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/updateGroupMembers/${id.id}`, {
-                method: 'PUT',
+            axiosapi.put(`/groups/updateGroupMembers/${id.id}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -114,7 +109,7 @@ const Groupdesc = () => {
     //fetching the details of all the groups joined by each user 
     const fetchData = async () => {
         try {
-            const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
+            const response = await axiosapi.get(`/extra/getJoinedGroups/${localStorage.getItem('id')}`, {
                 crossDomain: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,13 +118,11 @@ const Groupdesc = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            if (!response.ok) {
+            if (!response.status === 200) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const result = await response.json()
-                .then((data) => {
-                    setGroups(data);
-                })
+            const data = await response.data
+            setGroups(data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }

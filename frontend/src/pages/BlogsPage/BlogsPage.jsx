@@ -4,6 +4,7 @@ import classes from "./BlogsPage.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { MdAdd } from "react-icons/md";
+import axiosapi from '../../services/axiosapi';
 
 function BlogsPage() {
   const [blogs, setBlogs] = useState([]);
@@ -17,7 +18,7 @@ function BlogsPage() {
 
   //fetch the data of all the posts to display on the main page
   const fetchData = () => {
-    fetch('https://mentalhealth-api-xa6u.onrender.com/blog/allPosts', {
+    axiosapi.get('/blog/allPosts', {
       crossDomain: true,
       headers: {
         'Content-Type': 'application/json',
@@ -26,11 +27,11 @@ function BlogsPage() {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setBlogs(data);
-      });
+    .then((res) => {
+      const data = res.data;
+      console.log(data);
+      setBlogs(data);
+    });
   }
 
   //loading

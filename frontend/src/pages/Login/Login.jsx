@@ -4,7 +4,8 @@ import img from '../../assets/TaeAugust07.jpg';
 import './Login.css';
 import Navbar from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
+import axiosapi from '../../services/axiosapi';
 
 function Login() {
     const [userDetails, setUserDetails] = useState({
@@ -25,10 +26,11 @@ function Login() {
     //generating the token once the user login
     async function login(e) {
         e.preventDefault();
-        const response = await fetch("https://mentalhealth-api-xa6u.onrender.com/generate-token", {
-            method: 'POST',
+        const response = await axiosapi.post("/generate-token", { 
+            'username': userDetails.email, 
+            'password': userDetails.password
+        }, {
             crossDomain: true,
-            body: JSON.stringify({ 'username': userDetails.email, 'password': userDetails.password }),
             headers: {
                 'Content-Type': 'application/json',
                 Accept: "application/json",
@@ -37,17 +39,15 @@ function Login() {
             }
         });
         if (response.status === 200) {
-            const result = response.json()
-                .then(data => {
-                    console.log(data)
-                    swal({
-                        title: "Welcome!",
-                        text: "User logged In Successfully!",
-                        icon: "success",
-                    });
-                    localStorage.setItem("token", data.token);
-                    navigate("/dashboard");
-                })
+            const data = response.data
+            console.log(data)
+            swal({
+                title: "Welcome!",
+                text: "User logged In Successfully!",
+                icon: "success",
+            });
+            localStorage.setItem("token", data.token);
+            navigate("/dashboard");
         } else {
             swal("Wrong Credentials", "Something went wrong!", "error")
         }

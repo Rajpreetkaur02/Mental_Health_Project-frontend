@@ -7,6 +7,7 @@ import { formatISO9075, formatISO } from 'date-fns';
 import { differenceInMinutes, formatDistanceToNow } from 'date-fns';
 import { uid } from 'uid';
 import { IoSend } from "react-icons/io5";
+import axiosapi from '../../services/axiosapi';
 
 const GroupPosts = () => {
   const [postHistory, setPostHistory] = useState([]);
@@ -42,17 +43,16 @@ const GroupPosts = () => {
   const handleIconClick = async (postId) => {
     setLiked(prevstate => !prevstate);
     try {
-      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/updatePostLikes/${id.id}`, {
-        method: 'PUT',
+      const response = await axiosapi.put(`/groups/updatePostLikes/${id.id}`, postId,
+      {
         crossDomain: true,
-        body: JSON.stringify(postId),
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
           'Access-Control-Allow-Origin': '*',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           "Liked": !liked
-        },
+        }
       });
       fetchData();
     } catch (error) {
@@ -72,15 +72,19 @@ const GroupPosts = () => {
 
   // Add group Posts
   const handlesubmit = async () => {
-    const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/addPost/${id.id}`, {
-      method: 'PUT',
+    const response = await axiosapi.put(`/groups/addPost/${id.id}`, {
+      "postID": postDetails.postID, 
+      "username": postDetails.username, 
+      "content": postDetails.content, 
+      "timestamp": formatISO9075(new Date()), 
+      "likes": postDetails.likes 
+    }, {
       headers: {
         'Content-Type': 'application/json',
         Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
         'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify({ "postID": postDetails.postID, "username": postDetails.username, "content": postDetails.content, "timestamp": formatISO9075(new Date()), "likes": postDetails.likes }),
+      }
     });
     fetchData();
   }
@@ -88,7 +92,7 @@ const GroupPosts = () => {
   // Fetch Group Posts
   const fetchData = async () => {
     try {
-      const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/getPosts/${id.id}`, {
+      const response = await axiosapi.get(`/groups/getPosts/${id.id}`, {
         crossDomain: true,
         headers: {
           'Content-Type': 'application/json',
@@ -101,10 +105,8 @@ const GroupPosts = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const result = await response.json()
-        .then((data) => {
-          setPostHistory(data)
-        })
+      const data = await response.data;
+      setPostHistory(data)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -140,8 +142,11 @@ const GroupPosts = () => {
 
   // Add comments API
   const handlecommentpost = async (postId) => {
-    const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/addComment/${id.id}`, {
-      method: 'PUT',
+    const response = await axiosapi.put(`/groups/addComment/${id.id}`, { 
+      "username": commentDetails.username, 
+      "content": commentDetails.content, 
+      "timestamp": formatISO9075(new Date()) 
+    }, {
       headers: {
         'Content-Type': 'application/json',
         Accept: "application/json",
@@ -149,7 +154,6 @@ const GroupPosts = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         "postID": postId,
       },
-      body: JSON.stringify({ "username": commentDetails.username, "content": commentDetails.content, "timestamp": formatISO9075(new Date()) }),
     });
     fetchData();
   }

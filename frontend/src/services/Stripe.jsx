@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
-import {useParams} from "react-router-dom"
+import {useParams} from "react-router-dom";
+import axiosapi from '../services/axiosapi';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -17,16 +18,16 @@ export default function App() {
   useEffect(() => {
 
     // Create PaymentIntent as soon as the page loads
-    fetch("https://mentalhealth-api-xa6u.onrender.com/api/payment/create-intent", {
-      method: "POST",
+    axiosapi.post("/api/payment/create-intent", {amount: id.id}, {
       headers: {'Content-Type':'application/json',
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": "true" },
-      body: JSON.stringify({amount: id.id}),
     })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((res) => {
+        const data = res.data;
+        setClientSecret(data.clientSecret)
+      })
   }, []);
 
 

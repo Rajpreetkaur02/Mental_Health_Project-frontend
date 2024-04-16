@@ -3,6 +3,7 @@ import './GeneralUserDetails.css';
 import {AiOutlineArrowRight} from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import axiosapi from '../../services/axiosapi';
 
 function GeneralUserDetails() {
     const [userDetails, setUserDetails] = useState({
@@ -35,15 +36,17 @@ function GeneralUserDetails() {
             });
         } else {
             e.preventDefault();
-            const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/user/updateUser/${localStorage.getItem('email')}`,{
-                method: 'PUT',
+            const response = await axiosapi.put(`/user/updateUser/${localStorage.getItem('email')}`, {
+                "age": userDetails.age, 
+                "income": userDetails.income, 
+                "gender": selectedGender
+            }, {
                 headers: {
                     'Content-Type':'application/json',
                     Accept: "application/json",
                     "Access-Control-Allow-Origin": "*",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`     
                 },
-                body: JSON.stringify({"age": userDetails.age, "income": userDetails.income, "gender": selectedGender}),
             });  
             if (response.status === 200) {
                 swal({

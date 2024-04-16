@@ -3,6 +3,7 @@ import './Support.css'
 import { GrGroup } from "react-icons/gr";
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import axiosapi from '../../services/axiosapi';
 
 const GroupDashboard = ({ groupId }) => {
     const [groupDetails, setGroupDetails] = useState([]);
@@ -12,7 +13,7 @@ const GroupDashboard = ({ groupId }) => {
         // Fetch Specific Group Details
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/${JSON.parse(groupId)}`, {
+                const response = await axiosapi.get(`/groups/${JSON.parse(groupId)}`, {
                     crossDomain: true,
                     headers: {
                         'Content-Type': 'application/json',
@@ -21,10 +22,8 @@ const GroupDashboard = ({ groupId }) => {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },
                 });
-                const result = await response.json()
-                    .then((data) => {
-                        setGroupDetails(data)
-                    })
+                const data = await response.data;
+                setGroupDetails(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

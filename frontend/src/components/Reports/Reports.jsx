@@ -1,27 +1,25 @@
 import React, {useState, useEffect} from 'react'
 import './Reports.css';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import axiosapi from '../../services/axiosapi';
 
 
 function Reports() {
     const [reports, setReports] = useState([]);
     const [pdf, setPdfs] = useState([]);
 
-    const apiUrl = "https://mentalhealth-api-xa6u.onrender.com"
-    // "http://localhost:8080";
-
     // Get Groups Joined
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/extra/getUserReport/${localStorage.getItem("id")}`,{ 
+        const response = await axiosapi.get(`/extra/getUserReport/${localStorage.getItem("id")}`,{ 
           headers: { 
           "Access-Control-Allow-Origin": "*",
             'Authorization': `Bearer ${localStorage.getItem('token')}` 
           } 
         })
         console.log(response.data)
-        if (response.ok) {
-            const pdfs = await response.json();
+        if (response.status === 200) {
+            const pdfs = await response.data;
             console.log(pdfs.map(obj => obj.data));
             setReports(pdfs.map(obj => obj.data))
         } else {

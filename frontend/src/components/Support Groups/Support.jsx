@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import './Support.css'
 import GroupDashboard from './GroupDashboard';
+import axiosapi from '../../services/axiosapi';
 
 const Support = () => {
     const [groups, setgroups] = useState([]); 
@@ -9,7 +10,7 @@ const Support = () => {
     // Get Groups Joined
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://mentalhealth-api-xa6u.onrender.com/extra/getJoinedGroups/${localStorage.getItem('id')}`,{ 
+        const response = await axiosapi.get(`/extra/getJoinedGroups/${localStorage.getItem('id')}`, { 
           crossDomain: true, 
           headers: { 'Content-Type':'application/json', 
             Accept: "application/json", 
@@ -17,13 +18,11 @@ const Support = () => {
             'Authorization': `Bearer ${localStorage.getItem('token')}` 
           } 
         })
-        if (!response.ok) {
+        if (!response.status === 200) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const result = await response.json()
-        .then((data) => {
-          setgroups(data);
-        })
+        const data = await response.data
+        setgroups(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

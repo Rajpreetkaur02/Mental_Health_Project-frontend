@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import GroupPosts from '../GroupDescComponents/GroupPosts';
 import GroupChat from '../GroupDescComponents/GroupChat';
 import GroupPhotos from '../GroupDescComponents/GroupPhotos';
+import axiosapi from '../../services/axiosapi'
 
 const GroupSidebar = ({ componentHandler, member, admin }) => {
   const [active, setActive] = useState('GroupAbout');
@@ -34,7 +35,7 @@ const GroupSidebar = ({ componentHandler, member, admin }) => {
   // Fetch Group Details
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
-      fetch(`https://mentalhealth-api-xa6u.onrender.com/groups/${id.id}`, {
+      axiosapi.get(`/groups/${id.id}`, {
         crossDomain: true,
         headers: {
           'Content-Type': 'application/json',
@@ -43,11 +44,11 @@ const GroupSidebar = ({ componentHandler, member, admin }) => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
       })
-        .then((res) => res.json())
-        .then((data) => {
+        .then((res) => {
+          const data = res.data;
           console.log(data);
           setAbout(data.about);
-        });
+        })
     }
   }, []);
 

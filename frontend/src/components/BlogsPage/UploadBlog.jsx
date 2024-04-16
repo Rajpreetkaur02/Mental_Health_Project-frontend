@@ -6,6 +6,7 @@ import { useDropzone } from 'react-dropzone';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { formatISO9075, formatISO } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import axiosapi from '../../services/axiosapi';
 
 const modules = {
     toolbar: [
@@ -87,17 +88,17 @@ const UploadBlog = ({ }) => {
         formData.append('category', BlogDetails.category);
         formData.append('author', BlogDetails.author);
         formData.append('timestamp', formatISO9075(new Date()))
-    
-        fetch("https://mentalhealth-api-xa6u.onrender.com/blog/post",{
-            method: 'POST',
+        
+        axiosapi.post("https://mentalhealth-api-xa6u.onrender.com/blog/post", formData, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                "Allow-cross-origin-access": "true"    
-            },
-            body: formData,
+                'Content-Type': 'multipart/form-data'
+            }
         })
-        .then(response => response.json())
-        .then(data => console.log('File uploaded successfully:', data))
+        .then(response => {
+            const data = response.data;
+            console.log('File uploaded successfully:', data)
+        })
         .catch(error => console.error('Error uploading file:', error));
         alert('posted successfully')
         navigate("/blogs")

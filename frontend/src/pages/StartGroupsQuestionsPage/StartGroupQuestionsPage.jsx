@@ -4,7 +4,8 @@ import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import '../../styles/Community.css'
-import NewGroup from '../../assets/NewGroup.png'
+import NewGroup from '../../assets/NewGroup.png';
+import axiosapi from '../../services/axiosapi';
 
 const modules = {
 
@@ -61,18 +62,25 @@ const StartGroupQuestionsPage = () => {
     }));
     console.log(groupDetails);
 
-    const response = await fetch('https://mentalhealth-api-xa6u.onrender.com/groups/addGroups', {
-      method: 'POST',
-      body: JSON.stringify({ "title": groupDetails.title, "members": groupDetails.members, "topics": groupDetails.topics, "about": groupDetails.about, "organizer": groupDetails.organizer, "type": groupDetails.type, "location": groupDetails.location }),
+    const response = await axiosapi.post('/groups/addGroups', { 
+      "title": groupDetails.title, 
+      "members": groupDetails.members, 
+      "topics": groupDetails.topics, 
+      "about": groupDetails.about, 
+      "organizer": groupDetails.organizer, 
+      "type": groupDetails.type, 
+      "location": groupDetails.location 
+    }, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     });
     if (response.status === 200) {
-      const res = await fetch('https://mentalhealth-api-xa6u.onrender.com/extra/addDetails', {
-        method: 'POST',
-        body: JSON.stringify({ "type": "admin", "userId": localStorage.getItem('id') }),
+      const res = await axiosapi.post('/extra/addDetails', { 
+        "type": "admin", 
+        "userId": localStorage.getItem('id') 
+      }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
