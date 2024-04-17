@@ -102,7 +102,7 @@ const GroupPosts = () => {
           "MyDate": formatISO(new Date(), { representation: 'date' })
         }
       })
-      if (!response.ok) {
+      if (!response.status === 200) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.data;
