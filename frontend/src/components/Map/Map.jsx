@@ -27,7 +27,7 @@ function Map() {
         if (!mapFrame.current || (mapFrame.current && mapFrame.current.getAttribute("src") === "")) {
             navigator.geolocation.getCurrentPosition((position) => {
                 console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
-                const mapUrl = "http://www.google.com/maps?q=psychiatrist+near+me/" + position.coords.latitude + "," + position.coords.longitude + "&z=13&output=embed";
+                const mapUrl = "https://www.google.com/maps?q=psychiatrist+near+me/" + position.coords.latitude + "," + position.coords.longitude + "&z=13&output=embed";
                 if (mapFrame.current) {
                     mapFrame.current.setAttribute("src", mapUrl);
                     setMapShown(true);

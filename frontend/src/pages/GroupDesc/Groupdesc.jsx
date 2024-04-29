@@ -176,7 +176,7 @@ const Groupdesc = () => {
                         <h1>{groupsData.title}</h1>
                         <p><FaLocationDot color='#ff1154' />   {groupsData.location}</p>
                         <p><GrGroup />   {groupsData.members} members</p>
-                        <p><IoPersonOutline />Organized by<span>{groupsData.organizer}</span></p>
+                        <p><IoPersonOutline />Organized by<strong>{groupsData.organizer}</strong></p>
                     </div>
                     {!isMember && !Admin && (
                         <>
